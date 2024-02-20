@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: fit-content;
+  justify-content: space-between;
   padding: 0.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -38,8 +38,19 @@
   height: 100svh;
 }
 
+.page-content {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  height: 25svh;
+  /* border: solid; */
+}
+
 @media (width>=768px) {
-  .page {
-    justify-content: center;
+  .page-content {
+    align-items: flex-start;
+    height: inherit;
   }
 }

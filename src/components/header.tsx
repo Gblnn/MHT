@@ -1,4 +1,4 @@
-import { Globe2 } from "lucide-react"
+import { Globe2, User } from "lucide-react"
 
 
 export default function Header(){
@@ -14,6 +14,11 @@ export default function Header(){
                     <button className="white">LOGIN <LogIn width="1rem"/></button>
                 </a>
             </div> */}
+
+            <div style={{padding:"0.5rem", paddingLeft:"1rem", paddingRight:"1rem", background:"#1a1a1a", borderRadius:"1rem", display:"flex", alignItems:"center", gap:"0.5rem", marginRight:"1.5rem", maxWidth:"8rem", overflow:"hidden", userSelect:"none"}}>
+                <User color="salmon" width="1rem"/>
+                <p>User</p>
+            </div>
             
             
         </div>

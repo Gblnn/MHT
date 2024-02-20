@@ -36,6 +36,7 @@ button {
   font-weight: 500;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   cursor: pointer;
   user-select: none;
@@ -44,4 +45,12 @@ button {
 .white {
   background-color: white;
   color: darkslateblue;
+}
+
+.disabled {
+  color: #6a6a6a;
+}
+
+.fixed-length {
+  width: 15rem;
 }
