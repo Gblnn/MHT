@@ -8,7 +8,7 @@ interface Props{
 
 export default function DirItem(props: Props){
     return(
-        <a href="#es" className={props.classname}>
+        <a className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                 {props.icon}

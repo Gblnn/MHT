@@ -1,9 +1,18 @@
 import { Globe, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 import Header from "../components/header";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export default function Home(){
+    const usenavigate = useNavigate()
+
+  useEffect(()=>{
+    if(window.name == ""){
+      usenavigate("/login")
+    }
+  },[window.name])
     return(
         <>
         <Header/>

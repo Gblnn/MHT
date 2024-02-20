@@ -16,7 +16,7 @@ export default function Header(){
             </div> */}
 
             <div style={{padding:"0.5rem", paddingLeft:"1rem", paddingRight:"1rem", background:"#1a1a1a", borderRadius:"1rem", display:"flex", alignItems:"center", gap:"0.5rem", marginRight:"1.5rem", maxWidth:"8rem", overflow:"hidden", userSelect:"none"}}>
-                <User color="salmon" width="1rem"/>
+                <User color="crimson" width="1rem"/>
                 <p>User</p>
             </div>
             

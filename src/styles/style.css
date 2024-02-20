@@ -28,10 +28,10 @@ a:focus {
 
 button {
   font-size: 1rem;
-  padding: 0.25rem;
+  padding: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: none;
   font-weight: 500;
   display: flex;
@@ -40,6 +40,20 @@ button {
   gap: 0.25rem;
   cursor: pointer;
   user-select: none;
+  transition: 0.3s;
+}
+
+input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  background: none;
+  border: 1px solid rgba(120 120 120/ 40%);
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+}
+
+input:focus {
+  outline: none;
 }
 
 .white {
@@ -47,8 +61,18 @@ button {
   color: darkslateblue;
 }
 
+.red {
+  background: linear-gradient(90deg, crimson, darkslateblue);
+  color: white;
+}
+
 .disabled {
   color: #6a6a6a;
+}
+
+.disabled-btn {
+  background: #2a2a2a;
+  color: #4a4a4a;
 }
 
 .fixed-length {
