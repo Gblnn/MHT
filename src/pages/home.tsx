@@ -3,25 +3,24 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Index from "./index";
 import Supervision from "./supervision";
+import Overview from "./overview";
 
+export default function Home() {
+  const usenavigate = useNavigate();
 
-export default function Home(){
-    const usenavigate = useNavigate()
-
-  useEffect(()=>{
-    if(window.name == ""){
-      usenavigate("/login")
+  useEffect(() => {
+    if (window.name == "") {
+      usenavigate("/login");
     }
-  },[window.name])
-    return(
-        <>
-        <Header/>
-        <Routes>
-          <Route path="/index" element={<Index/>}/>
-          <Route path="/supervision" element={<Supervision/>}/>
-        </Routes>
-        
-        
-        </>
-    )
+  }, [window.name]);
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/index" element={<Index />} />
+        <Route path="/supervision" element={<Supervision />} />
+        <Route path="/overview" element={<Overview />} />
+      </Routes>
+    </>
+  );
 }
