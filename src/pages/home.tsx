@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Index from "./index";
 import Supervision from "./supervision";
+import Overview from "./overview";
 
 
 export default function Home(){
@@ -19,6 +20,7 @@ export default function Home(){
         <Routes>
           <Route path="/index" element={<Index/>}/>
           <Route path="/supervision" element={<Supervision/>}/>
+          <Route path="/overview" element={<Overview/>}
         </Routes>
         
         
