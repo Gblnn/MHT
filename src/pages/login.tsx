@@ -76,11 +76,11 @@ export default function Login(){
                     <h1 style={{fontSize:"2rem", fontWeight:"600"}}>LOGIN</h1>
                     <br/><br/>
                     <div style={{display:"flex", flexFlow:"column", gap:"0.75rem"}}>
-                        <input onChange={e=>setUsername(e.target.value.toLowerCase())} placeholder="Username"/>
-                        <input onChange={e=>setPassword(e.target.value)} placeholder="Password" type="password"/>
+                        <input style={{padding:"0.25rem", paddingLeft:"0.5rem"}} onChange={e=>setUsername(e.target.value.toLowerCase())} placeholder="Username"/>
+                        <input style={{padding:"0.25rem", paddingLeft:"0.5rem"}} onChange={e=>setPassword(e.target.value)} placeholder="Password" type="password"/>
                     </div>
                     <br/><br/>
-                    <button color="linear-gradient(90deg, crimson, darkslateblue)" onClick={Validate} className={postable?"red":"disabled-btn"}>LOGIN <ChevronRight width="1rem"/></button>
+                    <button style={{padding:"0.25rem"}} color="linear-gradient(90deg, crimson, darkslateblue)" onClick={Validate} className={postable?"red":"disabled-btn"}>LOGIN <ChevronRight width="1rem"/></button>
                     
                     </div>
                     
