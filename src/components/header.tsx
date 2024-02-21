@@ -47,7 +47,7 @@ export default function Header(){
         <div className="header">
             <div className="header-title" style={{paddingRight:"1.5rem", paddingLeft:"1.5rem", display:"flex", alignItems:"center", gap:"0.25rem"}}>
                 <Globe2/>
-                <h1>MHT</h1>
+                <h1 style={{fontSize:"2rem", fontWeight:600}}>MHT</h1>
             </div>
 
             {/* <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem"}}>
