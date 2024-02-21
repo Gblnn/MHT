@@ -54,7 +54,7 @@ export default function Login(){
            
                 if(post.username === username && post.password === password){
                     // message.success("Logged In")
-                    usenavigate('/')
+                    usenavigate('/index')
                 
                 }
                 
@@ -73,7 +73,7 @@ export default function Login(){
             <div style={{display:"flex", alignItems:"center", justifyContent:"center", height:"100svh"}}>
                 <div style={{display:"flex",flexFlow:"column", background:"", width:"32ch", borderRadius:"1rem"}}>
                     <div style={{margin:"1.5rem", display:"flex", flexFlow:"column"}}>
-                    <h1>LOGIN</h1>
+                    <h1 style={{fontSize:"2rem", fontWeight:"600"}}>LOGIN</h1>
                     <br/><br/>
                     <div style={{display:"flex", flexFlow:"column", gap:"0.75rem"}}>
                         <input onChange={e=>setUsername(e.target.value.toLowerCase())} placeholder="Username"/>
