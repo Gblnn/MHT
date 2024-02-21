@@ -44,13 +44,12 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  height: 25svh;
+  height: 100svh;
   /* border: solid; */
 }
 
 @media (width>=768px) {
   .page-content {
-    align-items: flex-start;
-    height: inherit;
+    align-items: center;
   }
 }

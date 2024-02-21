@@ -25,7 +25,7 @@ export default function Supervision() {
   return (
     <>
       <div className="page">
-        <div style={{ paddingTop: "4rem" }}>
+        <div style={{}}>
           <Link
             style={{
               display: "flex",
@@ -35,6 +35,8 @@ export default function Supervision() {
               padding: "0.5rem",
               width: "fit-content",
               margin: "1rem",
+              position: "fixed",
+              marginTop: "5rem",
             }}
             to="/index"
           >

@@ -30,9 +30,10 @@ export default function DialogBox(props: Props) {
             </DialogTitle>
 
             <h3>{props.desc}</h3>
+            <br />
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
+            <br />
             <ComboBox placeholder="Select site" />
-            <ComboBox placeholder="Starting time" />
           </DialogHeader>
 
           <DialogFooter>
