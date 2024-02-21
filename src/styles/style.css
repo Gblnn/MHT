@@ -28,7 +28,7 @@ a:focus {
 
 button {
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.5rem;
@@ -62,7 +62,7 @@ input:focus {
 }
 
 .red {
-  background: linear-gradient(90deg, crimson, darkslateblue);
+  background: crimson;
   color: white;
 }
 

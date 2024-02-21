@@ -1,12 +1,13 @@
-import { User } from "lucide-react";
-import DirItem from "../components/dir-item";
-import { useEffect, useState } from "react";
 import DialogBox from "@/components/dialogbox";
-
+import { ChevronLeft, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import DirItem from "../components/dir-item";
+import { format } from "date-fns";
 
 export default function Supervision() {
 
-    const date = new Date().toLocaleDateString()
+    const date = format(new Date(), "dd-MM-yyyy")
 
     const [dialog, setDialog] = useState(false)
 
@@ -26,7 +27,9 @@ export default function Supervision() {
         <>
         
         <div className="page">
+            
             <div style={{paddingTop:"4rem"}}>
+            <Link style={{display:"flex", alignItems:"center", color:"crimson", fontWeight:500, padding:"0.5rem", width:"fit-content"}} to="/index"><ChevronLeft width="1rem"/> Back</Link>
                 <div className="page-content" style={{padding:"1.75rem"}}>
                     {posts.map((posts)=>(
                         <DirItem onclick={handleClick} key={posts.id} to="" icon={<User width="1rem" color="salmon"/>} title={posts.name}/>

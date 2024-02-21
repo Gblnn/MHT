@@ -1,4 +1,4 @@
-import { Button, ConfigProvider } from "antd";
+import { ConfigProvider } from "antd";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 
 interface Props {
@@ -24,8 +24,8 @@ export default function DialogBox(props:Props){
                 <DialogFooter>
                     <div style={{border:"", width:"100%",display:"flex",gap:"1rem", justifyContent:"center"}}>
                     <ConfigProvider theme={{token:{colorPrimary:"var(--color)"}}}>
-                    <Button style={{background:"var(--clr-opacity)", fontSize:"1rem"}} onClick={props.onCancel} type="primary">Cancel</Button>
-                    <Button style={{background:"crimson", fontSize:"1rem"}} onClick={props.onConfirm} type="primary">Confirm</Button>
+                    <button style={{background:"var(--clr-opacity)", fontSize:"1rem"}} onClick={props.onCancel} >Cancel</button>
+                    <button style={{background:"crimson", fontSize:"1rem"}} onClick={props.onConfirm}>Confirm</button>
                     </ConfigProvider>
                     
                     </div>
