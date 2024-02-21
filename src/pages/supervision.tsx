@@ -60,7 +60,7 @@ export default function Supervision() {
         title="Log details"
         onCancel={() => setDialog(false)}
         desc={date}
-        desc2="Raavion"
+        desc2="Employee Name"
       />
     </>
   );
