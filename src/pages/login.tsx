@@ -84,7 +84,7 @@ export default function Login() {
             display: "flex",
             flexFlow: "column",
             background: "",
-            width: "32ch",
+            width: "34ch",
             borderRadius: "1rem",
           }}
         >
