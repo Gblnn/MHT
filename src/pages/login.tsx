@@ -80,7 +80,7 @@ export default function Login(){
                         <input style={{padding:"0.25rem", paddingLeft:"0.5rem"}} onChange={e=>setPassword(e.target.value)} placeholder="Password" type="password"/>
                     </div>
                     <br/><br/>
-                    <button style={{padding:"0.25rem"}} color="linear-gradient(90deg, crimson, darkslateblue)" onClick={Validate} className={postable?"red":"disabled-btn"}>LOGIN <ChevronRight width="1rem"/></button>
+                    <button style={{padding:"0.5rem"}} color="linear-gradient(90deg, crimson, darkslateblue)" onClick={Validate} className={postable?"red":"disabled-btn"}>LOGIN <ChevronRight width="1rem"/></button>
                     
                     </div>
                     

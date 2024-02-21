@@ -1,7 +1,7 @@
 import { User } from "lucide-react";
 import DirItem from "../components/dir-item";
 import { useEffect, useState } from "react";
-import { DialogBox } from "@/components/dialogbox";
+import DialogBox from "@/components/dialogbox";
 
 
 export default function Supervision() {
@@ -38,7 +38,7 @@ export default function Supervision() {
             </div>
             
         </div>
-        <DialogBox open={dialog} title={date} onClose={()=>setDialog(false)}/>
+        <DialogBox style={{background:"#1a1a1a", border:"none"}} open={dialog} title={date} onCancel={()=>setDialog(false)}/>
         </>
     )
 }

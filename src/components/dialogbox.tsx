@@ -1,50 +1,38 @@
+import { Button, ConfigProvider } from "antd";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 
-
-import { Button } from "@/components/ui/button"
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-
-interface Props{
-    open?:boolean
-    title:string
+interface Props {
+    open:boolean
+    title?:string
     desc?:string
-    onClose?:any
+    style?:any
+    onCancel?:any
+    onConfirm?:any
+    action?:string
 }
 
-export function DialogBox(props:Props) {
-  return (
-    <Dialog open={props.open}>
-      <DialogContent style={{background:"#1a1a1a", border:"none"}} className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>{props.title}</DialogTitle>
-          <DialogDescription>{props.desc}</DialogDescription>
-        </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <Label htmlFor="link" className="sr-only">
-              Link
-            </Label>
-            <Input style={{background:"#1a1a1a"}}/>
-          </div>
-          
-        </div>
-        <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            <Button type="button" variant="secondary" onClick={props.onClose}>
-              Close
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
+export default function DialogBox(props:Props){
+    return(
+        <>
+        <Dialog open={props.open}>
+            <DialogContent style={props.style}>
+                <DialogHeader>
+                <DialogTitle>{props.title}</DialogTitle>
+                
+                <DialogDescription style={{marginTop:"1rem"}}>{props.desc}</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <div style={{border:"", width:"100%",display:"flex",gap:"1rem", justifyContent:"center"}}>
+                    <ConfigProvider theme={{token:{colorPrimary:"var(--color)"}}}>
+                    <Button style={{background:"var(--clr-opacity)"}} onClick={props.onCancel} type="primary">Cancel</Button>
+                    <Button style={{background:"crimson"}} onClick={props.onConfirm} type="primary">Confirm</Button>
+                    </ConfigProvider>
+                    
+                    </div>
+                    
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+        </>
+    )
 }

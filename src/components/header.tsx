@@ -47,7 +47,7 @@ export default function Header(){
         <div className="header">
             <div className="header-title" style={{paddingRight:"1.5rem", paddingLeft:"1.5rem", display:"flex", alignItems:"center", gap:"0.25rem"}}>
                 <Globe2/>
-                <h1 style={{fontSize:"2rem", fontWeight:600}}>MHT</h1>
+                <h1 style={{fontSize:"1.75rem", fontWeight:800}}>MHT</h1>
             </div>
 
             {/* <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem"}}>
@@ -58,7 +58,7 @@ export default function Header(){
 
             <Dropdown placement="bottom" menu={{items}} trigger={['click']}>
             <button style={{padding:0, background:"none"}}>
-            <div style={{padding:"0.5rem", paddingLeft:"1rem", paddingRight:"1rem", background:"#1a1a1a", borderRadius:"1rem", display:"flex", alignItems:"center", gap:"0.5rem", marginRight:"1.5rem", maxWidth:"8rem", overflow:"hidden", userSelect:"none"}}>
+            <div style={{padding:"0.5rem", paddingLeft:"1rem", paddingRight:"1rem", background:"#1a1a1a", borderRadius:"1rem", display:"flex", alignItems:"center", gap:"0.5rem", marginRight:"1.5rem", overflow:"hidden", userSelect:"none", width:"fit-content", justifyContent:"center"}}>
                 <User color="crimson" width="1rem"/>
                 <p>User</p>
             </div>
