@@ -2,7 +2,6 @@ import { Dropdown, MenuProps } from "antd";
 import { LogOut, User } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DialogBox from "./dialogbox";
 import DefaultDialog from "./default-dialog";
 
 export default function UserButton() {

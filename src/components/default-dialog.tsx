@@ -6,7 +6,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import ComboBox from "./combobox";
 
 interface Props {
   open: boolean;
