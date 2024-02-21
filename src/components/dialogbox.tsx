@@ -2,7 +2,6 @@ import { ConfigProvider } from "antd";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -30,7 +29,7 @@ export default function DialogBox(props: Props) {
 
             <h3>{props.desc}</h3>
             <h2>{props.desc2}</h2>
-            <ComboBox placeholder="Select Site" />
+            <ComboBox placeholder="Select site" />
             <ComboBox placeholder="Starting time" />
           </DialogHeader>
           <br />
