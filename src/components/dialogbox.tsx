@@ -32,7 +32,7 @@ export default function DialogBox(props: Props) {
             <ComboBox placeholder="Select site" />
             <ComboBox placeholder="Starting time" />
           </DialogHeader>
-          <br />
+
           <DialogFooter>
             <div
               style={{
