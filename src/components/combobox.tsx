@@ -14,7 +14,11 @@ export default function ComboBox(props: Props) {
   return (
     <Select>
       <SelectTrigger
-        style={{ background: "#1a1a1a", border: "1px solid #4a4a4a" }}
+        style={{
+          background: "#1a1a1a",
+          border: "1px solid #4a4a4a",
+          fontSize: "1rem",
+        }}
       >
         <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>

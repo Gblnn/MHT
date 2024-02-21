@@ -29,10 +29,11 @@ export default function DialogBox(props: Props) {
             <DialogTitle>{props.title}</DialogTitle>
 
             <h3>{props.desc}</h3>
-            <DialogDescription>{props.desc2}</DialogDescription>
+            <h2>{props.desc2}</h2>
             <ComboBox placeholder="Select Site" />
+            <ComboBox placeholder="Starting time" />
           </DialogHeader>
-          <br/>
+          <br />
           <DialogFooter>
             <div
               style={{
