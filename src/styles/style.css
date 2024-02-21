@@ -12,7 +12,9 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: Clash Grotesk, sans-serif;
+  font-family:
+    Clash Grotesk,
+    sans-serif;
 }
 
 a {
@@ -76,7 +78,7 @@ input:focus {
 }
 
 .fixed-length {
-  width: 75svw;
+  width: 85svw;
 }
 
 @media (width>576px) {
