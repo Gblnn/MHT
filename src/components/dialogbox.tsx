@@ -5,6 +5,7 @@ interface Props {
     open:boolean
     title?:string
     desc?:string
+    desc2?:string
     style?:any
     onCancel?:any
     onConfirm?:any
@@ -18,8 +19,10 @@ export default function DialogBox(props:Props){
             <DialogContent style={props.style}>
                 <DialogHeader>
                 <DialogTitle>{props.title}</DialogTitle>
-                
-                <DialogDescription style={{marginTop:"1rem"}}>{props.desc}</DialogDescription>
+                <br/>
+                <h3>{props.desc}</h3>
+                <DialogDescription>{props.desc2}</DialogDescription>
+                <input placeholder="site"></input>
                 </DialogHeader>
                 <DialogFooter>
                     <div style={{border:"", width:"100%",display:"flex",gap:"1rem", justifyContent:"center"}}>

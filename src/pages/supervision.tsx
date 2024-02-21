@@ -29,7 +29,9 @@ export default function Supervision() {
         <div className="page">
             
             <div style={{paddingTop:"4rem"}}>
-            <Link style={{display:"flex", alignItems:"center", color:"crimson", fontWeight:500, padding:"0.5rem", width:"fit-content"}} to="/index"><ChevronLeft width="1rem"/> Back</Link>
+                
+            <Link style={{display:"flex", alignItems:"center", color:"crimson", fontWeight:500, padding:"0.5rem", width:"fit-content", margin:"1rem"}} to="/index"><ChevronLeft width="1rem"/> Back</Link>
+
                 <div className="page-content" style={{padding:"1.75rem"}}>
                     {posts.map((posts)=>(
                         <DirItem onclick={handleClick} key={posts.id} to="" icon={<User width="1rem" color="salmon"/>} title={posts.name}/>
@@ -41,7 +43,7 @@ export default function Supervision() {
             </div>
             
         </div>
-        <DialogBox style={{background:"#1a1a1a", border:"none"}} open={dialog} title={date} onCancel={()=>setDialog(false)}/>
+        <DialogBox style={{background:"#1a1a1a", border:"none"}} open={dialog} title="Log details" onCancel={()=>setDialog(false)} desc={date} desc2="name"/>
         </>
     )
 }

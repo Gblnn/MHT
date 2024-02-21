@@ -76,5 +76,11 @@ input:focus {
 }
 
 .fixed-length {
-  width: 18rem;
+  width: 75svw;
+}
+
+@media (width>576px) {
+  .fixed-length {
+    width: 18rem;
+  }
 }
