@@ -4,6 +4,7 @@ import { ChevronLeft, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DirItem from "../components/dir-item";
+import { motion } from "framer-motion";
 
 export default function Supervision() {
   
@@ -76,7 +77,8 @@ export default function Supervision() {
           </Link>
 
           <div className="page-content" style={{}}>
-            <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"16rem",paddingBottom:"4rem", justifyContent:"center"}}>
+          
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"16rem",paddingBottom:"4rem", justifyContent:"center"}}>
             {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -87,6 +89,8 @@ export default function Supervision() {
               />
             ))}
             </div>
+        
+            
             
           </div>
         </div>

@@ -1,10 +1,12 @@
 import { Globe, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
+import { motion } from "framer-motion";
 
 export default function Index() {
   return (
     <div className="page">
       <div style={{}}>
+      <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
           <DirItem
@@ -20,6 +22,7 @@ export default function Index() {
             title="Unavailable"
           />
         </div>
+        </motion.div>
       </div>
     </div>
   );

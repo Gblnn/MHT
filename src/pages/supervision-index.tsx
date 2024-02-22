@@ -1,11 +1,15 @@
-import { ChevronLeft, Users } from "lucide-react";
+import { ChevronLeft, File, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function SupervisionIndex() {
   return (
     <div className="page">
       <div style={{}}>
+
+      
+
       <Link
             style={{
               display: "flex",
@@ -27,12 +31,19 @@ export default function SupervisionIndex() {
             <ChevronLeft width="1rem" /> Back
 
           </Link>
+          <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
           <DirItem
             to="/supervision"
             icon={<Users width="1rem" color="salmon" />}
             title="Employees"
+          />
+
+            <DirItem
+            to=""
+            icon={<File width="1rem" color="salmon" />}
+            title="Records"
           />
 
           {/* <DirItem
@@ -42,6 +53,7 @@ export default function SupervisionIndex() {
             title="Unavailable"
           /> */}
         </div>
+        </motion.div>
       </div>
     </div>
   );
