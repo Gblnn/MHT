@@ -70,7 +70,7 @@ export default function Supervision() {
             }}
             to="/supervision-index"
           >
-            <ChevronLeft width="1rem" /> Back
+            <ChevronLeft width="1rem" /> <p>Back</p>
 
           </Link>
 
@@ -101,7 +101,7 @@ export default function Supervision() {
         style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
         title={name}
-        desc="Overtime Hours"
+        desc="Overtime Hours : "
         onCancel={()=>{setDialog(false)}}
       />
     </>
