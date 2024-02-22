@@ -29,10 +29,6 @@
   transition: 0.3s;
 }
 
-.dir-item:hover {
-  background: var(--clr-opacity-hover);
-}
-
 .page {
   width: 100%;
   height: 100svh;
