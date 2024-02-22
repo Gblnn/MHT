@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Globe, LucideHome, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Globe, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
   return (
     <>
-    <Link
+    {/* <Link
             style={{
               display: "flex",
               gap:"0.25rem",
@@ -28,7 +27,7 @@ export default function Index() {
           >
             <LucideHome width="1rem" /> <p style={{paddingTop:"0.2rem"}}>Home</p>
 
-          </Link>
+          </Link> */}
     <div className="page">
       <div style={{}}>
       <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
