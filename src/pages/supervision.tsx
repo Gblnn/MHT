@@ -1,16 +1,14 @@
 import DialogBox from "@/components/dialogbox";
-import { format } from "date-fns";
 import { ChevronLeft, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DirItem from "../components/dir-item";
-import { motion } from "framer-motion";
 
 export default function Supervision() {
   
-  const date = format(new Date(), "dd-MM-yyyy");
+  // const date = format(new Date(), "dd-MM-yyyy");
   const [name, setName] = useState("")
-  const [site, setSite] = useState("")
+  // const [site, setSite] = useState("")
 
   const [dialog, setDialog] = useState(false);
 
@@ -27,17 +25,17 @@ export default function Supervision() {
       });
   }, [setPosts]);
 
-  const onPost = () => {
-    setDialog(false)
-    const obj = {name, date, site}
-    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/comments",
-          {
-                method:"POST",
-                headers:{'content-type':'application/json'},
-                body:JSON.stringify(obj)
-          }
-          )
-  }
+  // const onPost = () => {
+  //   setDialog(false)
+  //   const obj = {name, date, site}
+  //   fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/comments",
+  //         {
+  //               method:"POST",
+  //               headers:{'content-type':'application/json'},
+  //               body:JSON.stringify(obj)
+  //         }
+  //         )
+  // }
 
   const handleClick = () => {
     fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/")
