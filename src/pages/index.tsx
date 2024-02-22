@@ -24,7 +24,7 @@ export default function Index() {
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
-            to="/supervision-index"
+            to=""
           >
             <LucideHome width="1rem" /> <p style={{paddingTop:"0.2rem"}}>Home</p>
 
