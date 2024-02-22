@@ -76,7 +76,7 @@ export default function Supervision() {
 
           <div className="page-content" style={{}}>
           
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"16rem",paddingBottom:"4rem", justifyContent:"center"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"14rem",paddingBottom:"4rem", justifyContent:"center"}}>
             {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
