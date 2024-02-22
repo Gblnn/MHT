@@ -52,7 +52,7 @@ export default function Supervision() {
             <ChevronLeft width="1rem" /> Back
           </Link>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center"}}>
           {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}

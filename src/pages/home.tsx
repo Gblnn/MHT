@@ -4,6 +4,7 @@ import Header from "../components/header";
 import Index from "./index";
 import Supervision from "./supervision";
 import Records from "./records";
+import SupervisionIndex from "./supervision-index";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <Routes>
         <Route path="/index" element={<Index />} />
+        <Route path="/supervision-index" element={<SupervisionIndex />} />
         <Route path="/supervision" element={<Supervision />} />
         <Route path="/records" element={<Records />} />
       </Routes>

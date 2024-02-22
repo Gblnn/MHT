@@ -1,4 +1,4 @@
-import { File, Globe, Users } from "lucide-react";
+import { Globe, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -8,15 +8,9 @@ export default function Index() {
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
           <DirItem
-            to="/supervision"
+            to="/supervision-index"
             icon={<Users width="1rem" color="salmon" />}
             title="Employee Supervision"
-          />
-
-          <DirItem
-            to="/records"
-            icon={<File width="1rem" color="salmon" />}
-            title="Records"
           />
 
           <DirItem

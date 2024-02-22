@@ -1,9 +1,9 @@
 import DialogBox from "@/components/dialogbox";
+import { format } from "date-fns";
 import { ChevronLeft, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DirItem from "../components/dir-item";
-import { format } from "date-fns";
 
 export default function Supervision() {
   
@@ -16,13 +16,12 @@ export default function Supervision() {
   const [posts, setPosts] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/employees")
+    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
         posts.map((post)=>{
-          setName(post.name)
-          setSite(post.site)
+          console.log(post)
         })
       });
   }, [setPosts]);
@@ -40,6 +39,14 @@ export default function Supervision() {
   }
 
   const handleClick = () => {
+    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/")
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data);
+        posts.map((post)=>(
+          setName(post.name)
+        ))
+      });
     setDialog(true);
   };
   return (
@@ -62,7 +69,7 @@ export default function Supervision() {
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
-            to="/index"
+            to="/supervision-index"
           >
             <ChevronLeft width="1rem" /> Back
 
@@ -87,12 +94,8 @@ export default function Supervision() {
       <DialogBox
         style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
-        title="Log details"
-        onCancel={() => setDialog(false)}
-        onConfirm={onPost}
-        desc={date}
-        desc2={name}
-
+        title={name}
+        onCancel={()=>{setDialog(false)}}
       />
     </>
   );
