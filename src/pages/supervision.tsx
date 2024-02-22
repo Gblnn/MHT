@@ -103,6 +103,7 @@ export default function Supervision() {
         title={name}
         desc="Overtime Hours : "
         onCancel={()=>{setDialog(false)}}
+        okText="Assign Work"
       />
     </>
   );
