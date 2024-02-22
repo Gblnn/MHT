@@ -8,6 +8,7 @@ interface Props{
     classname?:string
     to:string
     onclick?:any
+    status?:boolean
 }
 
 export default function DirItem(props: Props){
@@ -17,6 +18,12 @@ export default function DirItem(props: Props){
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                 {props.icon}
             <p>{props.title}</p>
+            {
+                props.status?
+                <p style={{color:"salmon", fontSize:"1rem"}}>•</p>
+                :null
+            }
+            
             <p style={{fontSize:"0.8rem", background:"salmon", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
