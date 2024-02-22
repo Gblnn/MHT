@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Globe, Users } from "lucide-react";
+import { Globe, Package, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -30,14 +30,24 @@ export default function Index() {
           </Link> */}
     <div className="page">
       <div style={{}}>
-      <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
+      <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
+          {window.name=="admin"||window.name=="super"?
           <DirItem
-            to="/supervision-index"
-            icon={<Users width="1rem" color="salmon" />}
-            title="Employee Supervision"
+          to="/supervision-index"
+          icon={<Users width="1rem" color="salmon" />}
+          title="Employee Supervision"
+        />
+          :null}
+          
+          {window.name=="admin"?
+          <DirItem
+            to=""
+            icon={<Package width="1rem" color="salmon" />}
+            title="Inventory"
           />
+          :null}
 
           <DirItem
             to=""

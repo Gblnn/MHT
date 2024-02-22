@@ -43,7 +43,7 @@ export default function SupervisionIndex() {
             <DirItem
             to=""
             icon={<File width="1rem" color="salmon" />}
-            title="Records"
+            title="Employee Records"
           />
 
           {/* <DirItem
