@@ -20,7 +20,11 @@ export default function DirItem(props: Props){
             <p style={{fontSize:"0.8rem", background:"salmon", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
+            <div style={{display:"flex"}}>
+            {/* <CheckCircle color="green" width="1rem"/> */}
             <ChevronRight width="1rem"/>
+            </div>
+            
         </div>
         </Link>
         

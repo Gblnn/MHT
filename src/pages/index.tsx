@@ -1,9 +1,34 @@
-import { Globe, Users } from "lucide-react";
-import DirItem from "../components/dir-item";
 import { motion } from "framer-motion";
+import { Globe, LucideHome, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import DirItem from "../components/dir-item";
 
 export default function Index() {
   return (
+    <>
+    <Link
+            style={{
+              display: "flex",
+              gap:"0.25rem",
+              alignItems: "center",
+              justifyContent:"center",
+              color: "crimson",
+              fontWeight: 500,
+              paddingLeft: "0.5rem",
+              paddingRight:"0.5rem",
+              width: "fit-content",
+              margin: "1rem",
+              position: "fixed",
+              marginTop: "5rem",
+              background:"#1a1a1a",
+              borderRadius:"0.5rem",
+              boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
+            }}
+            to="/supervision-index"
+          >
+            <LucideHome width="1rem" /> <p style={{paddingTop:"0.2rem"}}>Home</p>
+
+          </Link>
     <div className="page">
       <div style={{}}>
       <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
@@ -25,5 +50,6 @@ export default function Index() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }

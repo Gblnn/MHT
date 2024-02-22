@@ -6,7 +6,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import ComboBox from "./combobox";
 
 interface Props {
   open: boolean;
@@ -30,10 +29,10 @@ export default function DialogBox(props: Props) {
             </DialogTitle>
 
             <h3>{props.desc}</h3>
-            <br />
+            
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
-            <br />
-            <ComboBox placeholder="Select site" items />
+            
+            {/* <ComboBox placeholder="Select site" items /> */}
           </DialogHeader>
 
           <DialogFooter>

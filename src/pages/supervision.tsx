@@ -85,8 +85,12 @@ export default function Supervision() {
                 icon={<User width="1rem" color="salmon" />}
                 title={posts.name}
               />
+              
             ))}
+            
+            
             </div>
+            
         
             
             
@@ -97,6 +101,7 @@ export default function Supervision() {
         style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
         title={name}
+        desc="Overtime Hours"
         onCancel={()=>{setDialog(false)}}
       />
     </>
