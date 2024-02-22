@@ -22,6 +22,7 @@ export default function Supervision() {
         setPosts(data);
         posts.map((post)=>{
           setName(post.name)
+          setSite(post.site)
         })
       });
   }, [setPosts]);

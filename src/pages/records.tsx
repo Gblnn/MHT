@@ -9,6 +9,7 @@ export default function Supervision() {
   const [dialog, setDialog] = useState(false);
 
   const [date, setDate] = useState("")
+  const [site, setSite]= useState("")
 
   const [posts, setPosts] = useState<any[]>([]);
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Supervision() {
         setPosts(data);
         posts.map((post)=>{
           setDate(post.date)
+          setSite(post.site)
         })
       });
   }, [setPosts]);
@@ -65,7 +67,7 @@ export default function Supervision() {
         title="Summary"
         okText="Done"
         desc={date}
-        desc2=""
+        desc2={site}
         onCancel={() => setDialog(false)}
       />
     </>
