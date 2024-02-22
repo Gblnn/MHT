@@ -37,18 +37,23 @@ export default function Supervision() {
               alignItems: "center",
               color: "crimson",
               fontWeight: 500,
-              padding: "0.5rem",
+              paddingLeft: "0.5rem",
+              paddingRight:"0.5rem",
               width: "fit-content",
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
+              background:"#1a1a1a",
+              borderRadius:"0.5rem",
+              boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
             to="/index"
           >
             <ChevronLeft width="1rem" /> Back
           </Link>
-          <div className="page-content" style={{ padding: "1.75rem", display:"flex", flexFlow:"column-reverse" }}>
-            {posts.map((posts) => (
+          <div className="page-content">
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center"}}>
+          {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
                 key={posts.id}
@@ -58,6 +63,8 @@ export default function Supervision() {
                 tag={posts.date}
               />
             ))}
+          </div>
+            
           </div>
         </div>
       </div>

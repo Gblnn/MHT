@@ -52,11 +52,15 @@ export default function Supervision() {
               alignItems: "center",
               color: "crimson",
               fontWeight: 500,
-              padding: "0.5rem",
+              paddingLeft: "0.5rem",
+              paddingRight:"0.5rem",
               width: "fit-content",
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
+              background:"#1a1a1a",
+              borderRadius:"0.5rem",
+              boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
             to="/index"
           >
@@ -64,7 +68,8 @@ export default function Supervision() {
 
           </Link>
 
-          <div className="page-content" style={{ padding: "1.75rem" }}>
+          <div className="page-content" style={{}}>
+            <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"16rem",paddingBottom:"4rem", justifyContent:"center"}}>
             {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -74,6 +79,8 @@ export default function Supervision() {
                 title={posts.name}
               />
             ))}
+            </div>
+            
           </div>
         </div>
       </div>
