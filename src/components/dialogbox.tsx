@@ -33,7 +33,7 @@ export default function DialogBox(props: Props) {
             <br />
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             <br />
-            <ComboBox placeholder="Select site" />
+            <ComboBox placeholder="Select site" items />
           </DialogHeader>
 
           <DialogFooter>

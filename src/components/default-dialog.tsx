@@ -15,6 +15,7 @@ interface Props {
   style?: any;
   onCancel?: any;
   onConfirm?: any;
+  okText:string
   action?: string;
 }
 
@@ -54,7 +55,7 @@ export default function DefaultDialog(props: Props) {
                   style={{ background: "crimson", fontSize: "1rem" }}
                   onClick={props.onConfirm}
                 >
-                  Confirm
+                  {props.okText}
                 </button>
               </ConfigProvider>
             </div>

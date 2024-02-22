@@ -58,9 +58,10 @@ export default function UserButton() {
         style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
         title="Logout?"
-        desc="Log out of current seesion?"
         onCancel={() => setDialog(false)}
         onConfirm={handleLogout}
+        okText="Logout"
+
       />
     </>
   );

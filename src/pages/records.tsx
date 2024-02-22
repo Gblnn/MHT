@@ -1,21 +1,24 @@
-import DialogBox from "@/components/dialogbox";
-import { ChevronLeft, User } from "lucide-react";
+import DefaultDialog from "@/components/default-dialog";
+import { ChevronLeft, File } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DirItem from "../components/dir-item";
-import { format } from "date-fns";
 
 export default function Supervision() {
-  const date = format(new Date(), "dd-MM-yyyy");
 
   const [dialog, setDialog] = useState(false);
 
+  const [date, setDate] = useState("")
+
   const [posts, setPosts] = useState<any[]>([]);
   useEffect(() => {
-    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/employees")
+    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/comments")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
+        posts.map((post)=>{
+          setDate(post.date)
+        })
       });
   }, [setPosts]);
 
@@ -42,26 +45,28 @@ export default function Supervision() {
           >
             <ChevronLeft width="1rem" /> Back
           </Link>
-          <div className="page-content" style={{ padding: "1.75rem" }}>
+          <div className="page-content" style={{ padding: "1.75rem", display:"flex", flexFlow:"column-reverse" }}>
             {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
                 key={posts.id}
                 to=""
-                icon={<User width="1rem" color="salmon" />}
+                icon={<File width="1rem" color="salmon" />}
                 title={posts.name}
+                tag={posts.date}
               />
             ))}
           </div>
         </div>
       </div>
-      <DialogBox
+      <DefaultDialog
         style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
-        title="Log details"
-        onCancel={() => setDialog(false)}
+        title="Summary"
+        okText="Done"
         desc={date}
-        desc2="Employee Name"
+        desc2=""
+        onCancel={() => setDialog(false)}
       />
     </>
   );

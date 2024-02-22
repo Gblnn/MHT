@@ -6,18 +6,37 @@ import DirItem from "../components/dir-item";
 import { format } from "date-fns";
 
 export default function Supervision() {
+  
   const date = format(new Date(), "dd-MM-yyyy");
+  const [name, setName] = useState("")
+  const [site, setSite] = useState("")
 
   const [dialog, setDialog] = useState(false);
 
   const [posts, setPosts] = useState<any[]>([]);
+
   useEffect(() => {
     fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/employees")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
+        posts.map((post)=>{
+          setName(post.name)
+        })
       });
   }, [setPosts]);
+
+  const onPost = () => {
+    setDialog(false)
+    const obj = {name, date, site}
+    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/comments",
+          {
+                method:"POST",
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(obj)
+          }
+          )
+  }
 
   const handleClick = () => {
     setDialog(true);
@@ -41,6 +60,7 @@ export default function Supervision() {
             to="/index"
           >
             <ChevronLeft width="1rem" /> Back
+
           </Link>
 
           <div className="page-content" style={{ padding: "1.75rem" }}>
@@ -61,8 +81,10 @@ export default function Supervision() {
         open={dialog}
         title="Log details"
         onCancel={() => setDialog(false)}
+        onConfirm={onPost}
         desc={date}
-        desc2="Employee Name"
+        desc2={name}
+
       />
     </>
   );

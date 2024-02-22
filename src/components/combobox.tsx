@@ -8,11 +8,12 @@ import {
 
 interface Props {
   placeholder: string;
+  items: any
 }
 
 export default function ComboBox(props: Props) {
   return (
-    <Select>
+    <Select required>
       <SelectTrigger
         style={{
           background: "#1a1a1a",
@@ -23,9 +24,9 @@ export default function ComboBox(props: Props) {
         <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
       <SelectContent style={{ background: "#1a1a1a", color: "white" }}>
-        <SelectItem value="light">OSRW</SelectItem>
-        <SelectItem value="dark">JNDL</SelectItem>
-        <SelectItem value="system">OSRC</SelectItem>
+        <SelectItem value="OSRW">OSRW</SelectItem>
+        <SelectItem value="JNDL">JNDL</SelectItem>
+        <SelectItem value="OSRC">OSRC</SelectItem>
       </SelectContent>
     </Select>
   );
