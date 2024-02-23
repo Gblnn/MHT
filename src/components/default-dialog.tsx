@@ -24,7 +24,7 @@ export default function DefaultDialog(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"#1a1a1a", border:"none"}}>
           <DialogHeader>
-            <DialogTitle style={{ fontSize: "1.25rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
             </DialogTitle>
 
