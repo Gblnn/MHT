@@ -20,7 +20,7 @@ export default function Back(props:Props) {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              background:"#2a2a2a",
+              background:"var(--clr-opacity)",
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
