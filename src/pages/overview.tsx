@@ -26,7 +26,7 @@ export default function Overview() {
         <div className="page-content" style={{ padding: "1.75rem", justifyContent:"flex-start" }}>
             
                 <table style={{width:"100%", textAlign:"center", tableLayout:"fixed", marginTop:"6rem", fontSize:"1rem"}}>
-                <tr style={{background:"#3a3a3a", textTransform:"uppercase"}}>
+                <tr style={{background:"#3a3a3a"}}>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>

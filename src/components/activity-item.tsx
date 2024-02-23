@@ -67,7 +67,7 @@ export default function ActivityItem(props: Props){
 
       const Assign = () => {
         setDialog(false)
-        setStart(time+" "+ampm)
+        
         const obj = {rid, date, ename, site, start, end}
         fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
             {
@@ -134,7 +134,7 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox time={setTime} ampm={setAMPM} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox time={setTime} ampm={()=>{setAMPM; setStart(time+" "+ampm)}} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
         <EndWorkDialog time={setEnd} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
         </>
