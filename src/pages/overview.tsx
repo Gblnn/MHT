@@ -26,7 +26,7 @@ export default function Overview() {
         <div className="page-content" style={{ padding: "1.75rem", justifyContent:"flex-start" }}>
             
                 <table style={{width:"100%", textAlign:"center", tableLayout:"fixed", marginTop:"6rem", fontSize:"1rem"}}>
-                <tr style={{background:"#3a3a3a"}}>
+                <tr style={{background:"#3a3a3a", textTransform:"uppercase"}}>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>
@@ -34,7 +34,7 @@ export default function Overview() {
                     <th>End</th>
                 </tr>
                 {posts.map((post=>(
-                    <tr key={post.id} style={{ overflowY:"scroll", fontSize:"0.9rem", color:"white"}}>
+                    <tr key={post.id} style={{ overflowY:"scroll", fontSize:"1rem"}}>
                     <td>{post.date}</td>
                     <td>{post.ename}</td>
                     <td>{post.site}</td>

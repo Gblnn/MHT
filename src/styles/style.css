@@ -57,6 +57,15 @@ input:focus {
   outline: none;
 }
 
+td {
+  padding: 0;
+}
+
+th {
+  font-weight: 600;
+  letter-spacing: 0.075rem;
+}
+
 tr {
   background: #1a1a1a;
   user-select: none;
@@ -94,5 +103,8 @@ tr:hover {
 @media (width>576px) {
   .fixed-length {
     width: 18rem;
+  }
+  td {
+    padding: 0.5rem;
   }
 }
