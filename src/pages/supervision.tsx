@@ -1,7 +1,7 @@
 import ActivityItem from "@/components/activity-item";
-import { ChevronLeft, User } from "lucide-react";
+import Back from "@/components/back";
+import { User } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Supervision() {
   
@@ -40,27 +40,7 @@ export default function Supervision() {
     <>
       <div className="page">
         <div style={{}}>
-          <Link
-            style={{
-              display: "flex",
-              alignItems: "center",
-              color: "crimson",
-              fontWeight: 500,
-              paddingLeft: "0.5rem",
-              paddingRight:"0.5rem",
-              width: "fit-content",
-              margin: "1rem",
-              position: "fixed",
-              marginTop: "5rem",
-              background:"#1a1a1a",
-              borderRadius:"0.5rem",
-              boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
-            }}
-            to="/supervision-index"
-          >
-            <ChevronLeft width="1rem" /> <p>Back</p>
-
-          </Link>
+          <Back to="/supervision-index"/>
 
           <div className="page-content" style={{}}>
           
