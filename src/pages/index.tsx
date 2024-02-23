@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Globe, Package, Users } from "lucide-react";
+import { Package, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -50,12 +50,12 @@ export default function Index() {
           />
           :null}
 
-          <DirItem
+          {/* <DirItem
             to=""
             classname="disabled"
             icon={<Globe width="1rem" color="#6a6a6a" />}
             title="Unavailable"
-          />
+          /> */}
         </div>
         </motion.div>
       </div>
