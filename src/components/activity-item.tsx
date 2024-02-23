@@ -30,8 +30,8 @@ export default function ActivityItem(props: Props){
     const [summarydialog, setSummaryDialog] = useState(false)
     const [refid, setRefid] = useState("")
 
-    const [time, setTime] = useState("")
-    const [ampm, setAMPM] = useState("")
+    // const [time, setTime] = useState("")
+    // const [ampm, setAMPM] = useState("")
 
 
     
@@ -86,7 +86,7 @@ export default function ActivityItem(props: Props){
         message.loading("Updating")
         setTimeout(()=>{
             window.location.reload()
-        },2000)
+        },1000)
       }
 
       const endWork = () => {
@@ -108,7 +108,7 @@ export default function ActivityItem(props: Props){
             message.loading("Updating")
         setTimeout(()=>{
             window.location.reload()
-        },2000)
+        },1000)
       }
 
     return(
@@ -134,7 +134,7 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox time={setTime} ampm={()=>{setAMPM; setStart(time+" "+ampm)}} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox time={setStart} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
         <EndWorkDialog time={setEnd} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
         </>

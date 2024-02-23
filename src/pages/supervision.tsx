@@ -21,6 +21,7 @@ export default function Supervision() {
           console.log(post)
         })
       });
+      
   }, [setPosts]);
 
   // const onPost = () => {
