@@ -69,7 +69,6 @@ export default function Supervision() {
         </div>
       </div>
       <DefaultDialog
-        style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
         title="Summary"
         okText="Done"
