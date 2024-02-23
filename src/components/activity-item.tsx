@@ -106,7 +106,7 @@ export default function ActivityItem(props: Props){
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                 {props.icon}
-            <p style={{fontSize:"1.1"}}>{props.title}</p>
+            <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             {
                 props.status?
                 <p style={{color:"salmon", fontSize:"1rem"}}>•</p>
