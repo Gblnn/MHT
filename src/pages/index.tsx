@@ -46,6 +46,7 @@ export default function Index() {
             to=""
             icon={<Package width="1rem" color="salmon" />}
             title="Inventory"
+            tag="Not Ready"
           />
           :null}
 

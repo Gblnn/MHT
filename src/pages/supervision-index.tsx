@@ -44,6 +44,7 @@ export default function SupervisionIndex() {
             to=""
             icon={<File width="1rem" color="salmon" />}
             title="Records"
+            tag="Not Ready"
           />
 
             <DirItem
