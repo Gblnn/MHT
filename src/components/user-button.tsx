@@ -55,7 +55,6 @@ export default function UserButton() {
       </Dropdown>
 
       <DefaultDialog
-        style={{ background: "#1a1a1a", border: "none" }}
         open={dialog}
         title="Logout?"
         onCancel={() => setDialog(false)}
