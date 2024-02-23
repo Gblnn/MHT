@@ -32,7 +32,7 @@ export default function EndWorkDialog(props: Props) {
             </DialogTitle>
 
             <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
-            <h3 style={{border:"1px solid", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
+            <h3 style={{border:"3px solid salmon", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
             <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
             <TimeComboBox placeholder="Select time" onChange={props.time} items/>
             <AMPMCombo placeholder="AM/PM" items/>
