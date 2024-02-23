@@ -47,6 +47,7 @@ export default function Supervision() {
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"14rem",paddingBottom:"4rem", justifyContent:"center"}}>
             {posts.map((posts) => (
               <ActivityItem
+              rid={posts.id}
                 id={posts.id}
                 key={posts.id}
                 to=""

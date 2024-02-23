@@ -14,22 +14,21 @@ interface Props{
     to:string
     status?:boolean
     id:number
+    rid:string
 }
-
 
 export default function ActivityItem(props: Props){
 
     const date = format(new Date(), "dd-MM-yyyy");
+    const rid = props.id
     const [ename, setEname] = useState("")
     const [site, setSite] = useState("")
     const [start, setStart] = useState("")
     const [end, setEnd] = useState("")
     const [siteinfo, setSiteinfo] = useState("")
-    
-
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
-
+    const [refid, setRefid] = useState("")
 
     const handleClick = () => {
 
@@ -45,11 +44,16 @@ export default function ActivityItem(props: Props){
                 }
                 else{
                     setSummaryDialog(true)
-                    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/"+props.id)
+                    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records?rid="+rid)
                     .then(res => res.json())
                     .then(data => {
-                        setSiteinfo(data.site)
-                        console.log(data.site)
+                        data.map((data:any)=>{
+                            setSiteinfo(data.site)
+                            console.log(data.rid)
+                            setRefid(data.id)
+                        })
+                        
+                        
                     })
                 }
             }) 
@@ -57,7 +61,7 @@ export default function ActivityItem(props: Props){
 
       const Assign = () => {
         setDialog(false)
-        const obj = {date, ename, site, start, end}
+        const obj = {rid, date, ename, site, start, end}
         fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
             {
                 method:"POST",
@@ -86,11 +90,13 @@ export default function ActivityItem(props: Props){
             body: JSON.stringify({status:false})
             })
 
-            fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/', {
+            fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/'+refid, {
                 method: 'PUT',
                 headers: {'content-type':'application/json'},
                 body: JSON.stringify({end:end})
+                
                 })
+                console.log(end)
 
             message.loading("Updating")
         setTimeout(()=>{

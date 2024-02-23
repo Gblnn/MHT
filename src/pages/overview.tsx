@@ -34,7 +34,7 @@ export default function Overview() {
                     <th>End</th>
                 </tr>
                 {posts.map((post=>(
-                    <tr id={post.id} style={{ overflowY:"scroll", fontSize:"0.9rem", color:"white"}}>
+                    <tr key={post.id} style={{ overflowY:"scroll", fontSize:"0.9rem", color:"white"}}>
                     <td>{post.date}</td>
                     <td>{post.ename}</td>
                     <td>{post.site}</td>
