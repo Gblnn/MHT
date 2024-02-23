@@ -52,9 +52,7 @@ export default function ActivityItem(props: Props){
                         console.log(data.site)
                     })
                 }
-            })
-    
-        
+            }) 
       }
 
       const Assign = () => {
