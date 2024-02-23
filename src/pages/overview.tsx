@@ -44,16 +44,16 @@ export default function Overview() {
 
           </Link>
           <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
-        <div className="page-content" style={{ padding: "1.75rem" }}>
+        <div className="page-content" style={{ padding: "1.75rem", justifyContent:"flex-start" }}>
             
-                <table style={{width:"100%", textAlign:"center", tableLayout:"fixed"}}>
-                <tr style={{background:"#2a2a2a"}}>
+                <table style={{width:"100%", textAlign:"center", tableLayout:"fixed", marginTop:"6rem", fontSize:"0.8rem"}}>
+                <tr style={{background:"#3a3a3a"}}>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>
                 </tr>
                 {posts.map((post=>(
-                    <tr style={{background:"#1a1a1a", overflowY:"scroll", fontSize:"0.85rem"}}>
+                    <tr style={{background:"#1a1a1a", overflowY:"scroll", fontSize:"0.8rem", color:"white"}}>
                     <td>{post.date}</td>
                     <td>{post.ename}</td>
                     <td>{post.site}</td>
