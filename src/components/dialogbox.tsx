@@ -43,7 +43,7 @@ export default function DialogBox(props: Props) {
             <div style={{display:"flex", gap:"0.5rem"}}>
             {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
             <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
-            <AMPMCombo items onChange={props.ampm}/>
+            <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
             </div>
             
             

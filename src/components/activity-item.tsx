@@ -125,7 +125,7 @@ export default function ActivityItem(props: Props){
         </Link>
         <DialogBox time={setStart} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog time={setEnd} title={ename} open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={"Working at : "+siteinfo}/>
+        <EndWorkDialog time={setEnd} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
         </>
         
     )

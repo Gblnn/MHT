@@ -14,7 +14,7 @@ import {
   
   export default function AMPMCombo(props: Props) {
     return (
-      <Select required onValueChange={props.onChange} defaultValue="AM">
+      <Select required onValueChange={props.onChange}>
         <SelectTrigger
           style={{
             background: "#1a1a1a",

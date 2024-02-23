@@ -26,15 +26,16 @@ export default function EndWorkDialog(props: Props) {
     <>
       <Dialog open={props.open}>
         <DialogContent style={{background:"#1a1a1a", border:"none"}}>
-          <DialogHeader>
-            <DialogTitle style={{ fontSize: "1.25rem" }}>
+          <DialogHeader style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
+            <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
             </DialogTitle>
 
-            <h3>{props.desc}</h3>
-            <div style={{display:"flex", gap:"0.5rem"}}>
+            <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
+            <h3 style={{border:"1px solid", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
+            <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
             <TimeComboBox placeholder="Select time" onChange={props.time} items/>
-            <AMPMCombo items/>
+            <AMPMCombo placeholder="AM/PM" items/>
             </div>
             
           </DialogHeader>
