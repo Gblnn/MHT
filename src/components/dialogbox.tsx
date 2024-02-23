@@ -35,7 +35,7 @@ export default function DialogBox(props: Props) {
               {props.title}
             </DialogTitle>
 
-            <h3>{props.desc}</h3>
+            <h3 style={{fontSize:"1.25rem"}}>{props.desc}</h3>
             
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             
