@@ -12,7 +12,6 @@ interface Props {
   title?: string;
   desc?: string;
   desc2?: string;
-  style?: any;
   onCancel?: any;
   onConfirm?: any;
   okText:string
@@ -23,7 +22,7 @@ export default function DefaultDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={props.style}>
+        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
           <DialogHeader>
             <DialogTitle style={{ fontSize: "1.25rem" }}>
               {props.title}

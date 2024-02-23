@@ -1,5 +1,4 @@
 import { ConfigProvider } from "antd";
-import SiteComboBox from "./site-combobox";
 import {
   Dialog,
   DialogContent,
@@ -15,17 +14,14 @@ interface Props {
   title?: string;
   desc?: string;
   desc2?: string;
-  style?: any;
   onCancel?: any;
   onConfirm?: any;
-  okText:string;
+  okText:string
   action?: string;
-  onChange:any
   time?:any
-  ampm?:any
 }
 
-export default function DialogBox(props: Props) {
+export default function EndWorkDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
@@ -36,16 +32,10 @@ export default function DialogBox(props: Props) {
             </DialogTitle>
 
             <h3>{props.desc}</h3>
-            
-            <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
-            
-            <SiteComboBox placeholder="Select site" items onChange={props.onChange} />
             <div style={{display:"flex", gap:"0.5rem"}}>
-            {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
-            <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
-            <AMPMCombo items onChange={props.ampm}/>
+            <TimeComboBox placeholder="Select time" onChange={props.time} items/>
+            <AMPMCombo items/>
             </div>
-            
             
           </DialogHeader>
 

@@ -7,9 +7,9 @@ import {
 } from "./ui/select";
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   items: any
-  onChange:any
+  onChange?:any
 }
 
 export default function ComboBox(props: Props) {
@@ -28,6 +28,7 @@ export default function ComboBox(props: Props) {
         <SelectItem value="OSRW">OSRW</SelectItem>
         <SelectItem value="JNDL">JNDL</SelectItem>
         <SelectItem value="OSRC">OSRC</SelectItem>
+        
       </SelectContent>
     </Select>
   );

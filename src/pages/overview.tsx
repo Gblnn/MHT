@@ -51,12 +51,16 @@ export default function Overview() {
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>
+                    <th>Start</th>
+                    <th>End</th>
                 </tr>
                 {posts.map((post=>(
-                    <tr style={{background:"#1a1a1a", overflowY:"scroll", fontSize:"0.8rem", color:"white"}}>
+                    <tr id={post.id} style={{ overflowY:"scroll", fontSize:"0.8rem", color:"white"}}>
                     <td>{post.date}</td>
                     <td>{post.ename}</td>
                     <td>{post.site}</td>
+                    <td>{post.start}</td>
+                    <td>{post.end}</td>
                 </tr>
                 )))}
                 

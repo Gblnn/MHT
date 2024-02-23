@@ -1,8 +1,10 @@
+import { message } from "antd"
+import { format } from "date-fns"
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
-import { format } from "date-fns"
+import EndWorkDialog from "./endwork-dialog"
 
 interface Props{
     title:string
@@ -20,20 +22,36 @@ export default function ActivityItem(props: Props){
     const date = format(new Date(), "dd-MM-yyyy");
     const [ename, setEname] = useState("")
     const [site, setSite] = useState("")
+    const [start, setStart] = useState("")
+    const [end, setEnd] = useState("")
+    const [siteinfo, setSiteinfo] = useState("")
+    
 
     const [dialog, setDialog] = useState(false)
+    const [summarydialog, setSummaryDialog] = useState(false)
 
-    
 
     const handleClick = () => {
 
-        setDialog(true)
+        // setDialog(true)
         
             fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
             .then(res => res.json())
             .then(data => {
                 console.log(data.name)
                 setEname(data.name)
+                if(data.status==false){
+                    setDialog(true)
+                }
+                else{
+                    setSummaryDialog(true)
+                    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/"+props.id)
+                    .then(res => res.json())
+                    .then(data => {
+                        setSiteinfo(data.site)
+                        console.log(data.site)
+                    })
+                }
             })
     
         
@@ -41,14 +59,45 @@ export default function ActivityItem(props: Props){
 
       const Assign = () => {
         setDialog(false)
-        const obj = {date, ename, site}
+        const obj = {date, ename, site, start, end}
         fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
-                {
-                    method:"POST",
-                    headers:{'content-type':'application/json'},
-                    body:JSON.stringify(obj)
-                }
-                )
+            {
+                method:"POST",
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(obj)
+            }
+        )
+
+        fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+            method: 'PUT',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({status:true})
+            })
+
+        message.loading("Updating")
+        setTimeout(()=>{
+            window.location.reload()
+        },2000)
+      }
+
+      const endWork = () => {
+        setSummaryDialog(false)
+        fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+            method: 'PUT',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({status:false})
+            })
+
+            fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/', {
+                method: 'PUT',
+                headers: {'content-type':'application/json'},
+                body: JSON.stringify({end:end})
+                })
+
+            message.loading("Updating")
+        setTimeout(()=>{
+            window.location.reload()
+        },2000)
       }
 
     return(
@@ -74,7 +123,9 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox time={setStart} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+
+        <EndWorkDialog time={setEnd} title={ename} open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={"Working at : "+siteinfo}/>
         </>
         
     )
