@@ -1,4 +1,4 @@
-import { ChevronLeft, File, Users } from "lucide-react";
+import { ChevronLeft, Eye, File, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -44,6 +44,12 @@ export default function SupervisionIndex() {
             to=""
             icon={<File width="1rem" color="salmon" />}
             title="Employee Records"
+          />
+
+            <DirItem
+            to="/overview"
+            icon={<Eye width="1rem" color="salmon" />}
+            title="Overview"
           />
 
           {/* <DirItem

@@ -9,11 +9,12 @@ import {
 interface Props {
   placeholder: string;
   items: any
+  onChange:any
 }
 
 export default function ComboBox(props: Props) {
   return (
-    <Select required>
+    <Select required onValueChange={props.onChange}>
       <SelectTrigger
         style={{
           background: "#1a1a1a",

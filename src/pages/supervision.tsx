@@ -1,16 +1,14 @@
-import DialogBox from "@/components/dialogbox";
+import ActivityItem from "@/components/activity-item";
 import { ChevronLeft, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DirItem from "../components/dir-item";
 
 export default function Supervision() {
   
   // const date = format(new Date(), "dd-MM-yyyy");
-  const [name, setName] = useState("")
   // const [site, setSite] = useState("")
 
-  const [dialog, setDialog] = useState(false);
+  
 
   const [posts, setPosts] = useState<any[]>([]);
 
@@ -37,17 +35,7 @@ export default function Supervision() {
   //         )
   // }
 
-  const handleClick = () => {
-    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-        posts.map((post)=>(
-          setName(post.name)
-        ))
-      });
-    setDialog(true);
-  };
+  
   return (
     <>
       <div className="page">
@@ -78,8 +66,8 @@ export default function Supervision() {
           
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center", paddingTop:"14rem",paddingBottom:"4rem", justifyContent:"center"}}>
             {posts.map((posts) => (
-              <DirItem
-                onclick={handleClick}
+              <ActivityItem
+                id={posts.id}
                 key={posts.id}
                 to=""
                 icon={<User width="1rem" color="salmon" />}
@@ -98,14 +86,7 @@ export default function Supervision() {
           </div>
         </div>
       </div>
-      <DialogBox
-        style={{ background: "#1a1a1a", border: "none" }}
-        open={dialog}
-        title={name}
-        desc="Overtime Hours : 0"
-        onCancel={()=>{setDialog(false)}}
-        okText="Assign Work"
-      />
+      
     </>
   );
 }

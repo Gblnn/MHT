@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import ComboBox from "./combobox";
 
 interface Props {
   open: boolean;
@@ -17,13 +18,14 @@ interface Props {
   onConfirm?: any;
   okText:string;
   action?: string;
+  onChange:any
 }
 
 export default function DialogBox(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={props.style}>
+        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
           <DialogHeader>
             <DialogTitle style={{ fontSize: "1.25rem" }}>
               {props.title}
@@ -33,7 +35,8 @@ export default function DialogBox(props: Props) {
             
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             
-            {/* <ComboBox placeholder="Select site" items /> */}
+            <ComboBox placeholder="Select site" items onChange={props.onChange} />
+            
           </DialogHeader>
 
           <DialogFooter>
