@@ -20,11 +20,12 @@ export default function ComboBox(props: Props) {
           background: "#1a1a1a",
           border: "1px solid #4a4a4a",
           fontSize: "1rem",
+          zIndex:"5"
         }}
       >
         <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
-      <SelectContent style={{ background: "#1a1a1a", color: "white", zIndex:"5", fontSize:"1.5rem" }}>
+      <SelectContent style={{ background: "#1a1a1a", color: "white", zIndex:"5" }}>
         <SelectItem value="OSRW">OSRW</SelectItem>
         <SelectItem value="JNDL">JNDL</SelectItem>
         <SelectItem value="OSRC">OSRC</SelectItem>
