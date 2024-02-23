@@ -24,7 +24,7 @@ export default function ComboBox(props: Props) {
       >
         <SelectValue placeholder={props.placeholder} />
       </SelectTrigger>
-      <SelectContent style={{ background: "#1a1a1a", color: "white" }}>
+      <SelectContent style={{ background: "#1a1a1a", color: "white", zIndex:"5" }}>
         <SelectItem value="OSRW">OSRW</SelectItem>
         <SelectItem value="JNDL">JNDL</SelectItem>
         <SelectItem value="OSRC">OSRC</SelectItem>
