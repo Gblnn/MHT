@@ -36,20 +36,20 @@ export default function SupervisionIndex() {
 
           <DirItem
             to="/supervision"
-            icon={<User width="1rem" color="salmon" />}
+            icon={<User width="1.1rem" color="salmon" />}
             title="Employees"
           />
 
             <DirItem
             to=""
-            icon={<File width="1rem" color="salmon" />}
+            icon={<File width="1.1rem" color="salmon" />}
             title="Records"
             tag="Not Ready"
           />
 
             <DirItem
             to="/overview"
-            icon={<Eye width="1rem" color="salmon" />}
+            icon={<Eye width="1.1rem" color="salmon" />}
             title="Overview"
           />
 

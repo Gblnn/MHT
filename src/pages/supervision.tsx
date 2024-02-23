@@ -70,7 +70,7 @@ export default function Supervision() {
                 id={posts.id}
                 key={posts.id}
                 to=""
-                icon={<User width="1rem" color="salmon" />}
+                icon={<User width="1.1rem" color="salmon" />}
                 title={posts.name}
                 status={posts.status}
               />
