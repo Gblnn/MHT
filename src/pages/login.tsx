@@ -97,11 +97,14 @@ export default function Login() {
               style={{ display: "flex", flexFlow: "column", gap: "0.75rem" }}
             >
               <input
+              autoComplete="username"
+              id="username"
                 style={{}}
                 onChange={(e) => setUsername(e.target.value.toLowerCase())}
                 placeholder="Username"
               />
               <input
+              id="password"
                 style={{}}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
