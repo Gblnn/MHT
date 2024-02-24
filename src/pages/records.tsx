@@ -13,13 +13,11 @@ export default function Supervision() {
 
   const [posts, setPosts] = useState<any[]>([]);
   useEffect(() => {
-    fetch("https://658c3fd2859b3491d3f5c978.mockapi.io/comments")
+    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records")
       .then((res) => res.json())
       .then((data) => {
-        setPosts(data);
-        posts.map((post)=>{
-          setDate(post.date)
-          setSite(post.site)
+        data.map((data:any)=>{
+          setDate(data.date)
         })
       });
   }, [setPosts]);
