@@ -1,7 +1,7 @@
 import { db } from "@/firebase"
 import { message } from "antd"
 import { format } from "date-fns"
-import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -34,9 +34,6 @@ export default function ActivityItem(props: Props){
     const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
-    const [refid, setRefid] = useState("")
-
-    const [docid, setDocid] = useState<any>("")
     let doc_id = ""
 
     const [time, setTime] = useState("")
@@ -66,7 +63,6 @@ export default function ActivityItem(props: Props){
                         data.map((data:any)=>{
                             setSiteinfo(data.site)
                             console.log(data.rid)
-                            setRefid(data.id)
                         })
                         
                         

@@ -1,6 +1,8 @@
 import Back from "@/components/back";
+import DirItem from "@/components/dir-item";
 import { db } from "@/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
+import { File } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Record = {
@@ -65,7 +67,14 @@ export default function Supervision() {
         <div style={{}}>
           <Back to="/supervision-index"/>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"4rem"}}>
+            {
+              records.map((record)=>(
+                <DirItem key={record.id} to="" icon={<File color="salmon" width="1.1rem"/>} title={record.date}/>
+              ))
+            }
+
+
           {/* {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -77,7 +86,7 @@ export default function Supervision() {
               />
             ))} */}
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
+              {/* <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -104,7 +113,8 @@ export default function Supervision() {
                     ))
                   }
                 </tbody>
-              </table>
+              </table> */}
+
             
           </div>
             
