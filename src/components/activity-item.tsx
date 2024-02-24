@@ -86,7 +86,7 @@ export default function ActivityItem(props: Props){
         message.loading("Updating")
         setTimeout(()=>{
             window.location.reload()
-        },1000)
+        },2000)
       }
 
       const endWork = () => {
