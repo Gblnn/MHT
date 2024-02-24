@@ -30,6 +30,7 @@ export default function Overview() {
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>
+                    <th>Work Description</th>
                     <th>Start</th>
                     <th>End</th>
                 </tr>
@@ -38,6 +39,7 @@ export default function Overview() {
                     <td>{post.date}</td>
                     <td>{post.ename}</td>
                     <td>{post.site}</td>
+                    <td>{post.work}</td>
                     <td>{post.start}</td>
                     <td>{post.end}</td>
                 </tr>

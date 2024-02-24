@@ -26,12 +26,12 @@ export default function ActivityItem(props: Props){
     const [start, setStart] = useState("")
     const [end, setEnd] = useState("")
     const [siteinfo, setSiteinfo] = useState("")
+    const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
     const [refid, setRefid] = useState("")
 
-    // const [time, setTime] = useState("")
-    // const [ampm, setAMPM] = useState("")
+    const [time, setTime] = useState("")
 
 
     
@@ -68,7 +68,7 @@ export default function ActivityItem(props: Props){
       const Assign = () => {
         setDialog(false)
         
-        const obj = {rid, date, ename, site, start, end}
+        const obj = {rid, date, ename, site, work, start, end}
         fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
             {
                 method:"POST",
@@ -134,9 +134,9 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox time={setStart} onChange={setSite} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox ampm={(value:any)=>{setStart(time+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog time={setEnd} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
+        <EndWorkDialog ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
         </>
         
     )

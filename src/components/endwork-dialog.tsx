@@ -1,4 +1,6 @@
 import { ConfigProvider } from "antd";
+import AMPMCombo from "./ampmcombo";
+import EndComboBox from "./end-combo";
 import {
   Dialog,
   DialogContent,
@@ -6,8 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import TimeComboBox from "./time-combobox";
-import AMPMCombo from "./ampmcombo";
 
 interface Props {
   open: boolean;
@@ -19,6 +19,7 @@ interface Props {
   okText:string
   action?: string;
   time?:any
+  ampm?:any
 }
 
 export default function EndWorkDialog(props: Props) {
@@ -34,8 +35,8 @@ export default function EndWorkDialog(props: Props) {
             <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
             <h3 style={{border:"2px solid salmon", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
             <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
-            <TimeComboBox placeholder="Ending time" onChange={props.time} items/>
-            <AMPMCombo placeholder="AM/PM" items/>
+            <EndComboBox placeholder="Ending time" onChange={props.time} items/>
+            <AMPMCombo placeholder="AM/PM" items onChange={props.ampm}/>
             </div>
             
           </DialogHeader>

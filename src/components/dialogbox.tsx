@@ -9,6 +9,7 @@ import {
 } from "./ui/dialog";
 import TimeComboBox from "./time-combobox";
 import AMPMCombo from "./ampmcombo";
+import WorkComboBox from "./workcombo";
 
 interface Props {
   open: boolean;
@@ -23,6 +24,7 @@ interface Props {
   onChange:any
   time?:any
   ampm?:any
+  work?:any
 }
 
 export default function DialogBox(props: Props) {
@@ -40,6 +42,7 @@ export default function DialogBox(props: Props) {
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             
             <SiteComboBox placeholder="Select site" items onChange={props.onChange} />
+            <WorkComboBox placeholder="Work Type" items onChange={props.work} />
             <div style={{display:"flex", gap:"0.5rem"}}>
             {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
             <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
