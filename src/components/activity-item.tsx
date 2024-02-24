@@ -1,10 +1,13 @@
+import { db } from "@/firebase"
 import { message } from "antd"
 import { format } from "date-fns"
+import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
+
 
 interface Props{
     title:string
@@ -19,6 +22,8 @@ interface Props{
 
 export default function ActivityItem(props: Props){
 
+    
+
     const date = format(new Date(), "dd-MM-yyyy");
     const rid = props.id
     const [ename, setEname] = useState("")
@@ -31,7 +36,12 @@ export default function ActivityItem(props: Props){
     const [summarydialog, setSummaryDialog] = useState(false)
     const [refid, setRefid] = useState("")
 
+    const [docid, setDocid] = useState<any>("")
+    let doc_id = ""
+
     const [time, setTime] = useState("")
+
+        
 
 
     
@@ -69,13 +79,16 @@ export default function ActivityItem(props: Props){
         setDialog(false)
         
         const obj = {rid, date, ename, site, work, start, end}
-        fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
-            {
-                method:"POST",
-                headers:{'content-type':'application/json'},
-                body:JSON.stringify(obj)
-            }
-        )
+
+        addDoc(collection(db, "records"), obj)
+           
+        // fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
+        //     {
+        //         method:"POST",
+        //         headers:{'content-type':'application/json'},
+        //         body:JSON.stringify(obj)
+        //     }
+        // )
 
         fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
@@ -89,21 +102,35 @@ export default function ActivityItem(props: Props){
         },2000)
       }
 
-      const endWork = () => {
+      const endWork = async () => {
         setSummaryDialog(false)
+        
+        const RecordRef = collection(db, "records")
+        const q = query(RecordRef, where("rid", "==", rid))
+        const records = await getDocs(q)
+        records.forEach((doc)=>{
+            console.log(doc.id)
+            doc_id = doc.id
+        })
+        
+        updateDoc(doc(db, "records", doc_id),{end:end})
+        
+        
+        
+        
         fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:false})
             })
 
-            fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/'+refid, {
-                method: 'PUT',
-                headers: {'content-type':'application/json'},
-                body: JSON.stringify({end:end})
+        //     fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/'+refid, {
+        //         method: 'PUT',
+        //         headers: {'content-type':'application/json'},
+        //         body: JSON.stringify({end:end})
                 
-                })
-                console.log(end)
+        //         })
+        //         console.log(end)
 
             message.loading("Updating")
         setTimeout(()=>{

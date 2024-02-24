@@ -63,6 +63,7 @@ td {
 
 th {
   font-weight: 600;
+  background: #3a3a3a;
 }
 
 tr {
@@ -101,7 +102,7 @@ tr:hover {
 
 @media (width>576px) {
   .fixed-length {
-    width: 18rem;
+    width: 20rem;
   }
   td {
     padding: 0.5rem;
