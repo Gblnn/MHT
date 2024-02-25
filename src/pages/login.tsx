@@ -2,6 +2,7 @@ import { Globe2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {LoadingOutlined} from '@ant-design/icons'
+import { message } from "antd";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -59,6 +60,9 @@ export default function Login() {
         if (post.username === username && post.password === password) {
           // message.success("Logged In")
           usenavigate("/index");
+        }
+        else{
+           message.info("Invalid Credentials")
         }
       });
     }, 1000);

@@ -1,7 +1,9 @@
 import Back from "@/components/back";
 import DirItem from "@/components/dir-item";
+import InputDialog from "@/components/input-dialog";
 import { db } from "@/firebase";
-import { collection, getDocs, query } from "firebase/firestore";
+import { FloatButton } from "antd";
+import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { User } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -17,7 +19,8 @@ type Record = {
 
 export default function EmployeeManagement() {
 
-  // const [dialog, setDialog] = useState(false);
+  const [dialog, setDialog] = useState(false);
+  const [name, setName] = useState("")
 
   const [records, setRecords] = useState<Array<Record>>([])
   const firestore = db
@@ -25,8 +28,8 @@ export default function EmployeeManagement() {
   useEffect(()=>{
     async function fetchData(){
 
-      const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection)
+      const employeeCollection = collection(firestore, "employees")
+      const recordQuery = query(employeeCollection)
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
 
@@ -37,6 +40,10 @@ export default function EmployeeManagement() {
     }
     fetchData();
   },[])
+
+  const addEmployee = async () => {
+    await addDoc(collection(db, "employees"),{name, status})
+  }
 
   // const [date, setDate] = useState("")
 
@@ -117,6 +124,8 @@ export default function EmployeeManagement() {
           </div>
         </div>
       </div>
+      <FloatButton shape="square" onClick={()=>setDialog(true)}/>
+      <InputDialog title="Add Employee" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Name" inputOnChange={setName} onConfirm={addEmployee}/>
       {/* <DefaultDialog
         open={dialog}
         title="Summary"
