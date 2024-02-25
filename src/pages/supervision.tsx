@@ -48,7 +48,7 @@ export default function Supervision() {
           
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
             {
-              posts?(
+              
             posts.map((posts) => (
               <ActivityItem
               rid={posts.id}
@@ -61,8 +61,9 @@ export default function Supervision() {
               />
               
             ))
-            ):<LoadingOutlined style={{scale:"1.75", color:"salmon", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
+            
           }
+          <LoadingOutlined style={{scale:"1.75", color:"salmon", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
             
             </div>
             
