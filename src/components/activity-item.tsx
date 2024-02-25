@@ -42,33 +42,35 @@ export default function ActivityItem(props: Props){
     },[end])
 
     useEffect(()=>{
-        if(site==""){
+        if(site==""||work==""||start==""){
             setPostable(false)
         }
         else{
             setPostable(true)
         }
-        if(work==""){
-            setPostable(false)
-        }
-        else{
-            setPostable(true)
-        }
-        if(start==""){
-            setPostable(false)
-        }
-        else{
-            setPostable(true)
-        }
+        // if(work==""){
+        //     setPostable(false)
+        // }
+        // else{
+        //     setPostable(true)
+        // }
+        // if(start==""){
+        //     setPostable(false)
+        // }
+        // else{
+        //     setPostable(true)
+        // }
+        
+    },[site, work, start])
+
+    useEffect(()=>{
         if(end==""){
             setEndable(false)
         }   
         else{
             setEndable(true)
         }
-    },[site, work, start, end])
-
-
+    },[end])
     
 
     const handleClick = () => {

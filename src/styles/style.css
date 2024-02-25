@@ -104,6 +104,14 @@ tr:hover {
   width: 85svw;
 }
 
+.opacity {
+  transition: 0.25s;
+}
+
+.opacity:focus {
+  opacity: 0.5;
+}
+
 @media (width>576px) {
   .fixed-length {
     width: 20rem;

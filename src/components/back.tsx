@@ -25,6 +25,7 @@ export default function Back() {
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
+            className="opacity"
             onClick={()=>usenavigate(-1)}
             to=""
           >

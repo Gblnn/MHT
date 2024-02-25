@@ -12,6 +12,7 @@ import {
 } from "./ui/dialog";
 import WorkComboBox from "./workcombo";
 
+
 interface Props {
   open: boolean;
   title?: string;
@@ -54,6 +55,7 @@ export default function DialogBox(props: Props) {
             {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
             <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
             <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
+            
             </div>
             
             

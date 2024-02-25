@@ -1,48 +1,60 @@
 import Back from "@/components/back";
 import DirItem from "@/components/dir-item";
 import InputDialog from "@/components/input-dialog";
-import { db } from "@/firebase";
 import { FloatButton } from "antd";
-import { addDoc, collection, getDocs, query } from "firebase/firestore";
-import { User } from "lucide-react";
+import { File } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type Record = {
-  id:string,
-  date:string,
-  ename:string,
-  site:string,
-  work:string,
-  start:string,
-  end:string
-}
 
 export default function EmployeeManagement() {
 
   const [dialog, setDialog] = useState(false);
+
   const [name, setName] = useState("")
+  const status = false
 
-  const [records, setRecords] = useState<Array<Record>>([])
-  const firestore = db
+  const [records, setRecords] = useState<any[]>([])
+  
 
-  useEffect(()=>{
-    async function fetchData(){
+//   useEffect(()=>{
+//     async function fetchData(){
 
-      const employeeCollection = collection(firestore, "employees")
-      const recordQuery = query(employeeCollection)
-      const querySnapshot = await getDocs(recordQuery)
-      const fetchedData: Array<Record> = [];
+//       const employeeCollection = collection(db, "employees")
+//       const recordQuery = query(employeeCollection)
+//       const querySnapshot = await getDocs(recordQuery)
+//       const fetchedData: Array<Record> = [];
 
-      querySnapshot.forEach((doc)=>{
-        fetchedData.push({id: doc.id, ...doc.data()} as Record)
-      })
-      setRecords(fetchedData)
+//       querySnapshot.forEach((doc)=>{
+//         fetchedData.push({id: doc.id, ...doc.data()} as Record)
+//       })
+//       setRecords(fetchedData)
+//     }
+//     fetchData();
+//   },[])
+
+    useEffect(() =>{
+        const getData = async () => {
+            await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
+            .then((res) => res.json())
+            .then((data) => {
+                setRecords(data)
+            })
+        }
+        getData()
+    },[])
+
+
+
+  const addEmployee = () => {
+    setDialog(false)
+
+    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees",
+    {
+        method:"POST",
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify({name:name, status:status})
     }
-    fetchData();
-  },[])
-
-  const addEmployee = async () => {
-    await addDoc(collection(db, "employees"),{name})
+    )   
   }
 
   // const [date, setDate] = useState("")
@@ -61,10 +73,6 @@ export default function EmployeeManagement() {
   //     });
   // }, [setPosts]);
 
-  useEffect(()=>{
-
-  })
-
   // const handleClick = () => {
   //   setDialog(true);
   // };
@@ -74,10 +82,10 @@ export default function EmployeeManagement() {
         <div style={{}}>
           <Back/>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"", padding:"1.5rem"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"4rem"}}>
           {
             records.map((record)=>(
-                <DirItem to="" icon={<User color="salmon" width="1.1rem"/>} title={record.ename}/>
+                <DirItem key={record.id} to="" icon={<File color="salmon" width="1.1rem"/>} title={record.name}/>
             ))
           
           /* {posts.map((posts) => (
