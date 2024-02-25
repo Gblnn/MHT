@@ -3,11 +3,10 @@ import { message } from "antd"
 import { format } from "date-fns"
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { ChevronRight } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
-
 
 interface Props{
     title:string
@@ -22,8 +21,6 @@ interface Props{
 
 export default function ActivityItem(props: Props){
 
-    
-
     const date = format(new Date(), "dd-MM-yyyy");
     const rid = props.id
     const [ename, setEname] = useState("")
@@ -35,10 +32,41 @@ export default function ActivityItem(props: Props){
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
     let doc_id = ""
+    const [postable, setPostable] = useState(false)
+    const [endable, setEndable] = useState(false)
 
     const [time, setTime] = useState("")
 
-        
+    useEffect(()=>{
+        console.log(end)
+    },[end])
+
+    useEffect(()=>{
+        if(site==""){
+            setPostable(false)
+        }
+        else{
+            setPostable(true)
+        }
+        if(work==""){
+            setPostable(false)
+        }
+        else{
+            setPostable(true)
+        }
+        if(start==""){
+            setPostable(false)
+        }
+        else{
+            setPostable(true)
+        }
+        if(end==""){
+            setEndable(false)
+        }   
+        else{
+            setEndable(true)
+        }
+    },[site, work, start, end])
 
 
     
@@ -63,10 +91,9 @@ export default function ActivityItem(props: Props){
                         data.map((data:any)=>{
                             setSiteinfo(data.site)
                             console.log(data.rid)
-                        })
-                        
-                        
+                        })  
                     })
+                    
                 }
             }) 
       }
@@ -128,10 +155,10 @@ export default function ActivityItem(props: Props){
         //         })
         //         console.log(end)
 
-            message.loading("Updating")
-        setTimeout(()=>{
-            window.location.reload()
-        },2000)
+        //     message.loading("Updating")
+        // setTimeout(()=>{
+        //     window.location.reload()
+        // },2000)
       }
 
     return(
@@ -157,9 +184,9 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox ampm={(value:any)=>{setStart(time+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
         </>
         
     )

@@ -1,6 +1,8 @@
 import Back from "@/components/back";
+import DirItem from "@/components/dir-item";
 import { db } from "@/firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
+import { User } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Record = {
@@ -13,7 +15,7 @@ type Record = {
   end:string
 }
 
-export default function Supervision() {
+export default function EmployeeManagement() {
 
   // const [dialog, setDialog] = useState(false);
 
@@ -24,7 +26,7 @@ export default function Supervision() {
     async function fetchData(){
 
       const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
+      const recordQuery = query(RecordCollection)
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
 
@@ -65,8 +67,13 @@ export default function Supervision() {
         <div style={{}}>
           <Back/>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"6rem", padding:"1.5rem"}}>
-          {/* {posts.map((posts) => (
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"", padding:"1.5rem"}}>
+          {
+            records.map((record)=>(
+                <DirItem to="" icon={<User color="salmon" width="1.1rem"/>} title={record.ename}/>
+            ))
+          
+          /* {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
                 key={posts.id}
@@ -77,10 +84,9 @@ export default function Supervision() {
               />
             ))} */}
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
+              {/* <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>
                   <tr>
-                
                     <th>Date</th>
                     <th>Name</th>
                     <th>Site</th>
@@ -104,7 +110,7 @@ export default function Supervision() {
                     ))
                   }
                 </tbody>
-              </table>
+              </table> */}
             
           </div>
             

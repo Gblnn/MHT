@@ -1,6 +1,7 @@
 import { Globe2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {LoadingOutlined} from '@ant-design/icons'
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,7 +9,15 @@ export default function Login() {
   const [posts, setPosts] = useState<any[]>([]);
   const [postable, setPostable] = useState(false);
 
+  const [loading, setLoading] = useState(false)
+
   const usenavigate = useNavigate();
+
+  useEffect(()=>{
+    if(window.name!=""){
+      usenavigate("/index")
+    }
+  },[])
 
   useEffect(() => {
     if (username == "") {
@@ -42,10 +51,10 @@ export default function Login() {
 
   const Validate = () => {
     setUsername(username.toLowerCase());
-
+    setLoading(true)
     setTimeout(() => {
+      setLoading(false)
       // message.success("Logged in")
-
       posts.map((post) => {
         if (post.username === username && post.password === password) {
           // message.success("Logged In")
@@ -114,13 +123,15 @@ export default function Login() {
               <br />
             
             <button
-              style={{ padding: "0.5rem" }}
+              style={{ padding: "0.5rem", display:"flex", gap:"0.5rem" }}
               color="crimson"
-              onClick={Validate}
+              onClick={postable?Validate:()=>{}}
               accessKey="enter"
               className={postable ? "red" : "disabled-btn"}
             >
-              LOGIN{" "}
+              {loading?<LoadingOutlined width="1rem"/>:null}
+              
+              LOGIN
             </button>
                 
               

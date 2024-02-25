@@ -7,7 +7,7 @@ export default function SupervisionIndex() {
   return (
     <div className="page">
       <div style={{}}>
-        <Back to="/index"/>
+        <Back/>
           <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 

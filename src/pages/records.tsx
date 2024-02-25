@@ -65,7 +65,7 @@ export default function Supervision() {
     <>
       <div className="page">
         <div style={{}}>
-          <Back to="/supervision-index"/>
+          <Back/>
           <div className="page-content">
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"scroll", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"4rem"}}>
             {

@@ -41,7 +41,7 @@ export default function Supervision() {
     <>
       <div className="page">
         <div style={{}}>
-          <Back to="/supervision-index"/>
+          <Back/>
 
           <div className="page-content" style={{}}>
           

@@ -1,11 +1,12 @@
 import { ChevronLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-interface Props{
-    to:string
-}
+// interface Props{
+//     to:string
+// }
 
-export default function Back(props:Props) {
+export default function Back() {
+  const usenavigate = useNavigate()
     return(
         <>
         <Link
@@ -24,7 +25,8 @@ export default function Back(props:Props) {
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
             }}
-            to={props.to}
+            onClick={()=>usenavigate(-1)}
+            to=""
           >
             <ChevronLeft width="1rem" /> Back
 

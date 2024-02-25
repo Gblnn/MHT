@@ -1,12 +1,12 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
-import DirItem from "../components/dir-item";
+import { Building, Timer, User } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DirItem from "../components/dir-item";
 
 export default function Admin() {
-    
+
     const usenavigate = useNavigate()
 
     useEffect(()=>{
@@ -17,14 +17,26 @@ export default function Admin() {
   return (
     <div className="page">
       <div style={{}}>
-        <Back to="/index"/>
+        <Back/>
           <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
           <DirItem
-            to="/supervision"
+            to="/employee-management"
             icon={<User width="1.1rem" color="salmon" />}
-            title="Add Employees"
+            title="Manage Employees"
+          />
+
+            <DirItem
+            to="/overtime-management"
+            icon={<Timer width="1.1rem" color="salmon" />}
+            title="Overtime Management"
+          />
+
+            <DirItem
+            to="/site-management"
+            icon={<Building width="1.1rem" color="salmon" />}
+            title="Manage Sites"
           />
 
             

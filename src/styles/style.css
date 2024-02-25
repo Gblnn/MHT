@@ -87,6 +87,10 @@ tr:hover {
   color: white;
 }
 
+.red:active {
+  opacity: 0.75;
+}
+
 .disabled {
   color: #6a6a6a;
 }

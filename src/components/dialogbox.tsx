@@ -1,5 +1,8 @@
 import { ConfigProvider } from "antd";
+import { useEffect } from "react";
+import AMPMCombo from "./ampmcombo";
 import SiteComboBox from "./site-combobox";
+import TimeComboBox from "./time-combobox";
 import {
   Dialog,
   DialogContent,
@@ -7,8 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import TimeComboBox from "./time-combobox";
-import AMPMCombo from "./ampmcombo";
 import WorkComboBox from "./workcombo";
 
 interface Props {
@@ -25,9 +26,15 @@ interface Props {
   time?:any
   ampm?:any
   work?:any
+  postable?:boolean
 }
 
 export default function DialogBox(props: Props) {
+
+  useEffect(()=>{
+    
+  },[])
+
   return (
     <>
       <Dialog open={props.open}>
@@ -72,8 +79,9 @@ export default function DialogBox(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "crimson", fontSize: "1rem" }}
+                  style={{}}
                   onClick={props.onConfirm}
+                  className={props.postable ? "red" : "disabled-btn"}
                 >
                   {props.okText}
                 </button>
