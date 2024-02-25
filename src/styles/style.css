@@ -57,8 +57,12 @@ input:focus {
   outline: none;
 }
 
+table {
+  font-size: 0.6rem;
+}
+
 td {
-  padding: 0;
+  padding: 0.5;
 }
 
 th {
@@ -115,6 +119,9 @@ tr:hover {
 @media (width>576px) {
   .fixed-length {
     width: 20rem;
+  }
+  table {
+    font-size: 1rem;
   }
   td {
     padding: 0.5rem;

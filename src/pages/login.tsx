@@ -119,7 +119,7 @@ export default function Login() {
               accessKey="enter"
               className={postable ? "red" : "disabled-btn"}
             >
-              {loading?<LoadingOutlined width="1rem"/>:null}
+              {loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
               
               LOGIN
             </button>

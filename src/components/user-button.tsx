@@ -15,33 +15,34 @@ export default function UserButton() {
   };
 
   const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: (
-        
-        <a
-          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
-          onClick={() => setDialog(true)}
-        >
-          <LogOut color="crimson" width="0.75rem" />
-          Logout
-        </a>
-      ),
-    },
+    
     window.name=="admin"?
     {
     
       key: "2",
       label:(
         <a
-          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize:"1rem" }}
           onClick={() => usenavigate("/admin")}
         >
-          <Eye color="crimson" width="0.75rem" />
+          <Eye color="crimson" width="1rem" />
           Admin
         </a>
       ),
-    }:null
+    }:null,
+    {
+      key: "1",
+      label: (
+        
+        <a
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize:"1rem" }}
+          onClick={() => setDialog(true)}
+        >
+          <LogOut color="crimson" width="1rem" />
+          Logout
+        </a>
+      ),
+    }
   ];
   return (
     <>

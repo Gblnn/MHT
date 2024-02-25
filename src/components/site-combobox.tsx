@@ -19,7 +19,7 @@ import {
           style={{
             background: "#1a1a1a",
             border: "1px solid #4a4a4a",
-            fontSize: "1rem",
+            fontSize: "1.1rem",
           }}
         >
           <SelectValue placeholder={props.placeholder} />

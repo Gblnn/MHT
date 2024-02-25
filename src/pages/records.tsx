@@ -20,12 +20,15 @@ export default function Supervision() {
   // const [dialog, setDialog] = useState(false);
 
   const [records, setRecords] = useState<Array<Record>>([])
-  const firestore = db
+  
+  useEffect(()=>{
+    
+  },[])
 
   useEffect(()=>{
     async function fetchData(){
 
-      const RecordCollection = collection(firestore, "records")
+      const RecordCollection = collection(db, "records")
       const recordQuery = query(RecordCollection)
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
@@ -70,7 +73,7 @@ export default function Supervision() {
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"4rem"}}>
             {
               records.map((record)=>(
-                <DirItem key={record.id} to="" icon={<File color="salmon" width="1.1rem"/>} title={record.date}/>
+                <DirItem key={record.id} to="" icon={<File color="salmon" width="1.1rem"/>} title={record.id}/>
               ))
             }
 

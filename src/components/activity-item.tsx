@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
+import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props{
     title:string
@@ -34,12 +35,8 @@ export default function ActivityItem(props: Props){
     let doc_id = ""
     const [postable, setPostable] = useState(false)
     const [endable, setEndable] = useState(false)
-
+    const [uploading, setUploading] = useState(false)
     const [time, setTime] = useState("")
-
-    useEffect(()=>{
-        console.log(end)
-    },[end])
 
     useEffect(()=>{
         if(site==""||work==""||start==""){
@@ -102,7 +99,7 @@ export default function ActivityItem(props: Props){
 
       const Assign = async () => {
         setDialog(false)
-        
+        setUploading(true)
         const obj = {rid, date, ename, site, work, start, end}
 
         await addDoc(collection(db, "records"), obj)
@@ -115,21 +112,22 @@ export default function ActivityItem(props: Props){
         //     }
         // )
 
-        fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:true})
             })
 
         message.success("Added Successfully")
+        setUploading(false)
         setTimeout(()=>{
             window.location.reload()
-        },2000)
+        },500)
       }
 
       const endWork = async () => {
         setSummaryDialog(false)
-        
+        setUploading(true)
         const RecordRef = collection(db, "records")
         const q = query(RecordRef, where("rid", "==", rid))
         const records = await getDocs(q)
@@ -143,7 +141,7 @@ export default function ActivityItem(props: Props){
         
         
         
-        fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:false})
@@ -157,10 +155,11 @@ export default function ActivityItem(props: Props){
         //         })
         //         console.log(end)
 
-            message.success("Updated")
+            message.success("Updated Records")
+            setUploading(false)
         setTimeout(()=>{
             window.location.reload()
-        },2500)
+        },1000)
       }
 
     return(
@@ -168,7 +167,7 @@ export default function ActivityItem(props: Props){
         <Link onClick={handleClick} to={props.to} className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
-                {props.icon}
+                {uploading?<LoadingOutlined width="1.5rem" style={{ color:"salmon"}}/>:props.icon}
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             {
                 props.status?
