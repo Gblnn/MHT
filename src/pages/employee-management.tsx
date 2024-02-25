@@ -42,7 +42,7 @@ export default function EmployeeManagement() {
   },[])
 
   const addEmployee = async () => {
-    await addDoc(collection(db, "employees"),{name, status})
+    await addDoc(collection(db, "employees"),{name})
   }
 
   // const [date, setDate] = useState("")
