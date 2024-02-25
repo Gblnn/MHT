@@ -1,5 +1,5 @@
 import { Dropdown, MenuProps } from "antd";
-import { LogOut, User } from "lucide-react";
+import { Eye, LogOut, User } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultDialog from "./default-dialog";
@@ -18,6 +18,7 @@ export default function UserButton() {
     {
       key: "1",
       label: (
+        
         <a
           style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
           onClick={() => setDialog(true)}
@@ -27,6 +28,20 @@ export default function UserButton() {
         </a>
       ),
     },
+    window.name=="admin"?
+    {
+    
+      key: "2",
+      label:(
+        <a
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+          onClick={() => usenavigate("/admin")}
+        >
+          <Eye color="crimson" width="0.75rem" />
+          Admin
+        </a>
+      ),
+    }:null
   ];
   return (
     <>

@@ -6,6 +6,7 @@ import Supervision from "./supervision";
 import Records from "./records";
 import SupervisionIndex from "./supervision-index";
 import Overview from "./overview";
+import Admin from "./admin";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -24,6 +25,7 @@ export default function Home() {
         <Route path="/supervision" element={<Supervision />} />
         <Route path="/records" element={<Records />} />
         <Route path="/overview" element={<Overview/>}/>
+        <Route path="/admin" element={<Admin/>}/>
       </Routes>
     </>
   );

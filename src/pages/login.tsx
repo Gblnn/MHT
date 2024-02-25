@@ -92,10 +92,11 @@ export default function Login() {
             style={{ margin: "1.5rem", display: "flex", flexFlow: "column" }}
           >
             <h1 style={{ fontSize: "2rem", fontWeight: "600" }}>LOGIN</h1>
-            <br />
+            <br/>
             <div
               style={{ display: "flex", flexFlow: "column", gap: "0.75rem" }}
             >
+              
               <input
               autoComplete="username"
               id="username"
@@ -110,17 +111,22 @@ export default function Login() {
                 placeholder="Password"
                 type="password"
               />
-            </div>
-            <br />
-            <br />
+              <br />
+            
             <button
               style={{ padding: "0.5rem" }}
               color="crimson"
               onClick={Validate}
+              accessKey="enter"
               className={postable ? "red" : "disabled-btn"}
             >
               LOGIN{" "}
             </button>
+                
+              
+              
+            </div>
+            
           </div>
         </div>
       </div>
