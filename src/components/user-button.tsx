@@ -48,6 +48,7 @@ export default function UserButton() {
       <Dropdown placement="bottom" menu={{ items }} trigger={["click"]}>
         <button style={{ padding: 0, background: "none" }}>
           <div
+          
             style={{
               padding: "0.5rem",
               paddingLeft: "1rem",

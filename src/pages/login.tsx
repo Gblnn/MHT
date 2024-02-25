@@ -7,7 +7,6 @@ import { message } from "antd";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [posts, setPosts] = useState<any[]>([]);
   const [postable, setPostable] = useState(false);
 
   const [loading, setLoading] = useState(false)
@@ -33,39 +32,26 @@ export default function Login() {
     }
   }, [username, password]);
 
-  //Fetching Login Details from MockAPI
-  useEffect(() => {
-    setTimeout(() => {
-      fetch(
-        "https://6586a271468ef171392e80df.mockapi.io/users?username=" +
-          username,
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setPosts(data);
-          console.log(data);
-        });
-    }, 3000);
-  }, [username, password]);
-
   window.name = username;
 
-  const Validate = () => {
+  const Validate = async () => {
     setUsername(username.toLowerCase());
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      // message.success("Logged in")
-      posts.map((post) => {
-        if (post.username === username && post.password === password) {
-          // message.success("Logged In")
-          usenavigate("/index");
-        }
-        else{
-           message.info("Invalid Credentials")
-        }
+    await fetch(
+      "https://6586a271468ef171392e80df.mockapi.io/users?username=" +username,)
+      .then((res) => res.json())
+      .then((data) => {
+        data.map((data:any)=>{
+          if(data.username== username && data.password == password){
+            usenavigate("/index")
+          }
+          else{
+            setLoading(false)
+            message.info("Invalid Credentials")
+          }
+        })
+        
       });
-    }, 1000);
   };
 
   return (
