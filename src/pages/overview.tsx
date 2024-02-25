@@ -24,7 +24,7 @@ export default function Supervision() {
     async function fetchData(){
 
       const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection, orderBy("rid", "desc"))
+      const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
 

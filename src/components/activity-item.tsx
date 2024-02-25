@@ -98,12 +98,12 @@ export default function ActivityItem(props: Props){
             }) 
       }
 
-      const Assign = () => {
+      const Assign = async () => {
         setDialog(false)
         
         const obj = {rid, date, ename, site, work, start, end}
 
-        addDoc(collection(db, "records"), obj)
+        await addDoc(collection(db, "records"), obj)
            
         // fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
         //     {
@@ -119,7 +119,7 @@ export default function ActivityItem(props: Props){
             body: JSON.stringify({status:true})
             })
 
-        message.loading("Updating")
+        message.success("Added Successfully")
         setTimeout(()=>{
             window.location.reload()
         },2000)
@@ -136,7 +136,7 @@ export default function ActivityItem(props: Props){
             doc_id = doc.id
         })
         
-        updateDoc(doc(db, "records", doc_id),{end:end})
+        await updateDoc(doc(db, "records", doc_id),{end:end})
         
         
         
@@ -155,10 +155,10 @@ export default function ActivityItem(props: Props){
         //         })
         //         console.log(end)
 
-        //     message.loading("Updating")
-        // setTimeout(()=>{
-        //     window.location.reload()
-        // },2000)
+            message.success("Updated")
+        setTimeout(()=>{
+            window.location.reload()
+        },2500)
       }
 
     return(

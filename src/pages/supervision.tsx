@@ -2,6 +2,7 @@ import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
 import { User } from "lucide-react";
 import { useEffect, useState } from "react";
+import {LoadingOutlined} from '@ant-design/icons'
 
 export default function Supervision() {
   
@@ -58,8 +59,7 @@ export default function Supervision() {
               />
               
             ))}
-            
-            
+            <LoadingOutlined style={{scale:"1.75", color:"salmon", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
             </div>
             
         
