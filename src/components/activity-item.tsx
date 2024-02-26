@@ -171,7 +171,7 @@ export default function ActivityItem(props: Props){
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             {
                 props.status?
-                <p style={{color:"salmon", fontSize:"1rem", fontWeight:"bolder"}}>•</p>
+                <p style={{color:"lime", fontSize:"1rem", fontWeight:"bolder"}}>•</p>
                 :null
             }
             
