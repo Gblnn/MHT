@@ -39,8 +39,16 @@ import {
           <SelectItem style={{fontSize:"1.25rem"}} value="8:30">8:30</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="9:00">9:00</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="9:30">9:30</SelectItem>
-          
-          
+          <SelectItem style={{fontSize:"1.25rem"}} value="10:00">10:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="10:30">10:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="11:00">11:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="11:30">11:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="12:00">12:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="12:30">12:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="1:00">1:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="1:30">1:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="2:00">2:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="2:30">2:30</SelectItem>
           
         </SelectContent>
       </Select>
