@@ -1,6 +1,6 @@
 import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
-import { User } from "lucide-react";
+import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import {LoadingOutlined} from '@ant-design/icons'
 
@@ -55,7 +55,7 @@ export default function Supervision() {
                 id={posts.id}
                 key={posts.id}
                 to=""
-                icon={<User width="1.1rem" color="salmon" />}
+                icon={posts.clearance=="supervisor"?<Eye width="1rem" color="salmon"/>:<User width="1rem" color="salmon" />}
                 title={posts.name}
                 status={posts.status}
               />
