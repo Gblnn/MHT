@@ -1,4 +1,5 @@
 import Back from "@/components/back";
+import EditDialog from "@/components/edit-dialog";
 import { db } from "@/firebase";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ type Record = {
 
 export default function Supervision() {
 
-  // const [dialog, setDialog] = useState(false);
+  const [dialog, setDialog] = useState(false);
 
   const [records, setRecords] = useState<Array<Record>>([])
   const firestore = db
@@ -87,19 +88,20 @@ export default function Supervision() {
                     <th>Work</th>
                     <th>Start</th>
                     <th>End</th>
+                    <th>Total Work</th>
                   </tr>
                 </thead>
                 <tbody>
                   {
                     records.map((record)=>(
-                      <tr key={record.id}>
-                        
+                      <tr key={record.id} onClick={()=>setDialog(true)}>
                         <td>{record.date}</td>
                         <td>{record.ename}</td>
                         <td>{record.site}</td>
                         <td>{record.work}</td>
                         <td>{record.start}</td>
                         <td>{record.end}</td>
+                        <td>{record.end==""?"-":parseInt(record.end)-parseInt(record.start)}</td>
                       </tr>
                     ))
                   }
@@ -118,6 +120,7 @@ export default function Supervision() {
         desc={date}
         onCancel={() => setDialog(false)}
       /> */}
+      <EditDialog title="Update entry" open={dialog} okText="Update" onChange="" onCancel={()=>setDialog(false)}/>
       
     </>
   );

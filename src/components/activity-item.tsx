@@ -29,6 +29,7 @@ export default function ActivityItem(props: Props){
     const [start, setStart] = useState("")
     const [end, setEnd] = useState("")
     const [siteinfo, setSiteinfo] = useState("")
+    const [startinfo, setStartinfo] = useState("")
     const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
@@ -45,18 +46,6 @@ export default function ActivityItem(props: Props){
         else{
             setPostable(true)
         }
-        // if(work==""){
-        //     setPostable(false)
-        // }
-        // else{
-        //     setPostable(true)
-        // }
-        // if(start==""){
-        //     setPostable(false)
-        // }
-        // else{
-        //     setPostable(true)
-        // }
         
     },[site, work, start])
 
@@ -68,30 +57,49 @@ export default function ActivityItem(props: Props){
             setEndable(true)
         }
     },[end])
+
+
+    const getData = async () => {
+        const RecordRef = collection(db, "records")
+        const q = query(RecordRef, where("rid", "==", rid))
+        const records = await getDocs(q)
+        records.forEach((doc)=>{
+        console.log(doc.data().site)
+        console.log(doc.data().start)
+        setSiteinfo(doc.data().site)
+        setStartinfo(doc.data().start)
+        })
+        setSummaryDialog(true)
+        setUploading(false)
+        
+    }
     
 
-    const handleClick = () => {
-
-        // setDialog(true)
-        
-            fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
+    const handleClick = async () => {
+            setUploading(true)
+            await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
             .then(res => res.json())
             .then(data => {
-                console.log(data.name)
                 setEname(data.name)
                 if(data.status==false){
                     setDialog(true)
+                    setUploading(false)
                 }
                 else{
-                    setSummaryDialog(true)
-                    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records?rid="+rid)
-                    .then(res => res.json())
-                    .then(data => {
-                        data.map((data:any)=>{
-                            setSiteinfo(data.site)
-                            console.log(data.rid)
-                        })  
-                    })
+                    
+                    getData()
+                    
+                    
+                    
+                    // fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records?rid="+rid)
+                    // .then(res => res.json())
+                    // .then(data => {
+                    //     data.map((data:any)=>{
+                    //         setSiteinfo(data.site)
+                    //         console.log(data.rid)
+                    //     })  
+                    // })
+                    
                     
                 }
             }) 
@@ -128,6 +136,7 @@ export default function ActivityItem(props: Props){
       const endWork = async () => {
         setSummaryDialog(false)
         setUploading(true)
+
         const RecordRef = collection(db, "records")
         const q = query(RecordRef, where("rid", "==", rid))
         const records = await getDocs(q)
@@ -167,7 +176,7 @@ export default function ActivityItem(props: Props){
         <Link onClick={handleClick} to={props.to} className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
-                {uploading?<LoadingOutlined width="1.5rem" style={{ color:"salmon"}}/>:props.icon}
+                {uploading?<LoadingOutlined width="1.5rem"/>:props.icon}
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             {
                 props.status?
@@ -187,7 +196,7 @@ export default function ActivityItem(props: Props){
         </Link>
         <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
         </>
         
     )

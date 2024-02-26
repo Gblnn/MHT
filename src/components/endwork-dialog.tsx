@@ -14,6 +14,7 @@ interface Props {
   title?: string;
   desc?: string;
   desc2?: string;
+  desc3?:string
   onCancel?: any;
   onConfirm?: any;
   okText:string
@@ -34,7 +35,17 @@ export default function EndWorkDialog(props: Props) {
             </DialogTitle>
 
             <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
+
+            <div style={{display:"flex", alignItems:"center", gap:"0.5rem", flexFlow:""}}>
+            
+
+            <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc3}</h3>
+
             <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
+
+            </div>
+            
+
             <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
             <TimeComboBox placeholder="Ending time" onChange={props.time} items/>
             <AMPMCombo placeholder="AM/PM" items onChange={props.ampm}/>

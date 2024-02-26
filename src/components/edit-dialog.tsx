@@ -1,4 +1,4 @@
-import { ConfigProvider, TimePicker } from "antd";
+import { ConfigProvider } from "antd";
 import { useEffect } from "react";
 import AMPMCombo from "./ampmcombo";
 import SiteComboBox from "./site-combobox";
@@ -30,7 +30,7 @@ interface Props {
   postable?:boolean
 }
 
-export default function DialogBox(props: Props) {
+export default function EditDialog(props: Props) {
 
   useEffect(()=>{
     
@@ -53,12 +53,17 @@ export default function DialogBox(props: Props) {
             <WorkComboBox placeholder="Work Type" items onChange={props.work} />
             <div style={{display:"flex", gap:"0.5rem"}}>
             {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
-            <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
+            <TimeComboBox placeholder="Start Time" items onChange={props.time}/>
             <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
             
+            </div>
+            
+            <div style={{display:"flex", gap:"0.5rem"}}>
+            {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
+            <TimeComboBox placeholder="End Time" items onChange={props.time}/>
+            <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
             
             </div>
-            <TimePicker style={{padding:"0.5rem", fontSize:"1rem", paddingLeft:"0.75rem"}}/>
             
           </DialogHeader>
 
