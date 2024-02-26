@@ -1,4 +1,4 @@
-import { ConfigProvider, TimePicker } from "antd";
+import { ConfigProvider } from "antd";
 import { useEffect } from "react";
 import AMPMCombo from "./ampmcombo";
 import SiteComboBox from "./site-combobox";
@@ -58,7 +58,7 @@ export default function DialogBox(props: Props) {
             
             
             </div>
-            <TimePicker style={{padding:"0.5rem", fontSize:"1rem", paddingLeft:"0.75rem"}}/>
+            
             
           </DialogHeader>
 

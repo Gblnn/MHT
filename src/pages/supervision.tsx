@@ -1,8 +1,8 @@
 import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
+import { LoadingOutlined } from '@ant-design/icons';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import {LoadingOutlined} from '@ant-design/icons'
 
 export default function Supervision() {
   
@@ -12,6 +12,10 @@ export default function Supervision() {
   
 
   const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(()=>{
+    
+  },[])
 
   useEffect(() => {
     fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")

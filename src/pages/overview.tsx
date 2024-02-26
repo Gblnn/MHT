@@ -2,6 +2,7 @@ import Back from "@/components/back";
 import EditDialog from "@/components/edit-dialog";
 import { db } from "@/firebase";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import moment from "moment";
 import { useEffect, useState } from "react";
 
 type Record = {
@@ -101,7 +102,12 @@ export default function Supervision() {
                         <td>{record.work}</td>
                         <td>{record.start}</td>
                         <td>{record.end}</td>
-                        <td>{record.end==""?"-":parseInt(record.end)-parseInt(record.start)}</td>
+                        <td>{record.end==""?"-":String(
+                          
+                          moment.duration(moment(record.end, "h:mm A").diff(moment(record.start, "h:mm A"))).get("hours")
+                          
+                      )}
+                      </td>
                       </tr>
                     ))
                   }

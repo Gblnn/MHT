@@ -29,6 +29,9 @@ import {
           <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
         <SelectContent style={{ background: "#1a1a1a", color: "white", height:"10rem", fontSize:"1.25rem" }}>
+          <SelectItem style={{fontSize:"1.25rem"}} value="4:00">4:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="4:30">4:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="5:00">5:00</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="5:30">5:30</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="6:00">6:00</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="6:30">6:30</SelectItem>

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
 import {LoadingOutlined} from '@ant-design/icons'
+import moment from 'moment'
 
 interface Props{
     title:string
@@ -26,7 +27,7 @@ export default function ActivityItem(props: Props){
     const rid = props.id
     const [ename, setEname] = useState("")
     const [site, setSite] = useState("")
-    const [start, setStart] = useState("")
+    const [start, setStart] = useState<any>()
     const [end, setEnd] = useState("")
     const [siteinfo, setSiteinfo] = useState("")
     const [startinfo, setStartinfo] = useState("")
@@ -38,6 +39,10 @@ export default function ActivityItem(props: Props){
     const [endable, setEndable] = useState(false)
     const [uploading, setUploading] = useState(false)
     const [time, setTime] = useState("")
+
+    // useEffect(()=>{
+    //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
+    // },[start])
 
     useEffect(()=>{
         if(site==""||work==""||start==""){
@@ -83,6 +88,7 @@ export default function ActivityItem(props: Props){
                 setEname(data.name)
                 if(data.status==false){
                     setDialog(true)
+                    console.log(moment())
                     setUploading(false)
                 }
                 else{
@@ -130,7 +136,7 @@ export default function ActivityItem(props: Props){
         setUploading(false)
         setTimeout(()=>{
             window.location.reload()
-        },500)
+        },100)
       }
 
       const endWork = async () => {
@@ -146,9 +152,6 @@ export default function ActivityItem(props: Props){
         })
         
         await updateDoc(doc(db, "records", doc_id),{end:end})
-        
-        
-        
         
         await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
@@ -166,9 +169,9 @@ export default function ActivityItem(props: Props){
 
             message.success("Updated Records")
             setUploading(false)
-        setTimeout(()=>{
+            setTimeout(()=>{
             window.location.reload()
-        },1000)
+            },100)
       }
 
     return(
@@ -194,9 +197,9 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
         </>
         
     )
