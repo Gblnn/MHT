@@ -1,7 +1,8 @@
 :root {
   color-scheme: dark;
-  --clr-opacity: rgba(120 120 120/ 25%);
+  --clr-opacity: rgba(120 120 120/ 15%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
+  --clr-accent: mediumslateblue;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -92,7 +93,7 @@ tr:hover {
 }
 
 .red {
-  background: crimson;
+  background: mediumslateblue;
   color: white;
 }
 
@@ -105,8 +106,8 @@ tr:hover {
 }
 
 .disabled-btn {
-  background: #2a2a2a;
-  color: #4a4a4a;
+  background: var(--clr-opacity);
+  color: #8a8a8a;
 }
 
 .fixed-length {

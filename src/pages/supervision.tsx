@@ -50,7 +50,7 @@ export default function Supervision() {
                 id={posts.id}
                 key={posts.id}
                 to=""
-                icon={posts.clearance=="supervisor"?<Eye width="1rem" color="salmon"/>:<User width="1rem" color="salmon" />}
+                icon={posts.clearance=="supervisor"?<Eye width="1rem" color="mediumslateblue"/>:<User width="1rem" color="mediumslateblue" />}
                 title={posts.name}
                 status={posts.status}
               />
@@ -58,7 +58,7 @@ export default function Supervision() {
             ))
             
           }
-          <LoadingOutlined style={{scale:"1.75", color:"salmon", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
+          <LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
             
             </div>
             

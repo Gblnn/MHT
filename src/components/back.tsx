@@ -13,7 +13,8 @@ export default function Back() {
             style={{
               display: "flex",
               alignItems: "center",
-              color: "crimson",
+              color: "var(--clr-accent)",
+              backdropFilter:"blur(10px)",
               fontWeight: 500,
               paddingLeft: "0.5rem",
               paddingRight:"0.5rem",
@@ -21,9 +22,9 @@ export default function Back() {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              background:"#1a1a1a",
+              background:"var(--clr-opacity)",
               borderRadius:"0.5rem",
-              boxShadow:"1px 1px 20px rgba(0 0 0/ 70%)"
+              boxShadow:"1px 1px 20px rgba(0 0 0/ 25%)"
             }}
             className="opacity"
             onClick={()=>usenavigate(-1)}
