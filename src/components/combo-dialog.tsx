@@ -57,7 +57,7 @@ export default function ComboDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "crimson", fontSize: "1rem", width:"7.5rem" }}
+                  style={{ background: "var(--clr-accent)", fontSize: "1rem", width:"7.5rem" }}
                   onClick={props.onConfirm}
                 >
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}

@@ -65,8 +65,8 @@ export default function Login() {
           gap: "0.25rem",
         }}
       >
-        <Globe2 color="crimson" />
-        <h1 style={{ fontSize: "1.5rem", fontWeight: "600", color: "crimson" }}>
+        <Globe2 color="var(--clr-accent)" />
+        <h1 style={{ fontSize: "1.75rem", fontWeight: "600", color: "var(--clr-accent)" }}>
           MHT
         </h1>
       </div>
