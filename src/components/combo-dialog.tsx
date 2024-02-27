@@ -1,41 +1,29 @@
 import { ConfigProvider } from "antd";
-import { useEffect } from "react";
-import AMPMCombo from "./ampmcombo";
-import SiteComboBox from "./site-combobox";
-import TimeComboBox from "./time-combobox";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
 } from "./ui/dialog";
-import WorkComboBox from "./workcombo";
-
+import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props {
   open: boolean;
   title?: string;
   desc?: string;
   desc2?: string;
-  style?: any;
   onCancel?: any;
   onConfirm?: any;
-  okText:string;
+  okText:string
   action?: string;
-  onChange:any
-  time?:any
-  ampm?:any
-  work?:any
-  postable?:boolean
+  inputPlaceholder?:string
+  inputOnChange?:any
+  combo?:any
+  loading?:any
 }
 
-export default function DialogBox(props: Props) {
-
-  useEffect(()=>{
-    
-  },[])
-
+export default function ComboDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
@@ -45,21 +33,8 @@ export default function DialogBox(props: Props) {
               {props.title}
             </DialogTitle>
 
-            <h3 style={{fontSize:"1.25rem"}}>{props.desc}</h3>
-            
-            <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
-            
-            <SiteComboBox placeholder="Select site" items onChange={props.onChange} />
-            <WorkComboBox placeholder="Work Type" items onChange={props.work} />
-            
-            <div style={{display:"flex", gap:"0.5rem"}}>
-      
-              <TimeComboBox placeholder="Select Time" items onChange={props.time}/>
-              <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
-      
-            </div>
-            
-            
+            <h3>{props.desc}</h3>
+            {props.combo}
           </DialogHeader>
 
           <DialogFooter>
@@ -82,10 +57,10 @@ export default function DialogBox(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{}}
+                  style={{ background: "crimson", fontSize: "1rem", width:"7.5rem" }}
                   onClick={props.onConfirm}
-                  className={props.postable ? "red" : "disabled-btn"}
                 >
+                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}
                 </button>
               </ConfigProvider>

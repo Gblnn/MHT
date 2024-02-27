@@ -63,6 +63,11 @@ table {
 
 td {
   padding: 0.5;
+  transition: 0.3s;
+}
+
+td:hover {
+  background: #4a4a4a;
 }
 
 th {

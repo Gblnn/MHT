@@ -28,10 +28,10 @@ export default function EmployeeManagement() {
 
 
 
-  const addEmployee = () => {
+  const addEmployee = async () => {
     setDialog(false)
 
-    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees",
+    await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees",
     {
         method:"POST",
         headers:{'content-type':'application/json'},

@@ -168,10 +168,12 @@ export default function ActivityItem(props: Props){
         //         console.log(end)
 
             message.success("Updated Records")
+            
+            // setTimeout(()=>{
+            // window.location.reload()
+            // },100)
+
             setUploading(false)
-            setTimeout(()=>{
-            window.location.reload()
-            },100)
       }
 
     return(
