@@ -139,7 +139,7 @@ export default function Supervision() {
                     <th>Work</th>
                     <th>Start</th>
                     <th>End</th>
-                    <th>Total Work</th>
+                    <th>Hours</th>
                   </tr>
                 </thead>
                 <tbody>

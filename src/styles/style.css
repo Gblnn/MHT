@@ -2,7 +2,7 @@
   color-scheme: dark;
   --clr-opacity: rgba(120 120 120/ 20%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
-  --clr-accent: mediumslateblue;
+  --clr-accent: #6868fe;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -93,7 +93,7 @@ tr:hover {
 }
 
 .red {
-  background: mediumslateblue;
+  background: var(--clr-accent);
   color: white;
 }
 

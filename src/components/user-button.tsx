@@ -66,7 +66,7 @@ export default function UserButton() {
               justifyContent: "center",
             }}
           >
-            <User color="mediumslateblue" width="1rem" />
+            <User color="var(--clr-accent)" width="1rem" />
           </div>
         </button>
       </Dropdown>

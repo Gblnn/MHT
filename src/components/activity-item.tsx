@@ -136,7 +136,7 @@ export default function ActivityItem(props: Props){
         setUploading(false)
         setTimeout(()=>{
             window.location.reload()
-        },100)
+        },500)
       }
 
       const endWork = async () => {
@@ -169,9 +169,9 @@ export default function ActivityItem(props: Props){
 
             message.success("Updated Records")
             
-            // setTimeout(()=>{
-            // window.location.reload()
-            // },100)
+            setTimeout(()=>{
+            window.location.reload()
+            },500)
 
             setUploading(false)
       }
@@ -193,7 +193,6 @@ export default function ActivityItem(props: Props){
                 </div>
             
             <div style={{display:"flex"}}>
-            {/* <CheckCircle color="green" width="1rem"/> */}
             <ChevronRight width="1rem"/>
             </div>
             
