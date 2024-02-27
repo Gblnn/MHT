@@ -37,7 +37,7 @@ export default function Index() {
           {window.name=="admin"||window.name=="super"?
           <DirItem
           to="/supervision-index"
-          icon={<Users width="1.1rem" color="mediumslateblue" />}
+          icon={<Users width="1.1rem" color="var(--clr-accent)" />}
           title="Employee Supervision"
         />
           :null}
@@ -45,7 +45,7 @@ export default function Index() {
           {window.name=="admin"?
           <DirItem
             to=""
-            icon={<Package width="1.1rem" color="mediumslateblue" />}
+            icon={<Package width="1.1rem" color="var(--clr-accent)" />}
             title="Inventory"
             tag="Not Ready"
           />

@@ -73,7 +73,7 @@ export default function Supervision() {
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column-reverse", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"center", marginTop:"4rem"}}>
             {
               records.map((record)=>(
-                <DirItem key={record.id} to="" icon={<File color="salmon" width="1.1rem"/>} title={record.id}/>
+                <DirItem key={record.id} to="" icon={<File color="var(--clr-accent)" width="1.1rem"/>} title={record.id}/>
               ))
             }
 

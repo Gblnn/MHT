@@ -50,7 +50,7 @@ export default function Supervision() {
                 id={posts.id}
                 key={posts.id}
                 to=""
-                icon={posts.clearance=="supervisor"?<Eye width="1rem" color="mediumslateblue"/>:<User width="1rem" color="mediumslateblue" />}
+                icon={posts.clearance=="supervisor"?<Eye width="1rem" color="var(--clr-accent)"/>:<User width="1rem" color="var(--clr-accent)" />}
                 title={posts.name}
                 status={posts.status}
               />

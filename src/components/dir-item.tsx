@@ -24,7 +24,7 @@ export default function DirItem(props: Props){
                 :null
             }
             
-            <p style={{fontSize:"0.85rem", background:"mediumslateblue", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
+            <p style={{fontSize:"0.85rem", background:"var(--clr-accent)", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
             <div style={{display:"flex"}}>
