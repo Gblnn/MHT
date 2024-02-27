@@ -48,8 +48,15 @@
   /* border: solid; */
 }
 
+.float {
+  margin: 0;
+}
+
 @media (width>=768px) {
   .page-content {
     align-items: center;
+  }
+  .float {
+    margin-right: 2rem;
   }
 }
