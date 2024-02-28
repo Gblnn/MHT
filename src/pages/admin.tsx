@@ -23,19 +23,19 @@ export default function Admin() {
 
           <DirItem
             to="/employee-management"
-            icon={<User width="1.1rem" color="salmon" />}
+            icon={<User width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Employees"
           />
 
             <DirItem
             to="/admin-records"
-            icon={<File width="1.1rem" color="salmon" />}
+            icon={<File width="1.1rem" color="var(--clr-accent)" />}
             title="Records"
           />
 
             <DirItem
             to="/site-management"
-            icon={<Factory width="1.1rem" color="salmon" />}
+            icon={<Factory width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Sites"
           />
 

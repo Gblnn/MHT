@@ -48,7 +48,7 @@ export default function EmployeeManagement(){
       <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
         {
           posts.map((post:any)=>(
-            <DirItem to="" icon={<File color="salmon" width="1rem"/>} key={post.id} title={post.name}/>
+            <DirItem to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name}/>
           ))
         }
       </div>
