@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { Eye, File, User } from "lucide-react";
-import DirItem from "../components/dir-item";
 import Back from "@/components/back";
+import { motion } from "framer-motion";
+import { File, User } from "lucide-react";
+import DirItem from "../components/dir-item";
 
 export default function SupervisionIndex() {
   return (
@@ -17,17 +17,17 @@ export default function SupervisionIndex() {
             title="Employees"
           />
 
-            <DirItem
+            {/* <DirItem
             to="/records"
             icon={<File width="1.1rem" color="var(--clr-accent)" />}
             title="Records"
             tag="Not Ready"
-          />
+          /> */}
 
             <DirItem
             to="/overview"
-            icon={<Eye width="1.1rem" color="var(--clr-accent)" />}
-            title="Overview"
+            icon={<File width="1.1rem" color="var(--clr-accent)" />}
+            title="Records"
           />
 
           {/* <DirItem

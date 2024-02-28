@@ -37,21 +37,28 @@ export default function Login() {
   const Validate = async () => {
     setUsername(username.toLowerCase());
     setLoading(true)
-    await fetch(
-      "https://6586a271468ef171392e80df.mockapi.io/users?username=" +username,)
-      .then((res) => res.json())
-      .then((data) => {
-        data.map((data:any)=>{
-          if(data.username== username && data.password == password){
-            usenavigate("/index")
-          }
-          else{
-            setLoading(false)
-            message.info("Invalid Credentials")
-          }
-        })
-        
-      });
+    try {
+      await fetch(
+        "https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/users?username=" +username,)
+        .then((res) => res.json())
+        .then((data) => {
+          data.map((data:any)=>{
+            if(data.username== username && data.password == password){
+              usenavigate("/index")
+            }
+            else{
+              setLoading(false)
+              message.info("Invalid Password")
+            }
+          })
+          
+        });
+      
+    } catch (error) {
+      message.info("Invalid Username")
+      setLoading(false)
+    }
+    
   };
 
   return (

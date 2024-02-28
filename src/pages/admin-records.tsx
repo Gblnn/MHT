@@ -6,6 +6,7 @@ import TimeComboBox from "@/components/time-combobox";
 import WorkComboBox from "@/components/workcombo";
 import { db } from "@/firebase";
 import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import moment from "moment";
 import { useEffect, useState } from "react";
 
 type Record = {
@@ -18,7 +19,7 @@ type Record = {
   end:string
 }
 
-export default function Supervision() {
+export default function AdminRecords() {
 
   const [sitedialog, setSiteDialog] = useState(false);
   const [workdialog, setWorkDialog] = useState(false);
@@ -36,6 +37,8 @@ export default function Supervision() {
   const[work, setWork] = useState("")
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
+
+  const [search, setSearch] = useState("")
 
   const[loading, setLoading] = useState(false)
 
@@ -116,7 +119,12 @@ export default function Supervision() {
         <div style={{}}>
           <Back/>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem",}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
+            <div style={{width:"100%"}}>
+            <input onChange={(e)=>setSearch(e.target.value)} placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
+
+            </div>
+            
           {/* {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -138,7 +146,7 @@ export default function Supervision() {
                     <th>Work</th>
                     <th>Start</th>
                     <th>End</th>
-                    {/* <th>Hours</th> */}
+                    <th>Hours</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -151,12 +159,12 @@ export default function Supervision() {
                         <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
                         <td onClick={()=>{setStartDialog(true);setDoc_id(record.id)}}>{record.start}</td>
                         <td onClick={()=>{setEndDialog(true);setDoc_id(record.id);console.log(typeof(doc_id))}}>{record.end}</td>
-                        {/* <td>{record.end==""?"-":String(
+                        <td>{record.end==""?"-":String(
                           
                           moment.duration(moment(record.end, "h:mm A").diff(moment(record.start, "h:mm A"))).get("hours")
                           
                       )}
-                      </td> */}
+                      </td>
                       </tr>
                     ))
                   }

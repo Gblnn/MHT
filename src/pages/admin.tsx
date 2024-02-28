@@ -28,7 +28,7 @@ export default function Admin() {
           />
 
             <DirItem
-            to="/overtime-management"
+            to="/admin-records"
             icon={<File width="1.1rem" color="salmon" />}
             title="Records"
           />
