@@ -38,8 +38,6 @@ export default function AdminRecords() {
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
 
-  const [search, setSearch] = useState("")
-
   const[loading, setLoading] = useState(false)
 
   useEffect(()=>{
@@ -121,7 +119,7 @@ export default function AdminRecords() {
           <div className="page-content">
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
             <div style={{width:"100%"}}>
-            <input onChange={(e)=>setSearch(e.target.value)} placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
+            <input placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
 
             </div>
             
