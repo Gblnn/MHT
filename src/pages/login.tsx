@@ -66,7 +66,7 @@ export default function Login() {
         }}
       >
         <Globe2 color="var(--clr-accent)" />
-        <h1 style={{ fontSize: "1.75rem", fontWeight: "600", color: "var(--clr-accent)" }}>
+        <h1 style={{ fontSize: "2rem", fontWeight: "800", color: "var(--clr-accent)" }}>
           MHT
         </h1>
       </div>

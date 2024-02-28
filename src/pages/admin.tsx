@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Factory, Timer, User } from "lucide-react";
+import { Factory, File, User } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -29,8 +29,8 @@ export default function Admin() {
 
             <DirItem
             to="/overtime-management"
-            icon={<Timer width="1.1rem" color="salmon" />}
-            title="Overtime Management"
+            icon={<File width="1.1rem" color="salmon" />}
+            title="Records"
           />
 
             <DirItem

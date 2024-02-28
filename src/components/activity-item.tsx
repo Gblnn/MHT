@@ -34,6 +34,7 @@ export default function ActivityItem(props: Props){
     const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
+    let docref = ""
     let doc_id = ""
     const [postable, setPostable] = useState(false)
     const [endable, setEndable] = useState(false)
@@ -66,13 +67,15 @@ export default function ActivityItem(props: Props){
 
     const getData = async () => {
         const RecordRef = collection(db, "records")
-        const q = query(RecordRef, where("rid", "==", rid))
+        const q = query(RecordRef, where("rid", "==", rid), where("status", "==", true))
         const records = await getDocs(q)
         records.forEach((doc)=>{
         console.log(doc.data().site)
         console.log(doc.data().start)
         setSiteinfo(doc.data().site)
         setStartinfo(doc.data().start)
+        docref = doc.id
+        console.log(docref)
         })
         setSummaryDialog(true)
         setUploading(false)
@@ -95,8 +98,6 @@ export default function ActivityItem(props: Props){
                     
                     getData()
                     
-                    
-                    
                     // fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records?rid="+rid)
                     // .then(res => res.json())
                     // .then(data => {
@@ -114,7 +115,7 @@ export default function ActivityItem(props: Props){
       const Assign = async () => {
         setDialog(false)
         setUploading(true)
-        const obj = {rid, date, ename, site, work, start, end}
+        const obj = {rid, date, ename, site, work, start, end, status:true}
 
         await addDoc(collection(db, "records"), obj)
            
@@ -143,21 +144,36 @@ export default function ActivityItem(props: Props){
         setSummaryDialog(false)
         setUploading(true)
 
-        const RecordRef = collection(db, "records")
-        const q = query(RecordRef, where("rid", "==", rid))
+        const RecordReference = collection(db, "records")
+        const q = query(RecordReference, where("status", "==", true), where("rid", "==", rid))
         const records = await getDocs(q)
         records.forEach((doc)=>{
             console.log(doc.id)
             doc_id = doc.id
         })
         
-        await updateDoc(doc(db, "records", doc_id),{end:end})
-        
-        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+        try {
+            await updateDoc(doc(db, "records", doc_id),{end:end,status:false})
+            
+
+            await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:false})
+            
             })
+            message.success("Records Updated")
+            setTimeout(()=>{
+            window.location.reload()
+            },1000)
+
+        } catch (error) {
+            message.error("Updation failed")
+            console.log(error)
+        }
+        
+        
+        
 
         //     fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/'+refid, {
         //         method: 'PUT',
@@ -167,11 +183,11 @@ export default function ActivityItem(props: Props){
         //         })
         //         console.log(end)
 
-            message.success("Updated Records")
             
-            setTimeout(()=>{
-            window.location.reload()
-            },500)
+            
+            // setTimeout(()=>{
+            // window.location.reload()
+            // },500)
 
             setUploading(false)
       }
@@ -200,7 +216,7 @@ export default function ActivityItem(props: Props){
         </Link>
         <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
         </>
         
     )
