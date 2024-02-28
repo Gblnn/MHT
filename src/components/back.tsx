@@ -24,7 +24,8 @@ export default function Back() {
               marginTop: "5rem",
               background:"var(--clr-opacity)",
               borderRadius:"0.5rem",
-              boxShadow:"1px 1px 20px rgba(0 0 0/ 25%)"
+              boxShadow:"1px 1px 20px rgba(0 0 0/ 25%)",
+              zIndex:5
             }}
             className="opacity"
             onClick={()=>usenavigate(-1)}
