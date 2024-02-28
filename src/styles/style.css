@@ -2,7 +2,8 @@
   color-scheme: dark;
   --clr-opacity: rgba(120 120 120/ 20%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
-  --clr-accent: #6868fe;
+  --clr-accent: crimson;
+  background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg");
 }
 
 /* @media (prefers-color-scheme: light) {
