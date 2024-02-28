@@ -14,7 +14,7 @@ export default function Back() {
               display: "flex",
               alignItems: "center",
               color: "var(--clr-accent)",
-              backdropFilter:"blur(10px)",
+              backdropFilter:"blur(15px)",
               fontWeight: 500,
               paddingLeft: "0.5rem",
               paddingRight:"0.5rem",
