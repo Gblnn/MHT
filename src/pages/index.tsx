@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Package, Users } from "lucide-react";
+import { Eye, Package, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -34,6 +34,15 @@ export default function Index() {
       <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
+
+        {window.name=="admin"?
+          <DirItem
+            to="/admin"
+            icon={<Eye width="1.1rem" color="var(--clr-accent)" />}
+            title="Admin Page"
+          />
+          :null}
+
           {window.name=="admin"||window.name=="super"?
           <DirItem
           to="/supervision-index"
@@ -50,6 +59,8 @@ export default function Index() {
             tag="Not Ready"
           />
           :null}
+
+        
 
           {/* <DirItem
             to=""

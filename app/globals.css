@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 button {
-  font-size: 1rem;
-  padding: 0.25rem;
+  font-size: 1.1rem;
+  padding: 0.35rem;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.5rem;

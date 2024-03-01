@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Factory, File, User } from "lucide-react";
+import { Factory, File, UserCheck, Users } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -23,8 +23,14 @@ export default function Admin() {
 
           <DirItem
             to="/employee-management"
-            icon={<User width="1.1rem" color="var(--clr-accent)" />}
+            icon={<Users width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Employees"
+          />
+
+          <DirItem
+            to="/employee-management"
+            icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
+            title="Manage Users"
           />
 
             <DirItem

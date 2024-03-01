@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import {LoadingOutlined} from "@ant-design/icons"
 
 interface Props {
   open: boolean;
@@ -18,6 +19,7 @@ interface Props {
   action?: string;
   inputPlaceholder?:string
   inputOnChange?:any
+  loading?:boolean
 }
 
 export default function InputDialog(props: Props) {
@@ -31,7 +33,11 @@ export default function InputDialog(props: Props) {
             </DialogTitle>
 
             <h3>{props.desc}</h3>
+
+          
             <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange}/>
+            
+            
           </DialogHeader>
 
           <DialogFooter>
@@ -48,16 +54,19 @@ export default function InputDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem" }}
+                  style={{ background: "var(--clr-opacity)" }}
                   onClick={props.onCancel}
                 >
                   Cancel
                 </button>
                 <button
-                  style={{ background: "crimson", fontSize: "1rem" }}
+                  style={{ background: "crimson", width:"5rem" }}
                   onClick={props.onConfirm}
                 >
+                  {props.loading?<LoadingOutlined/>:null}
                   {props.okText}
+                  
+                  
                 </button>
               </ConfigProvider>
             </div>

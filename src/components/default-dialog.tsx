@@ -23,12 +23,13 @@ export default function DefaultDialog(props: Props) {
     <>
       <Dialog open={props.open}>
         <DialogContent style={{background:"#1a1a1a", border:"none"}}>
-          <DialogHeader>
+          <DialogHeader style={{display:"flex", alignItems:"center"}}>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
             </DialogTitle>
 
-            <h3>{props.desc}</h3>
+            <h3 style={{opacity:0.5}}>{props.desc}</h3>
+            <h3 style={{opacity:0.5}}>{props.desc2}</h3>
           </DialogHeader>
 
           <DialogFooter>
@@ -37,8 +38,9 @@ export default function DefaultDialog(props: Props) {
                 border: "",
                 width: "100%",
                 display: "flex",
-                gap: "1rem",
+                gap: "0.5rem",
                 justifyContent: "center",
+                flexFlow:"column-reverse"
               }}
             >
               <ConfigProvider
@@ -51,7 +53,7 @@ export default function DefaultDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "crimson", fontSize: "1rem" }}
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600 }}
                   onClick={props.onConfirm}
                 >
                   {props.okText}
