@@ -9,6 +9,7 @@ import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/fi
 import moment from "moment";
 import { useEffect, useState } from "react";
 import {LoadingOutlined} from '@ant-design/icons'
+import { Package } from "lucide-react";
 
 type Record = {
   id:string,
@@ -176,7 +177,8 @@ export default function AdminRecords() {
               </table>
               {records.length<1?
               <div style={{ width:"100%",height:"75%", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"0.85rem", opacity:0.5}}>
-              {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p>Record Empty</p>}
+              {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>
+                :<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem",display:"flex", gap:"0.4rem", alignItems:"center", opacity:0.5, fontSize:'1rem' }}><Package width="1.1rem"/> Record Empty</p>}
               </div>
               :null
               }
