@@ -28,7 +28,7 @@ export default function InputDialog(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"#1a1a1a", border:"none"}}>
           <DialogHeader>
-            <DialogTitle style={{ fontSize: "1.5rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem", display:"flex" }}>
               {props.title}
             </DialogTitle>
 
