@@ -1,8 +1,9 @@
 import Back from "@/components/back";
 import { db } from "@/firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {LoadingOutlined} from '@ant-design/icons'
+import moment from "moment";
 
 type Record = {
   id:string,
@@ -36,10 +37,12 @@ export default function Supervision() {
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
+    console.log(moment().format("DD-MM-YYYY"))
     async function fetchData(){
       setLoading(true)
       const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
+      const recordQuery = query(RecordCollection, orderBy("rid", "asc"), 
+      where("date", "==", moment().format("DD-MM-YYYY")))
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
 
@@ -142,6 +145,7 @@ export default function Supervision() {
                 <tbody>
                   {
                     records.map((record)=>(
+              
                       <tr key={record.id}>
                         <td>{record.date}</td>
                         <td>{record.ename}</td>
