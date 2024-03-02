@@ -73,7 +73,7 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete Record" onCancel={()=>setOverviewDialog(false)}/>
+        <DefaultDialog title={ename} open={overviewdialog} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm=""/>
         
         </>
         

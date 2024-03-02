@@ -35,13 +35,7 @@ export default function Index() {
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
 
-        {window.name=="admin"?
-          <DirItem
-            to="/admin"
-            icon={<Eye width="1.1rem" color="var(--clr-accent)" />}
-            title="Admin Page"
-          />
-          :null}
+        
 
           {window.name=="admin"||window.name=="super"?
           <DirItem
@@ -57,6 +51,14 @@ export default function Index() {
             icon={<Package width="1.1rem" color="var(--clr-accent)" />}
             title="Inventory"
             tag="Not Ready"
+          />
+          :null}
+
+          {window.name=="admin"?
+          <DirItem
+            to="/admin"
+            icon={<Eye width="1.1rem" color="var(--clr-accent)" />}
+            title="Admin Access"
           />
           :null}
 

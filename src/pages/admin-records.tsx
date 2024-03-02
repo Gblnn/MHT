@@ -8,6 +8,7 @@ import { db } from "@/firebase";
 import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import {LoadingOutlined} from '@ant-design/icons'
 
 type Record = {
   id:string,
@@ -42,7 +43,7 @@ export default function AdminRecords() {
 
   useEffect(()=>{
     async function fetchData(){
-
+      setLoading(true)
       const RecordCollection = collection(firestore, "records")
       const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
       const querySnapshot = await getDocs(recordQuery)
@@ -51,6 +52,7 @@ export default function AdminRecords() {
       querySnapshot.forEach((doc)=>{
         fetchedData.push({id: doc.id, ...doc.data()} as Record)
       })
+      setLoading(false)
       setRecords(fetchedData)
     }
     fetchData();
@@ -146,7 +148,9 @@ export default function AdminRecords() {
                     <th>End</th>
                     <th>Hours</th>
                   </tr>
+                  
                 </thead>
+                
                 <tbody>
                   {
                     records.map((record)=>(
@@ -166,9 +170,18 @@ export default function AdminRecords() {
                       </tr>
                     ))
                   }
+                  
                 </tbody>
+                
               </table>
+              {records.length<1?
+              <div style={{ width:"100%",height:"75%", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"0.85rem", opacity:0.5}}>
+              {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p>Record Empty</p>}
+              </div>
+              :null
+              }
             
+
           </div>
             
           </div>
