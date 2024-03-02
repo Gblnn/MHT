@@ -8,7 +8,7 @@ export default function SupervisionIndex() {
     <div className="page">
       <div style={{}}>
         <Back/>
-          <motion.div initial={{opacity:0, scale:0.95}} whileInView={{opacity:1,scale:1}}>
+          <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
           <DirItem
