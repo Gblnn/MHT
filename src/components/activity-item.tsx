@@ -1,4 +1,5 @@
 import { db } from "@/firebase"
+import { LoadingOutlined } from '@ant-design/icons'
 import { message } from "antd"
 import { format } from "date-fns"
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
@@ -7,8 +8,6 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
-import {LoadingOutlined} from '@ant-design/icons'
-import moment from 'moment'
 
 interface Props{
     title:string
@@ -91,7 +90,6 @@ export default function ActivityItem(props: Props){
                 setEname(data.name)
                 if(data.status==false){
                     setDialog(true)
-                    console.log(moment())
                     setUploading(false)
                 }
                 else{
