@@ -4,6 +4,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import {motion} from 'framer-motion'
+import { Package } from "lucide-react";
 
 type Record = {
   id:string,
@@ -115,6 +117,7 @@ export default function Supervision() {
       <div className="page">
         <div style={{}}>
           <Back/>
+          <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content">
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"1.3rem", padding:"0.85rem", paddingTop:"3.5rem",}}>
           {/* {posts.map((posts) => (
@@ -127,7 +130,7 @@ export default function Supervision() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem"}}>{moment().format("LL")}</h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem"}}>{moment().format("LL")}</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>
@@ -165,8 +168,8 @@ export default function Supervision() {
                 </tbody>
               </table>
               {records.length<1?
-              <div style={{ width:"100%",height:"80%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", opacity:0.5}}>
-                {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem"}}>Record Empty</p>}
+              <div style={{ width:"100%",height:"90%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", opacity:0.5, position:"absolute"}}>
+                {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem",display:"flex", gap:"0.4rem", alignItems:"center" }}><Package width="1.1rem"/> Record Empty</p>}
               
               </div>
               :null
@@ -175,6 +178,7 @@ export default function Supervision() {
           </div>
             
           </div>
+          </motion.div>
         </div>
       </div>
       {/* <DefaultDialog

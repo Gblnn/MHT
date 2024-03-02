@@ -3,6 +3,7 @@ import Back from "@/components/back";
 import { LoadingOutlined } from '@ant-design/icons';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
+import {motion} from 'framer-motion'
 
 export default function Supervision() {
   
@@ -45,7 +46,7 @@ export default function Supervision() {
       <div className="page">
         <div style={{}}>
           <Back/>
-
+          <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content" style={{}}>
           
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
@@ -74,7 +75,9 @@ export default function Supervision() {
             
             
           </div>
+          </motion.div>
         </div>
+        
       </div>
       
     </>

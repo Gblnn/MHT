@@ -31,7 +31,7 @@ export default function Index() {
           </Link> */}
     <div className="page">
       <div style={{}}>
-      <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
+      <motion.div initial={{opacity:0, scale:0.95}} whileInView={{opacity:1,scale:1}} >
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
 
