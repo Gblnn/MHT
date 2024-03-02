@@ -7,9 +7,15 @@ import { useEffect, useState } from "react";
 export default function Supervision() {
   
   const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
+    getData()
+  }, []);
+
+  const getData = async () => {
+    setLoading(true)
+    await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
@@ -17,8 +23,9 @@ export default function Supervision() {
           console.log(post)
         })
       });
-      
-  }, [setPosts]);
+      setLoading(false)
+
+  }
 
   // const onPost = () => {
   //   setDialog(false)
@@ -58,7 +65,8 @@ export default function Supervision() {
             ))
             
           }
-          <LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="salmon"/>
+          {loading?<LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="var(--clr-accent)"/>:null}
+          
             
             </div>
             

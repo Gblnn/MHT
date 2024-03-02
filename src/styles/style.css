@@ -125,6 +125,15 @@ tr:hover {
   opacity: 0.5;
 }
 
+.snap-top {
+  justify-content: flex-start;
+  padding-top: 4rem;
+}
+
+.snap-center {
+  justify-content: center;
+}
+
 @media (width>576px) {
   .fixed-length {
     width: 20rem;

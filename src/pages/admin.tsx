@@ -28,7 +28,7 @@ export default function Admin() {
           />
 
           <DirItem
-            to="/employee-management"
+            to="/user-management"
             icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Users"
           />
