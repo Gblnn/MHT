@@ -116,7 +116,7 @@ export default function Supervision() {
         <div style={{}}>
           <Back/>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem",}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"1.3rem", padding:"0.85rem", paddingTop:"3.5rem",}}>
           {/* {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -127,6 +127,7 @@ export default function Supervision() {
                 
               />
             ))} */}
+            <h1 style={{fontWeight:600, fontSize:"1.25rem"}}>{moment().format("LL")}</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>

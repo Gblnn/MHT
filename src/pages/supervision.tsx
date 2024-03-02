@@ -65,7 +65,7 @@ export default function Supervision() {
             ))
             
           }
-          {loading?<LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="var(--clr-accent)"/>:null}
+          {loading?<LoadingOutlined style={{scale:"2", color:"var(--clr-accent)", marginTop:"30svh"}} width="2rem" color="var(--clr-accent)"/>:null}
           
             
             </div>
