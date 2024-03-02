@@ -1,9 +1,9 @@
 import Back from "@/components/back";
 import { db } from "@/firebase";
+import { LoadingOutlined } from '@ant-design/icons';
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import {LoadingOutlined} from '@ant-design/icons'
 import moment from "moment";
+import { useEffect, useState } from "react";
 
 type Record = {
   id:string,
@@ -37,12 +37,11 @@ export default function Supervision() {
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
-    console.log(moment().format("DD-MM-YYYY"))
+    
     async function fetchData(){
       setLoading(true)
       const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection, orderBy("rid", "asc"), 
-      where("date", "==", moment().format("DD-MM-YYYY")))
+      const recordQuery = query(RecordCollection, orderBy("rid", "asc"), where("date", "==", moment().format("DD-MM-YYYY")))
       const querySnapshot = await getDocs(recordQuery)
       const fetchedData: Array<Record> = [];
 
@@ -165,8 +164,8 @@ export default function Supervision() {
                 </tbody>
               </table>
               {records.length<1?
-              <div style={{ width:"100%",height:"75%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"0.85rem", opacity:0.5}}>
-                {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p>Record Empty</p>}
+              <div style={{ width:"100%",height:"80%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", opacity:0.5}}>
+                {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>:<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem"}}>Record Empty</p>}
               
               </div>
               :null

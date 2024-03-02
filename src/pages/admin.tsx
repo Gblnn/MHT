@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Factory, File, UserCheck, Users } from "lucide-react";
+import { BaggageClaim, Factory, File, UserCheck, Users, Workflow } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -43,6 +43,12 @@ export default function Admin() {
             to="/site-management"
             icon={<Factory width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Sites"
+          />
+
+          <DirItem
+            to="/site-management"
+            icon={<BaggageClaim width="1.1rem" color="var(--clr-accent)" />}
+            title="Manage Works"
           />
 
             
