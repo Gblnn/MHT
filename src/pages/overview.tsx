@@ -130,7 +130,7 @@ export default function Supervision() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem"}}>{moment().format("LL")}</h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", opacity:0.75}}>{moment().format("LL")}</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>
