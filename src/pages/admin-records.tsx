@@ -28,7 +28,7 @@ export default function AdminRecords() {
   const [startdialog, setStartDialog] = useState(false);
   const [enddialog, setEndDialog] = useState(false);
 
-  const [records, setRecords] = useState<Array<Record>>([])
+  const [records, setRecords] = useState<any[]>([])
   const firestore = db
 
   const [doc_id, setDoc_id] = useState("")
@@ -41,6 +41,7 @@ export default function AdminRecords() {
   const [end, setEnd] = useState("")
 
   const[loading, setLoading] = useState(false)
+  let [search, setSearch] = useState('')
 
   useEffect(()=>{
     async function fetchData(){
@@ -122,7 +123,8 @@ export default function AdminRecords() {
           <div className="page-content">
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
             <div style={{width:"100%"}}>
-            <input placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
+
+            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
 
             </div>
             
@@ -153,8 +155,13 @@ export default function AdminRecords() {
                 </thead>
                 
                 <tbody>
+                
                   {
-                    records.map((record)=>(
+                    records
+                    .filter((item)=>{
+                      item.name.toLowerCase().includes(search)
+                  })
+                  .map((record)=>(
                       <tr key={record.id}>
                         <td>{record.date}</td>
                         <td>{record.ename}</td>
