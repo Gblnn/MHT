@@ -78,8 +78,8 @@ th {
 }
 
 tr {
-  background: var(--clr-opacity);
-  backdrop-filter: blur(15px);
+  background: rgba(50 50 50/ 20%);
+  backdrop-filter: blur(20px);
   user-select: none;
   cursor: pointer;
   transition: 0.3s;

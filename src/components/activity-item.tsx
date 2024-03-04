@@ -3,7 +3,6 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { message } from "antd"
 import { format } from "date-fns"
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
-import { ChevronRight } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
@@ -197,17 +196,18 @@ export default function ActivityItem(props: Props){
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                 {uploading?<LoadingOutlined width="1.5rem"/>:props.icon}
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
-            {
-                props.status?
-                <p style={{color:"lime", fontSize:"1rem", fontWeight:"bolder"}}>•</p>
-                :null
-            }
+            
             
             <p style={{fontSize:"0.8rem", background:"salmon", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
-            <div style={{display:"flex"}}>
-            <ChevronRight width="1rem"/>
+            <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
+            {
+                props.status?
+                <p style={{color:"lime", fontSize:"1rem", fontWeight:"900", marginRight:"0.5rem", textShadow:"1px 1px 10px lime"}}>•</p>
+                :null
+            }
+            {/* <ChevronRight width="1rem"/> */}
             </div>
             
         </div>
