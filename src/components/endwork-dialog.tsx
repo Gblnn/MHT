@@ -33,8 +33,13 @@ export default function EndWorkDialog(props: Props) {
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
             </DialogTitle>
-
+            <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
+            
             <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
+            <p style={{color:"lime", fontSize:"1rem", fontWeight:"bolder"}}>•</p>
+            
+            </div>
+            
 
             <div style={{display:"flex", alignItems:"center", gap:"0.5rem", flexFlow:""}}>
             

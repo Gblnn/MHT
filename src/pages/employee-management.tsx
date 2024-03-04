@@ -1,11 +1,10 @@
+import ThreeInputDialog from "@/components/3input-dialog";
 import Back from "@/components/back";
 import DBItem from "@/components/db-item";
-import InputDialog from "@/components/input-dialog";
-import { PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { FloatButton, message } from "antd";
 import { File } from "lucide-react";
 import { useEffect, useState } from "react";
-import { LoadingOutlined } from '@ant-design/icons';
 
 export default function EmployeeManagement(){
 
@@ -14,14 +13,26 @@ export default function EmployeeManagement(){
   const [addDialog, setAddDialog] = useState(false)
 
   const [name, setName] = useState("")
+  const [passport, setPassport] = useState("")
+  const [resident, setResident] = useState("")
   const status = false
 
   const [loading,  setLoading] = useState(false)
   const [pageload,  setPageLoad] = useState(false)
+  const [postable, setPostable] = useState(false)
 
   useEffect(() => {
       getData()
   },[])
+
+  useEffect(() => {
+    if(name==""){
+      setPostable(false)
+    }
+    else{
+      setPostable(true)
+    }
+},[name])
 
   const getData = async () => {
     setPageLoad(true)
@@ -35,7 +46,7 @@ export default function EmployeeManagement(){
 
   const AddEmployee = async () => {
     setLoading(true)
-    const obj = {name:name, status}
+    const obj = {name:name, passport:passport, resident:resident, status}
     await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees",
           {
                 method:"POST",
@@ -69,7 +80,8 @@ export default function EmployeeManagement(){
       
     </div>
     <FloatButton onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined style={{color:"crimson"}}/>} shape="square"/>
-    <InputDialog title="Add Employee" inputPlaceholder="Enter Name" inputOnChange={(e:any)=>setName(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={AddEmployee} loading={loading}/>
+
+    <ThreeInputDialog title="Add Employee" inputPlaceholder="Enter Full Name" inputOnChange={(e:any)=>setName(e.target.value)} input2Placeholder="Enter Passport (Optional)" input2OnChange={(e:any)=>setPassport(e.target.value)} input3Placeholder="Enter Resident (Optional)" input3OnChange={(e:any)=>setResident(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={postable?AddEmployee:null} loading={loading} confirmClass={postable?"red":"disabled"}/>
 
     
     </>

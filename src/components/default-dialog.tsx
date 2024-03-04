@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props {
   open: boolean;
@@ -16,6 +17,7 @@ interface Props {
   onConfirm?: any;
   okText:string
   action?: string;
+  loading?:boolean
 }
 
 export default function DefaultDialog(props: Props) {
@@ -53,9 +55,10 @@ export default function DefaultDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600 }}
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
                   onClick={props.onConfirm}
                 >
+                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}
                 </button>
               </ConfigProvider>

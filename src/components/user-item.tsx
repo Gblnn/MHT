@@ -63,7 +63,7 @@ export default function UserItem(props: Props){
                 :null
             }
             
-            <p style={{fontSize:"0.8rem", background:"salmon", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
+            <p style={{fontSize:"0.8rem", background:"var(--clr-accent)", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
             <div style={{display:"flex"}}>

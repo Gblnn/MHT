@@ -22,6 +22,7 @@ export default function DBItem(props: Props){
     // const [resident, setResident] = useState("")
 
     const [uploading, setUploading] = useState(false)
+    const [deleting, setDeleting] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
 
 
@@ -45,6 +46,16 @@ export default function DBItem(props: Props){
         setOverviewDialog(true)
         setUploading(false)
         
+    }
+
+    const deleteData = async () => {
+        setDeleting(true)
+        await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id, {
+        method: 'DELETE',
+        })
+        setDeleting(false)
+        setOverviewDialog(false)
+        window.location.reload()
     }
 
       
@@ -73,7 +84,7 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm=""/>
+        <DefaultDialog title={ename} open={overviewdialog} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={deleting}/>
         
         </>
         
