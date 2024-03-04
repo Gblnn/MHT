@@ -27,7 +27,7 @@ export default function SupervisionIndex() {
             <DirItem
             to="/overview"
             icon={<File width="1.1rem" color="var(--clr-accent)" />}
-            title="Overview"
+            title="Daily Time Sheet"
           />
 
           {/* <DirItem

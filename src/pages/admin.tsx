@@ -24,7 +24,7 @@ export default function Admin() {
         <DirItem
             to="/admin-records"
             icon={<File width="1.1rem" color="var(--clr-accent)" />}
-            title="Records"
+            title="Detailed Time Sheet"
           />
 
           <DirItem
