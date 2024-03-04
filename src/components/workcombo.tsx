@@ -25,7 +25,7 @@ import {
           <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
         <SelectContent style={{ background: "#1a1a1a", color: "white", height:"16rem" }}>
-          <SelectItem style={{fontSize:"1rem"}} value="GRP/GRE/GRP Piping">GRP/GRE/GRP Piping</SelectItem>
+          <SelectItem style={{fontSize:"1rem"}} value="GRP/GRE/GRP Piping">GRP/GRE/GRV Piping</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="GRP Tank Repair/Modification">GRP Tank Repair/Modification</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="GRP Pipe Repair/Modification">GRP Pipe Repair/Modification</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="Roof GRP Lamination">Roof GRP Lamination</SelectItem>
