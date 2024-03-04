@@ -158,9 +158,9 @@ export default function AdminRecords() {
                 
                   {
                     records
-                    .filter((item)=>{
-                      item.name.toLowerCase().includes(search)
-                  })
+                  //   .filter((item)=>{
+                  //     item.name.toLowerCase().includes(search)
+                  // })
                   .map((record)=>(
                       <tr key={record.id}>
                         <td>{record.date}</td>
