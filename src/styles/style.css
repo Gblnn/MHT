@@ -11,6 +11,7 @@
   :root {
     color-scheme: light;
     --clr-bg: rgb(220 220 220);
+    --clr-opacity: rgba(120 120 120/ 10%);
     --clr-accent: darkslateblue;
     background: url(/public/bg.webp);
     background-position: 60% 0%;
@@ -83,7 +84,7 @@ td:hover {
 
 th {
   font-weight: 600;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 tr {

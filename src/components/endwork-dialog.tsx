@@ -30,7 +30,7 @@ export default function EndWorkDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
+        <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}

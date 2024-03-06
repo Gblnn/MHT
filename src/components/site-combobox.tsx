@@ -24,7 +24,7 @@ import {
         >
           <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
-        <SelectContent style={{ background: "#1a1a1a", color:"white", border:"none"}}>
+        <SelectContent style={{ background: "#1a1a1a", color:"white", border:"2px solid rgba(100 100 100/ 50%)"}}>
           <SelectItem style={{fontSize:"1rem"}} value="JNDL">JNDL</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="OSRC">OSRC</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="OARC">OARC</SelectItem>
