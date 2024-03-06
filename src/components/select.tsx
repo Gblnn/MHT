@@ -28,7 +28,7 @@ export default function Select(props:Props) {
               marginRight:"1.75rem",
               gap:"0.25rem",
               borderRadius:"0.5rem",
-              background:"rgba(100 100 100/ 10%)",
+              
               zIndex:5,
               
             }}
