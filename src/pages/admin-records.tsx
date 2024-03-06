@@ -131,7 +131,7 @@ export default function AdminRecords() {
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
             <div style={{width:"100%"}}>
 
-            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%", background:"rgba(100 100 100/ 15%)"}}/>
+            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%"}}/>
 
             </div>
             

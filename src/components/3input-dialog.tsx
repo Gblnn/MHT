@@ -31,7 +31,7 @@ export default function ThreeInputDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
+        <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader>
             <DialogTitle style={{ fontSize: "1.5rem", display:"flex" }}>
               {props.title}
