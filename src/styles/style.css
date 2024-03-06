@@ -13,6 +13,7 @@
     --clr-bg: rgb(220 220 220);
     --clr-accent: darkslateblue;
     background: url(/public/bg.webp);
+    background-position: 60% 0%;
   }
 }
 * {
