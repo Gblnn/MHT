@@ -10,6 +10,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import {LoadingOutlined} from '@ant-design/icons'
 import { Package } from "lucide-react";
+import DefaultDialog from "@/components/default-dialog";
 
 type Record = {
   id:string,
@@ -27,6 +28,7 @@ export default function AdminRecords() {
   const [workdialog, setWorkDialog] = useState(false);
   const [startdialog, setStartDialog] = useState(false);
   const [enddialog, setEndDialog] = useState(false);
+  const [deletedialog, setDeleteDialog] = useState(false)
 
   const [records, setRecords] = useState<any[]>([])
   const firestore = db
@@ -59,22 +61,6 @@ export default function AdminRecords() {
     }
     fetchData();
   },[])
-
-  // const [date, setDate] = useState("")
-
-  // const [posts, setPosts] = useState<any[]>([]);
-
-
-  // useEffect(() => {
-  //   fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setPosts(data)
-  //       data.map((data:any)=>{
-  //         setDate(data.date)
-  //       })
-  //     });
-  // }, [setPosts]);
 
   useEffect(()=>{
   
@@ -118,8 +104,10 @@ export default function AdminRecords() {
   return (
     <>
       <div className="page">
-        <div style={{}}>
-          <Back/>
+        <div>
+        <Back/>
+        </div>
+          
           <div className="page-content">
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
             <div style={{width:"100%"}}>
@@ -163,7 +151,7 @@ export default function AdminRecords() {
                   // })
                   .map((record)=>(
                       <tr key={record.id}>
-                        <td>{record.date}</td>
+                        <td onClick={()=>{setDeleteDialog(true);setDoc_id(record.ename)}}>{record.date}</td>
                         <td>{record.ename}</td>
                         <td onClick={()=>{setSiteDialog(true);setDoc_id(record.id)}}>{record.site}</td>
                         <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
@@ -194,7 +182,7 @@ export default function AdminRecords() {
           </div>
             
           </div>
-        </div>
+        
       </div>
       {/* <DefaultDialog
         open={dialog}
@@ -217,6 +205,8 @@ export default function AdminRecords() {
         <TimeComboBox placeholder="Select Time" items onChange={setTime}/>
         <AMPMCombo items placeholder="AM/PM" onChange={(value:any)=>{setEnd(time+" "+value);console.log(time+value)}}/>
       </div>} title="Update End time" open={enddialog} okText="Update" onCancel={()=>setEndDialog(false)} onConfirm={()=>handleEnd(doc_id)} />
+
+      <DefaultDialog title={doc_id} open={deletedialog} okText="Delete Entry" onCancel={()=>setDeleteDialog(false)}/>
       
     </>
   );

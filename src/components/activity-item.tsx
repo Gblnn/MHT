@@ -1,6 +1,6 @@
 import { db } from "@/firebase"
 import { LoadingOutlined } from '@ant-design/icons'
-import { message } from "antd"
+import { Checkbox, ConfigProvider, message } from "antd"
 import { format } from "date-fns"
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
@@ -17,6 +17,7 @@ interface Props{
     status?:boolean
     id:number
     rid:string
+    selectable?:boolean
 }
 
 export default function ActivityItem(props: Props){
@@ -79,6 +80,10 @@ export default function ActivityItem(props: Props){
         setUploading(false)
         
     }
+
+    const handleDisabled = () => {
+
+    }
     
 
     const handleClick = async () => {
@@ -132,9 +137,7 @@ export default function ActivityItem(props: Props){
 
         message.success("Added Successfully")
         setUploading(false)
-        setTimeout(()=>{
-            window.location.reload()
-        },500)
+        window.location.reload()
       }
 
       const endWork = async () => {
@@ -160,9 +163,7 @@ export default function ActivityItem(props: Props){
             
             })
             message.success("Records Updated")
-            setTimeout(()=>{
             window.location.reload()
-            },1000)
 
         } catch (error) {
             message.error("Updation failed")
@@ -191,10 +192,14 @@ export default function ActivityItem(props: Props){
 
     return(
         <>
-        <Link onClick={handleClick} to={props.to} className={props.classname}>
+        <Link onClick={props.selectable?handleDisabled:handleClick} to={props.to} className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
-                {uploading?<LoadingOutlined width="1.5rem"/>:props.icon}
+                    {
+                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"crimson"}}}><Checkbox/></ConfigProvider>:
+                        uploading?<LoadingOutlined width="1.5rem"/>:props.icon
+                    }
+                
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             
             

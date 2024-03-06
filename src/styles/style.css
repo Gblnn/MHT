@@ -46,6 +46,10 @@ button {
   transition: 0.3s;
 }
 
+button :active {
+  opacity: 0.75;
+}
+
 input {
   font-size: 1rem;
   padding: 1rem;
@@ -120,10 +124,8 @@ tr:hover {
 
 .opacity {
   transition: 0.25s;
-}
-
-.opacity:focus {
-  opacity: 0.5;
+  background: rgba(100 100 100/ 20%);
+  color: var(--clr-accent);
 }
 
 .snap-top {

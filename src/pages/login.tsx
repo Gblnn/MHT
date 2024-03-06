@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {LoadingOutlined} from '@ant-design/icons'
 import { message } from "antd";
+import {motion} from 'framer-motion'
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -77,6 +78,7 @@ export default function Login() {
           MHT
         </h1>
       </div>
+      <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
       <div
         style={{
           display: "flex",
@@ -138,6 +140,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      </motion.div>
     </div>
   );
 }

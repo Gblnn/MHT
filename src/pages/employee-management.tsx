@@ -66,9 +66,13 @@ export default function EmployeeManagement(){
   return(
     <>
     <div className="page">
+    
       <Back/>
+      
+      
       <div className="page-content">
       <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
+        
         {
           posts.map((post:any)=>(
             <DBItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name}/>

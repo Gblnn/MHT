@@ -1,14 +1,18 @@
 import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
+import Select from "@/components/select";
 import { LoadingOutlined } from '@ant-design/icons';
+import { FloatButton } from "antd";
+import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import {motion} from 'framer-motion'
 
 export default function Supervision() {
   
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
+  const [selectable, setSelectable] = useState(false)
+
 
   useEffect(() => {
     getData()
@@ -40,16 +44,27 @@ export default function Supervision() {
   //         )
   // }
 
+  const handleToggle = () => {
+    if(!selectable){
+      setSelectable(true)
+    }
+    else{
+      setSelectable(false)
+    }
+  }
+
   
   return (
     <>
       <div className="page">
         <div style={{}}>
           <Back/>
+          <Select onClick={handleToggle} classname={selectable?"red":"opacity"}/>
           <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content" style={{}}>
           
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
+          
             {
               
             posts.map((posts) => (
@@ -61,6 +76,7 @@ export default function Supervision() {
                 icon={posts.clearance=="supervisor"?<Eye width="1rem" color="var(--clr-accent)"/>:<User width="1rem" color="var(--clr-accent)" />}
                 title={posts.name}
                 status={posts.status}
+                selectable={selectable}
               />
               
             ))
@@ -80,6 +96,12 @@ export default function Supervision() {
         </div>
         
       </div>
+      {
+      selectable?
+      <FloatButton description="Group Assign" shape="square" style={{width:"7.5rem"}}/>
+      :null
+    }
+      
       
     </>
   );
