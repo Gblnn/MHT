@@ -3,14 +3,18 @@
   --clr-opacity: rgba(120 120 120/ 20%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
   --clr-accent: crimson;
+  --clr-bg: #1a1a1a;
   background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg");
 }
 
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
   :root {
     color-scheme: light;
+    --clr-bg: rgb(220 220 220);
+    --clr-accent: darkslateblue;
+    background: url(/public/bg.webp);
   }
-} */
+}
 * {
   letter-spacing: 0.025rem;
   padding: 0;
@@ -73,16 +77,16 @@ td {
 }
 
 td:hover {
-  background: rgba(100 100 100/ 25%);
+  background: rgba(100 100 100/ 10%);
 }
 
 th {
   font-weight: 600;
-  background: rgba(100 100 100/ 10%);
+  padding: 1rem;
 }
 
 tr {
-  background: rgba(50 50 50/ 20%);
+  background: rgba(50 50 50/ 5%);
   backdrop-filter: blur(20px);
   user-select: none;
   cursor: pointer;
@@ -90,7 +94,7 @@ tr {
 }
 
 tr:hover {
-  background: rgba(100 100 100/ 30%);
+  background: rgba(100 100 100/ 20%);
 }
 
 .white {

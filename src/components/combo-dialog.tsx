@@ -27,7 +27,7 @@ export default function ComboDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
+        <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
@@ -57,7 +57,8 @@ export default function ComboDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "var(--clr-accent)", fontSize: "1rem", width:"7.5rem" }}
+                className="red"
+                  style={{ fontSize: "1rem", width:"7.5rem" }}
                   onClick={props.onConfirm}
                 >
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}

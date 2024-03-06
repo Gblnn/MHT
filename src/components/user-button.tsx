@@ -65,7 +65,7 @@ export default function UserButton() {
               justifyContent: "center",
             }}
           >
-            <LogOut color="var(--clr-accent)" width="1rem" />
+            <LogOut color="white" width="1rem" />
           </div>
         </button>
       {/* </Dropdown> */}

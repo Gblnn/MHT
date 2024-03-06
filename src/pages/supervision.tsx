@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import {PlusOutlined} from '@ant-design/icons'
+import DefaultDialog from "@/components/default-dialog";
 
 export default function Supervision() {
   
@@ -14,6 +15,9 @@ export default function Supervision() {
   const [loading, setLoading] = useState(false)
   const [selectable, setSelectable] = useState(false)
 
+  const [groupaddDialog, setGroupaddDialog] = useState(false)
+
+  const eref:any = []
 
   useEffect(() => {
     getData()
@@ -78,6 +82,7 @@ export default function Supervision() {
                 title={posts.name}
                 status={posts.status}
                 selectable={selectable}
+                
               />
               
             ))
@@ -100,12 +105,13 @@ export default function Supervision() {
       {
       selectable?
       <ConfigProvider theme={{token:{colorPrimary:"crimson"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
+        <FloatButton onClick={()=>setGroupaddDialog(true)} className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
       </ConfigProvider>
       
       :null
     }
       
+      <DefaultDialog title="Group Assign" open={groupaddDialog} okText="Assign" onCancel={()=>setGroupaddDialog(false)} desc={String(eref)}/>
       
     </>
   );

@@ -19,7 +19,7 @@ import {
         <SelectTrigger
         
           style={{
-            background: "#1a1a1a",
+            background: "var(--clr-bg)",
             border: "1px solid #4a4a4a",
             fontSize: "1.1rem",
             flex:1.5,

@@ -17,7 +17,7 @@ export default function ComboBox(props: Props) {
     <Select required onValueChange={props.onChange}>
       <SelectTrigger
         style={{
-          background: "#1a1a1a",
+          background: "rgba(50 50 50/25%)",
           border: "1px solid #4a4a4a",
           fontSize: "1rem",
           zIndex:"5"

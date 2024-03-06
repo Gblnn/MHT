@@ -226,14 +226,14 @@ export default function ActivityItem(props: Props){
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                     {
-                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"crimson"}}}><Checkbox checked={checked}/></ConfigProvider>:
+                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"var(--clr-accent)"}}}><Checkbox style={{background:"rgba(0 0 0/0%)"}} checked={checked}/></ConfigProvider>:
                         uploading?<LoadingOutlined width="1.5rem"/>:props.icon
                     }
                 
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             
             
-            <p style={{fontSize:"0.8rem", background:"salmon", color:"black", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
+            <p style={{fontSize:"0.8rem", background:"salmon", color:"white", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
             <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
