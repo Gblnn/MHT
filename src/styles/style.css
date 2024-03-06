@@ -76,28 +76,30 @@ table {
 td {
   padding: 0.5;
   transition: 0.3s;
+  border: 1px solid rgba(100 100 100/ 25%);
 }
 
 td:hover {
-  background: rgba(100 100 100/ 10%);
+  background: rgba(100 100 100/ 25%);
 }
 
 th {
   font-weight: 600;
   padding: 0.5rem;
+  border: 1px solid rgba(100 100 100/ 25%);
 }
 
 tr {
-  background: rgba(50 50 50/ 5%);
-  backdrop-filter: blur(20px);
+  background: rgba(100 100 100/ 15%);
+  /* backdrop-filter: blur(20px); */
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
 }
 
-tr:hover {
+/* tr:hover {
   background: rgba(100 100 100/ 20%);
-}
+} */
 
 .white {
   background-color: white;
