@@ -17,14 +17,14 @@ import {
       <Select required onValueChange={props.onChange}>
         <SelectTrigger
           style={{
-            background: "#1a1a1a",
+            background: "var(--clr-bg)",
             border: "1px solid #4a4a4a",
             fontSize: "1.1rem",
           }}
         >
           <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
-        <SelectContent style={{ background: "var(--clr-bg)", color:"white"}}>
+        <SelectContent style={{ background: "#1a1a1a", color:"white"}}>
           <SelectItem style={{fontSize:"1rem"}} value="JNDL">JNDL</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="OSRC">OSRC</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="OARC">OARC</SelectItem>
