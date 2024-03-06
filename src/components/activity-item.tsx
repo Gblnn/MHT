@@ -40,6 +40,7 @@ export default function ActivityItem(props: Props){
     const [uploading, setUploading] = useState(false)
     const [time, setTime] = useState("")
     const [working, setWorking] = useState(false)
+    const [checked, setChecked] = useState(false)
 
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
@@ -90,7 +91,12 @@ export default function ActivityItem(props: Props){
     }
 
     const handleDisabled = () => {
-
+        if(!checked){
+            setChecked(true)
+        
+        }else{
+            setChecked(false)
+        }
     }
     
 
@@ -220,7 +226,7 @@ export default function ActivityItem(props: Props){
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                     {
-                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"crimson"}}}><Checkbox/></ConfigProvider>:
+                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"crimson"}}}><Checkbox checked={checked}/></ConfigProvider>:
                         uploading?<LoadingOutlined width="1.5rem"/>:props.icon
                     }
                 
