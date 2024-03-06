@@ -22,6 +22,8 @@ interface Props {
   time?:any
   ampm?:any
   postable?:boolean
+  working?:boolean
+  cancelWork?:any
 }
 
 export default function EndWorkDialog(props: Props) {
@@ -36,25 +38,32 @@ export default function EndWorkDialog(props: Props) {
             <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
             
             <h3 style={{fontWeight:"normal", fontSize:"1.1rem"}}>{props.desc}</h3>
-            <p style={{color:"lime", fontSize:"1rem", fontWeight:"bolder"}}>•</p>
+            <p style={{color:props.working?"lime":"goldenrod", fontSize:"1.25rem", fontWeight:"bolder"}}>•</p>
             
             </div>
             
-
-            <div style={{display:"flex", alignItems:"center", gap:"0.5rem", flexFlow:""}}>
+          {props.working?
+          <>
+          <div style={{display:"flex", alignItems:"center", gap:"0.5rem", flexFlow:""}}>
             
-
-            <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc3}</h3>
-
-            <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
-
-            </div>
             
+          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc3}</h3>
 
-            <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
+          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
+
+          </div>
+
+          <div style={{display:"flex", gap:"0.5rem", width:"100%"}}>
             <TimeComboBox placeholder="Ending time" onChange={props.time} items/>
             <AMPMCombo placeholder="AM/PM" items onChange={props.ampm}/>
             </div>
+          </>
+          :null
+          }
+            
+            
+
+            
             
           </DialogHeader>
 
@@ -78,13 +87,21 @@ export default function EndWorkDialog(props: Props) {
                 >
                   Cancel
                 </button>
+
+                {props.working?
                 <button
-                  style={{}}
-                  onClick={props.onConfirm}
-                  className={props.postable ? "red" : "disabled-btn"}
-                >
-                  {props.okText}
-                </button>
+                style={{}}
+                onClick={props.onConfirm}
+                className={props.postable ? "red" : "disabled-btn"}
+              >
+                {props.okText}
+              </button>
+              :
+              <button className="red" onClick={props.cancelWork}>End</button>
+                }
+                
+
+
               </ConfigProvider>
             </div>
           </DialogFooter>

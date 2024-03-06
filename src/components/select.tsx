@@ -25,7 +25,7 @@ export default function Select(props:Props) {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              marginRight:"1.5rem",
+              marginRight:"1.75rem",
               gap:"0.25rem",
               borderRadius:"0.5rem",
               boxShadow:"1px 1px 20px rgba(0 0 0/ 25%)",

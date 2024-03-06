@@ -2,10 +2,11 @@ import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
 import Select from "@/components/select";
 import { LoadingOutlined } from '@ant-design/icons';
-import { FloatButton } from "antd";
+import { ConfigProvider, FloatButton } from "antd";
 import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
+import {PlusOutlined} from '@ant-design/icons'
 
 export default function Supervision() {
   
@@ -98,7 +99,10 @@ export default function Supervision() {
       </div>
       {
       selectable?
-      <FloatButton description="Group Assign" shape="square" style={{width:"7.5rem"}}/>
+      <ConfigProvider theme={{token:{colorPrimary:"crimson"}}}>
+        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
+      </ConfigProvider>
+      
       :null
     }
       

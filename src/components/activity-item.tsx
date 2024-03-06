@@ -39,6 +39,7 @@ export default function ActivityItem(props: Props){
     const [endable, setEndable] = useState(false)
     const [uploading, setUploading] = useState(false)
     const [time, setTime] = useState("")
+    const [working, setWorking] = useState(false)
 
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
@@ -75,7 +76,14 @@ export default function ActivityItem(props: Props){
         setStartinfo(doc.data().start)
         docref = doc.id
         console.log(docref)
+        if(doc.data()){
+            setWorking(true)
+        }
+        else{
+            setWorking(false)
+        }
         })
+        
         setSummaryDialog(true)
         setUploading(false)
         
@@ -169,6 +177,9 @@ export default function ActivityItem(props: Props){
             message.error("Updation failed")
             console.log(error)
         }
+
+
+        
         
         
         
@@ -190,6 +201,19 @@ export default function ActivityItem(props: Props){
             setUploading(false)
       }
 
+      const CancelWork = async () => {
+        setUploading(true)
+        setSummaryDialog(false)
+        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
+        method: 'PUT',
+        headers: {'content-type':'application/json'},
+        body: JSON.stringify({status:false})
+        
+        })
+        setUploading(false)
+        window.location.reload()
+    }
+
     return(
         <>
         <Link onClick={props.selectable?handleDisabled:handleClick} to={props.to} className={props.classname}>
@@ -208,7 +232,9 @@ export default function ActivityItem(props: Props){
             
             <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
             {
+
                 props.status?
+
                 <p style={{color:"lime", fontSize:"1rem", fontWeight:"900", marginRight:"0.5rem", textShadow:"1px 1px 10px lime"}}>•</p>
                 :null
             }
@@ -219,7 +245,7 @@ export default function ActivityItem(props: Props){
         </Link>
         <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
         </>
         
     )

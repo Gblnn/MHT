@@ -5,12 +5,13 @@ import SiteComboBox from "@/components/site-combobox";
 import TimeComboBox from "@/components/time-combobox";
 import WorkComboBox from "@/components/workcombo";
 import { db } from "@/firebase";
-import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import {LoadingOutlined} from '@ant-design/icons'
 import { Package } from "lucide-react";
 import DefaultDialog from "@/components/default-dialog";
+import { message } from "antd";
 
 type Record = {
   id:string,
@@ -29,11 +30,14 @@ export default function AdminRecords() {
   const [startdialog, setStartDialog] = useState(false);
   const [enddialog, setEndDialog] = useState(false);
   const [deletedialog, setDeleteDialog] = useState(false)
+  const [deleteconfirm, setDeleteConfirm] = useState(false)
 
   const [records, setRecords] = useState<any[]>([])
   const firestore = db
 
+  const [ename, setEname] = useState("")
   const [doc_id, setDoc_id] = useState("")
+  const [date, setDate] = useState("")
 
   const [time, setTime] = useState("")
 
@@ -98,6 +102,20 @@ export default function AdminRecords() {
     window.location.reload()
   }
 
+  const handleDeleteDoc = async () => {
+    setLoading(true)
+    console.log(doc_id)
+    try {
+      await deleteDoc(doc(db, "records", doc_id))
+      message.info("Record Deleted")  
+      setDeleteConfirm(false)
+    } catch (error) {
+      message.error(String(error))
+    }
+    window.location.reload()
+    
+  }
+
   // const handleClick = () => {
   //   setDialog(true);
   // };
@@ -151,7 +169,7 @@ export default function AdminRecords() {
                   // })
                   .map((record)=>(
                       <tr key={record.id}>
-                        <td onClick={()=>{setDeleteDialog(true);setDoc_id(record.ename)}}>{record.date}</td>
+                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id)}}>{record.date}</td>
                         <td>{record.ename}</td>
                         <td onClick={()=>{setSiteDialog(true);setDoc_id(record.id)}}>{record.site}</td>
                         <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
@@ -206,8 +224,9 @@ export default function AdminRecords() {
         <AMPMCombo items placeholder="AM/PM" onChange={(value:any)=>{setEnd(time+" "+value);console.log(time+value)}}/>
       </div>} title="Update End time" open={enddialog} okText="Update" onCancel={()=>setEndDialog(false)} onConfirm={()=>handleEnd(doc_id)} />
 
-      <DefaultDialog title={doc_id} open={deletedialog} okText="Delete Entry" onCancel={()=>setDeleteDialog(false)}/>
-      
+      <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
+
+      <DefaultDialog title="Delete Entry?" open={deleteconfirm} okText="Delete" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc={ename} desc2={date}/>
     </>
   );
 }
