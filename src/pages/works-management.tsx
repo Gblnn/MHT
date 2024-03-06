@@ -2,7 +2,7 @@ import Back from "@/components/back";
 import { ConfigProvider, FloatButton } from "antd";
 import {PlusOutlined} from '@ant-design/icons'
 
-export default function SiteManagement(){
+export default function WorkManagement(){
     return(
         <>
         <div className="page">
@@ -11,6 +11,7 @@ export default function SiteManagement(){
         <ConfigProvider theme={{token:{colorPrimary:"crimson"}}}>
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
       </ConfigProvider>
+    
         </>
     )
 }
