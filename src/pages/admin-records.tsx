@@ -38,6 +38,7 @@ export default function AdminRecords() {
   const [ename, setEname] = useState("")
   const [doc_id, setDoc_id] = useState("")
   const [date, setDate] = useState("")
+  const [sitepreview, setSitePreview] = useState("")
 
   const [time, setTime] = useState("")
 
@@ -130,7 +131,7 @@ export default function AdminRecords() {
           <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
             <div style={{width:"100%"}}>
 
-            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%", background:"var(--clr-opacity)"}}/>
+            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%", background:"rgba(100 100 100/ 15%)"}}/>
 
             </div>
             
@@ -169,7 +170,7 @@ export default function AdminRecords() {
                   // })
                   .map((record)=>(
                       <tr key={record.id}>
-                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id)}}>{record.date}</td>
+                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>{record.date}</td>
                         <td>{record.ename}</td>
                         <td onClick={()=>{setSiteDialog(true);setDoc_id(record.id)}}>{record.site}</td>
                         <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
@@ -224,7 +225,7 @@ export default function AdminRecords() {
         <AMPMCombo items placeholder="AM/PM" onChange={(value:any)=>{setEnd(time+" "+value);console.log(time+value)}}/>
       </div>} title="Update End time" open={enddialog} okText="Update" onCancel={()=>setEndDialog(false)} onConfirm={()=>handleEnd(doc_id)} />
 
-      <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
+      <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={sitepreview} desc2={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
 
       <DefaultDialog title="Delete Entry?" open={deleteconfirm} okText="Delete" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc={ename} desc2={date}/>
     </>
