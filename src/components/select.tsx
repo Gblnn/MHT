@@ -17,7 +17,7 @@ export default function Select(props:Props) {
               display: "flex",
               right:0,
               alignItems: "center",
-              backdropFilter:"blur(15px)",
+            
               fontWeight: 500,
               paddingLeft: "0.75rem",
               paddingRight:"0.75rem",
@@ -28,7 +28,7 @@ export default function Select(props:Props) {
               marginRight:"1.75rem",
               gap:"0.25rem",
               borderRadius:"0.5rem",
-              boxShadow:"1px 1px 10px rgba(0 0 0/ 30%)",
+              background:"rgba(100 100 100/ 10%)",
               zIndex:5,
               
             }}

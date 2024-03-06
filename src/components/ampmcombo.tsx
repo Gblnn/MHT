@@ -25,7 +25,7 @@ import {
         >
           <SelectValue placeholder={props.placeholder} />
         </SelectTrigger>
-        <SelectContent defaultChecked style={{ background: "#1a1a1a", color: "white" }}>
+        <SelectContent defaultChecked style={{ background: "#1a1a1a", color: "white", border:"none" }}>
           <SelectItem style={{fontSize:"1rem"}} value="AM">AM</SelectItem>
           <SelectItem style={{fontSize:"1rem"}} value="PM">PM</SelectItem>
           

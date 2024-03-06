@@ -22,9 +22,9 @@ export default function Back() {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              background:"var(--clr-opacity)",
+              background:"rgba(100 100 100/ 10%)",
               borderRadius:"0.5rem",
-              boxShadow:"1px 1px 10px rgba(0 0 0/ 30%)",
+              
               zIndex:5
             }}
             className="opacity"
