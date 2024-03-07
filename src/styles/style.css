@@ -7,7 +7,7 @@
   background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg"); */
 
   color-scheme: light;
-  --clr-bg: rgb(220 220 220);
+  --clr-bg: rgb(230 230 230);
   --clr-opacity: rgba(120 120 120/ 10%);
   --clr-accent: #3131ab;
   background: url(/public/bg.webp);
