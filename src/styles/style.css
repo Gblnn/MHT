@@ -9,7 +9,7 @@
   color-scheme: light;
   --clr-bg: rgb(220 220 220);
   --clr-opacity: rgba(120 120 120/ 10%);
-  --clr-accent: navy;
+  --clr-accent: #3131ab;
   background: url(/public/bg.webp);
   background-position: 60% 0%;
 }
