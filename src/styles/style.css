@@ -12,7 +12,7 @@
     color-scheme: light;
     --clr-bg: rgb(220 220 220);
     --clr-opacity: rgba(120 120 120/ 10%);
-    --clr-accent: midnightblue;
+    --clr-accent: navy;
     background: url(/public/bg.webp);
     background-position: 60% 0%;
   }
@@ -76,7 +76,7 @@ table {
 td {
   padding: 0.5;
   transition: 0.3s;
-  border: 1px solid rgba(100 100 100/ 25%);
+  /* border: 1px solid rgba(100 100 100/ 25%); */
 }
 
 td:hover {
