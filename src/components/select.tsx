@@ -17,7 +17,6 @@ export default function Select(props:Props) {
               display: "flex",
               right:0,
               alignItems: "center",
-            
               fontWeight: 500,
               paddingLeft: "0.75rem",
               paddingRight:"0.75rem",

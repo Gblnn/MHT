@@ -53,7 +53,7 @@ export default function UserButton() {
               padding: "0.5rem",
               paddingLeft: "1rem",
               paddingRight: "1rem",
-              background: "#1a1a1a",
+              background: "var(--clr-opacity)",
               borderRadius: "1rem",
               display: "flex",
               alignItems: "center",
@@ -65,7 +65,7 @@ export default function UserButton() {
               justifyContent: "center",
             }}
           >
-            <LogOut color="white" width="1rem" />
+            <LogOut color="var(--clr-accent)" width="1rem" />
           </div>
         </button>
       {/* </Dropdown> */}
