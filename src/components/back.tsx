@@ -22,7 +22,7 @@ export default function Back() {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              background:"rgba(100 100 100/ 10%)",
+              userSelect:"none",
               borderRadius:"0.5rem",
               
               zIndex:5

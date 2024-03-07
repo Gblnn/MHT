@@ -28,7 +28,7 @@ export default function Select(props:Props) {
               marginRight:"1.75rem",
               gap:"0.25rem",
               borderRadius:"0.5rem",
-              
+              userSelect:"none",
               zIndex:5,
               
             }}
