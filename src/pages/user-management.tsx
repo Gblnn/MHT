@@ -13,6 +13,7 @@ export default function UserManagement(){
   const [addDialog, setAddDialog] = useState(false)
 
   const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
   const status = false
   let count = 0
 
@@ -37,7 +38,7 @@ export default function UserManagement(){
 
   const AddEmployee = async () => {
     setLoading(true)
-    const obj = {username:name, status}
+    const obj = {username:name, password:password, status}
     await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/users",
           {
                 method:"POST",
@@ -62,7 +63,7 @@ export default function UserManagement(){
       <div className={count>8?"snap-top":"snap-center"} style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", marginTop:"4rem"}}>
         {
           posts.map((post:any)=>(
-            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""}/>
+            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""} password={post.password}/>
           ))
         }
         {posts.length<1?
@@ -83,7 +84,7 @@ export default function UserManagement(){
     <FloatButton onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined/>} type="primary" shape="square"/>
     </ConfigProvider>
     
-    <InputDialog title="Add User" inputPlaceholder="Enter Name" inputOnChange={(e:any)=>setName(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={AddEmployee} loading={loading}/>
+    <InputDialog title="Add User" inputPlaceholder="Enter Username" input2Placeholder="Create Password" inputOnChange={(e:any)=>setName(e.target.value)} input2OnChange={(e:any)=>setPassword(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={AddEmployee} loading={loading}/>
 
     
     </>

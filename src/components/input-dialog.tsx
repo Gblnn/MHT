@@ -18,7 +18,9 @@ interface Props {
   okText:string
   action?: string;
   inputPlaceholder?:string
+  input2Placeholder?:string
   inputOnChange?:any
+  input2OnChange?:any
   loading?:boolean
 }
 
@@ -36,6 +38,7 @@ export default function InputDialog(props: Props) {
 
           
             <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange}/>
+            <input placeholder={props.input2Placeholder} onChange={props.input2OnChange}/>
             
             
           </DialogHeader>
