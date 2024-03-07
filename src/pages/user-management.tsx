@@ -2,7 +2,7 @@ import Back from "@/components/back";
 import InputDialog from "@/components/input-dialog";
 import UserItem from "@/components/user-item";
 import { PlusOutlined } from '@ant-design/icons';
-import { FloatButton, message } from "antd";
+import { ConfigProvider, FloatButton, message } from "antd";
 import { File } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -63,7 +63,12 @@ export default function UserManagement(){
       </div>
       
     </div>
-    <FloatButton onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined style={{color:"crimson"}}/>} shape="square"/>
+
+
+    <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
+    <FloatButton onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined/>} type="primary" shape="square"/>
+    </ConfigProvider>
+    
     <InputDialog title="Add User" inputPlaceholder="Enter Name" inputOnChange={(e:any)=>setName(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={AddEmployee} loading={loading}/>
 
     

@@ -104,7 +104,7 @@ export default function Supervision() {
       </div>
       {
       selectable?
-      <ConfigProvider theme={{token:{colorPrimary:"crimson"}}}>
+      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
         <FloatButton onClick={()=>setGroupaddDialog(true)} className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
       </ConfigProvider>
       

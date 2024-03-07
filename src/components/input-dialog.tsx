@@ -26,7 +26,7 @@ export default function InputDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
-        <DialogContent style={{background:"#1a1a1a", border:"none"}}>
+        <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader>
             <DialogTitle style={{ fontSize: "1.5rem", display:"flex" }}>
               {props.title}
@@ -60,7 +60,7 @@ export default function InputDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{ background: "crimson", width:"5rem" }}
+                  style={{ background: "var(--clr-accent)", width:"5rem", color:"white" }}
                   onClick={props.onConfirm}
                 >
                   {props.loading?<LoadingOutlined/>:null}
