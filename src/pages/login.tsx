@@ -1,9 +1,8 @@
-import { Globe2 } from "lucide-react";
+import { LoadingOutlined } from '@ant-design/icons';
+import { message } from "antd";
+import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {LoadingOutlined} from '@ant-design/icons'
-import { message } from "antd";
-import {motion} from 'framer-motion'
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -73,7 +72,8 @@ export default function Login() {
           gap: "0.25rem",
         }}
       >
-        <Globe2 color="var(--clr-accent)" />
+        {/* <Globe2 color="var(--clr-accent)" /> */}
+        <img src="/logo.png" style={{width:"2.25rem"}}/>
         <h1 style={{ fontSize: "2rem", fontWeight: "800", color: "var(--clr-accent)" }}>
           MHT
         </h1>
