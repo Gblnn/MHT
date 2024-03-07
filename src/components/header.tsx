@@ -9,7 +9,7 @@ export default function Header(){
             <div className="header-title" style={{paddingRight:"1.5rem", paddingLeft:"1.5rem", display:"flex", alignItems:"center", gap:"0.25rem",color:"var(--clr-accent)"}}>
                 {/* <Globe2/> */}
                 <img src="/logo.png" style={{width:"2.25rem"}}/>
-                <h1 style={{fontSize:"1.75rem", fontWeight:800}}>MHT</h1>
+                <h1 style={{fontSize:"2rem", fontWeight:800}}>MHT</h1>
             </div>
 
             {/* <div style={{paddingLeft:"1.5rem", paddingRight:"1.5rem"}}>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Eye, Package, Users } from "lucide-react";
+import { LockKeyhole, Package, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -57,7 +57,7 @@ export default function Index() {
           {window.name=="admin"?
           <DirItem
             to="/admin"
-            icon={<Eye width="1.1rem" color="var(--clr-accent)" />}
+            icon={<LockKeyhole width="1.1rem" color="var(--clr-accent)" />}
             title="Admin Access"
           />
           :null}

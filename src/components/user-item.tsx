@@ -24,6 +24,8 @@ export default function UserItem(props: Props){
     const [uploading, setUploading] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+
 
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
@@ -45,6 +47,16 @@ export default function UserItem(props: Props){
         setOverviewDialog(true)
         setUploading(false)
         
+    }
+
+    const deleteData = async () => {
+        setLoading(true)
+        await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/users/"+props.id, {
+        method: 'DELETE',
+        })
+        setLoading(false)
+        setOverviewDialog(false)
+        window.location.reload()
     }
 
       
@@ -73,7 +85,7 @@ export default function UserItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)}/>
+        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading}/>
         
         </>
         
