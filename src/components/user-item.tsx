@@ -86,7 +86,7 @@ export default function UserItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={'Password : '+props.password}/>
+        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.password}/>
         
         </>
         

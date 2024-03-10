@@ -136,7 +136,7 @@ export default function Supervision() {
                 <thead>
                   <tr>
                     
-                    <th>Date</th>
+                  
                     <th>Name</th>
                     <th>Site</th>
                     <th>Work</th>
@@ -150,7 +150,7 @@ export default function Supervision() {
                     records.map((record)=>(
               
                       <tr key={record.id}>
-                        <td>{record.date}</td>
+                       
                         <td>{record.ename}</td>
                         <td>{record.site}</td>
                         <td>{record.work}</td>
