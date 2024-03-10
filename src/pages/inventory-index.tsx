@@ -1,8 +1,9 @@
+import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { LockKeyhole, Package, Users } from "lucide-react";
+import { Package } from "lucide-react";
 import DirItem from "../components/dir-item";
 
-export default function Index() {
+export default function InventoryIndex() {
 
   return (
     <>
@@ -31,6 +32,7 @@ export default function Index() {
           </Link> */}
     <div className="page">
       <div style={{}}>
+        <Back/>
       <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
@@ -39,28 +41,28 @@ export default function Index() {
 
           {window.name=="admin"||window.name=="super"?
           <DirItem
-          to="/supervision-index"
-          icon={<Users width="1.1rem" color="var(--clr-accent)" />}
-          title="Employee Supervision"
+          to=""
+          icon={<Package width="1.1rem" color="var(--clr-accent)" />}
+          title="Product List"
         />
           :null}
           
           {window.name=="admin"?
           <DirItem
-            to="/inventory-index"
+            to=""
             icon={<Package width="1.1rem" color="var(--clr-accent)" />}
-            title="Inventory"
+            title="Product Overview"
             
           />
           :null}
 
-          {window.name=="admin"?
+          {/* {window.name=="admin"?
           <DirItem
             to="/admin"
             icon={<LockKeyhole width="1.1rem" color="var(--clr-accent)" />}
             title="Admin Access"
           />
-          :null}
+          :null} */}
 
         
 

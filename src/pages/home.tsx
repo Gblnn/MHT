@@ -12,6 +12,7 @@ import AdminRecords from "./admin-records";
 import UserManagement from "./user-management";
 import SiteManagement from "./site-management";
 import WorkManagement from "./works-management";
+import InventoryIndex from "./inventory-index";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -36,6 +37,7 @@ export default function Home() {
         <Route path="/user-management" element={<UserManagement/>}/>
         <Route path="/site-management" element={<SiteManagement/>}/>
         <Route path="/work-management" element={<WorkManagement/>}/>
+        <Route path="/inventory-index" element={<InventoryIndex/>}/>
       </Routes>
     </>
   );
