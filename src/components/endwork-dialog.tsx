@@ -47,9 +47,9 @@ export default function EndWorkDialog(props: Props) {
           <div style={{display:"flex", alignItems:"center", gap:"0.5rem", flexFlow:""}}>
             
             
-          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc3}</h3>
+          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"var(--clr-opacity)", borderRadius:"1rem"}}>{props.desc3}</h3>
 
-          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"#3a3a3a", borderRadius:"1rem"}}>{props.desc2}</h3>
+          <h3 style={{border:"", width:"fit-content", padding:"0.25rem",paddingLeft:"1rem",paddingRight:"1rem", background:"var(--clr-opacity)", borderRadius:"1rem"}}>{props.desc2}</h3>
 
           </div>
 
