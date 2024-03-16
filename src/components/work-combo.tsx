@@ -2,7 +2,7 @@ import { db } from "@/firebase"
 import { collection, getDocs, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-
+import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props{
   onChange?:any
@@ -15,12 +15,13 @@ type Record = {
 
 export default function WorkCombo(props:Props){
     const [sites, setSites] = useState<any[]>([])
-
+    const [loading, setLoading] = useState(false)
     useEffect(()=>{
       getSites()
     },[])
 
     const getSites = async () => {
+      setLoading(true)
         const RecordCollection = collection(db, "work")
         const recordQuery = query(RecordCollection, orderBy("work"))
         const querySnapshot = await getDocs(recordQuery)
@@ -29,13 +30,14 @@ export default function WorkCombo(props:Props){
         querySnapshot.forEach((doc)=>{
           fetchedData.push({id: doc.id, ...doc.data()} as Record)
         })
+        setLoading(false)
         setSites(fetchedData)
     }
     return(
         <>
     
             <Select required onValueChange={props.onChange}>
-            <SelectTrigger
+            <SelectTrigger disabled={loading}
               style={{
                 background: "var(--clr-bg)",
                 border: "1px solid rgba(100 100 100/ 50%)",
@@ -43,7 +45,7 @@ export default function WorkCombo(props:Props){
                 zIndex:"15"
               }}
             >
-              <SelectValue placeholder="Select Work" />
+              <SelectValue placeholder={loading?<LoadingOutlined/>:"Select Work"} />
             </SelectTrigger>
             <SelectContent style={{ background: "#1a1a1a", color: "white", border:"2px solid rgba(100 100 100/ 50%)", height:"25ch" }}>
                 {sites.map((site)=>(

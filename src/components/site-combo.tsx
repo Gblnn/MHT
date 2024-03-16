@@ -2,7 +2,7 @@ import { db } from "@/firebase"
 import { collection, getDocs, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-
+import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props{
   onChange:any
@@ -15,12 +15,14 @@ type Record = {
 
 export default function SiteCombo(props:Props){
     const [sites, setSites] = useState<any[]>([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
       getSites()
     },[])
 
     const getSites = async () => {
+      setLoading(true)
         const RecordCollection = collection(db, "sites")
         const recordQuery = query(RecordCollection)
         const querySnapshot = await getDocs(recordQuery)
@@ -29,13 +31,14 @@ export default function SiteCombo(props:Props){
         querySnapshot.forEach((doc)=>{
           fetchedData.push({id: doc.id, ...doc.data()} as Record)
         })
+        setLoading(false)
         setSites(fetchedData)
     }
     return(
         <>
     
             <Select required onValueChange={props.onChange}>
-            <SelectTrigger
+            <SelectTrigger disabled={loading}
               style={{
                 background: "var(--clr-bg)",
                 border: "1px solid rgba(100 100 100/ 50%)",
@@ -43,7 +46,7 @@ export default function SiteCombo(props:Props){
                 zIndex:"15"
               }}
             >
-              <SelectValue placeholder="Select Site" />
+              <SelectValue placeholder={loading?<LoadingOutlined/>:"Select Site"} />
             </SelectTrigger>
             <SelectContent style={{ background: "#1a1a1a", color: "white", border:"2px solid rgba(100 100 100/ 50%)" }}>
                 {sites.map((site)=>(
