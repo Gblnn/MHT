@@ -46,7 +46,7 @@ export default function UserButton() {
   return (
     <>
       {/* <Dropdown placement="bottom" menu={{ items }} trigger={["click"]}> */}
-        <button style={{ padding: 0, background: "none" }} onClick={()=>setDialog(true)}>
+        <button style={{ padding: 0, background: "none", marginRight:"1.5rem" }} onClick={()=>setDialog(true)}>
           <div
           
             style={{
@@ -58,7 +58,6 @@ export default function UserButton() {
               display: "flex",
               alignItems: "center",
               gap: "0.5rem",
-              marginRight: "1.5rem",
               overflow: "hidden",
               userSelect: "none",
               width: "fit-content",

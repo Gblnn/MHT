@@ -1,17 +1,17 @@
 import AMPMCombo from "@/components/ampmcombo";
 import Back from "@/components/back";
 import ComboDialog from "@/components/combo-dialog";
-import SiteComboBox from "@/components/site-combobox";
+import DefaultDialog from "@/components/default-dialog";
+import SiteCombo from "@/components/site-combo";
 import TimeComboBox from "@/components/time-combobox";
-import WorkComboBox from "@/components/workcombo";
+import WorkCombo from "@/components/work-combo";
 import { db } from "@/firebase";
+import { LoadingOutlined } from '@ant-design/icons';
+import { message } from "antd";
 import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import { Package } from "lucide-react";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import {LoadingOutlined} from '@ant-design/icons'
-import { Package } from "lucide-react";
-import DefaultDialog from "@/components/default-dialog";
-import { message } from "antd";
 
 type Record = {
   id:string,
@@ -211,9 +211,9 @@ export default function AdminRecords() {
         onCancel={() => setDialog(false)}
       /> */}
       {/* <EditDialog title="Update entry" open={dialog} okText="Update" onChange="" onCancel={()=>setDialog(false)}/> */}
-      <ComboDialog loading={loading} combo={<SiteComboBox items placeholder="Select Site" onChange={setSite}/>} title="Update site" inputPlaceholder="Site Name" open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={()=>handleSite(doc_id)}/>
+      <ComboDialog loading={loading} combo={<SiteCombo onChange={setSite}/>} title="Update site" inputPlaceholder="Site Name" open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={()=>handleSite(doc_id)}/>
 
-      <ComboDialog loading={loading} combo={<WorkComboBox items placeholder="Select work" onChange={setWork}/>} title="Update work" inputPlaceholder="Select Work" open={workdialog} okText="Update" onCancel={()=>setWorkDialog(false)} onConfirm={()=>handleWork(doc_id)}/>
+      <ComboDialog loading={loading} combo={<WorkCombo onChange={setWork}/>} title="Update work" inputPlaceholder="Select Work" open={workdialog} okText="Update" onCancel={()=>setWorkDialog(false)} onConfirm={()=>handleWork(doc_id)}/>
 
       <ComboDialog loading={loading} combo={<div style={{display:"flex", gap:"0.5rem"}}>
         <TimeComboBox placeholder="Select Time" items onChange={setTime}/>

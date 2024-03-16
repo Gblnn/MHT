@@ -1,11 +1,11 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Briefcase, Factory, File, UserCheck, Users } from "lucide-react";
+import { File } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
 
-export default function Admin() {
+export default function AccountingIndex() {
 
     const usenavigate = useNavigate()
 
@@ -22,36 +22,17 @@ export default function Admin() {
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
         <DirItem
-            to="/admin-records"
+            to="/income-sheet"
             icon={<File width="1.1rem" color="var(--clr-accent)" />}
-            title="Detailed Time Sheet"
+            title="Income Sheet"
           />
 
-          <DirItem
+          {/* <DirItem
             to="/employee-management"
             icon={<Users width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Employees"
-          />
+          /> */}
 
-          <DirItem
-            to="/user-management"
-            icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
-            title="Manage Users"
-          />
-
-            
-
-            <DirItem
-            to="/site-management"
-            icon={<Factory width="1.1rem" color="var(--clr-accent)" />}
-            title="Manage Sites"
-          />
-
-          <DirItem
-            to="/work-management"
-            icon={<Briefcase width="1.1rem" color="var(--clr-accent)" />}
-            title="Manage Works"
-          />
 
             
 

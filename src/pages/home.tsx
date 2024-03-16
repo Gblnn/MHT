@@ -13,6 +13,8 @@ import UserManagement from "./user-management";
 import SiteManagement from "./site-management";
 import WorkManagement from "./works-management";
 import InventoryIndex from "./inventory-index";
+import AccountingIndex from "./accounting-index";
+import IncomeSheet from "./income-sheet";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -38,6 +40,8 @@ export default function Home() {
         <Route path="/site-management" element={<SiteManagement/>}/>
         <Route path="/work-management" element={<WorkManagement/>}/>
         <Route path="/inventory-index" element={<InventoryIndex/>}/>
+        <Route path="/accounting" element={<AccountingIndex/>}/>
+        <Route path="/income-sheet" element={<IncomeSheet/>}/>
       </Routes>
     </>
   );

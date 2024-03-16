@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { LockKeyhole, Package, Users } from "lucide-react";
+import { Book, Package, Sparkles, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -57,8 +57,17 @@ export default function Index() {
           {window.name=="admin"?
           <DirItem
             to="/admin"
-            icon={<LockKeyhole width="1.1rem" color="var(--clr-accent)" />}
+            icon={<Sparkles width="1.1rem" color="var(--clr-accent)" />}
             title="Admin Access"
+          />
+          :null}
+
+          {window.name=="admin"?
+          <DirItem
+            to="/accounting"
+            icon={<Book width="1.1rem" color="var(--clr-accent)" />}
+            title="Accounting"
+            tag="Not Ready"
           />
           :null}
 
