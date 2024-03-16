@@ -22,6 +22,12 @@ export default function Admin() {
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
         <DirItem
+            to="/user-management"
+            icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
+            title="Manage Users"
+          />
+
+        <DirItem
             to="/admin-records"
             icon={<File width="1.1rem" color="var(--clr-accent)" />}
             title="Detailed Time Sheet"
@@ -33,11 +39,7 @@ export default function Admin() {
             title="Manage Employees"
           />
 
-          <DirItem
-            to="/user-management"
-            icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
-            title="Manage Users"
-          />
+          
 
             
 

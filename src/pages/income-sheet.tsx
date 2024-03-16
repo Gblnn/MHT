@@ -1,8 +1,11 @@
 import Back from "@/components/back";
+import DefaultDialog from "@/components/default-dialog";
+import IncomeSheetDialog from "@/components/income-sheet-dialog";
 import { db } from "@/firebase";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton } from "antd";
-import { collection, getDocs, query } from "firebase/firestore";
+import { format } from "date-fns";
+import { addDoc, collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
 import { motion } from 'framer-motion';
 import { Package } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -10,34 +13,26 @@ import { useEffect, useState } from "react";
 type Record = {
   id:string,
   date:string,
-  ename:string,
-  site:string,
-  work:string,
-  start:string,
-  end:string
+  company:string
+  payment:string
+  amount:number
 }
 
 export default function IncomeSheet() {
 
-  // const [sitedialog, setSiteDialog] = useState(false);
-  // const [workdialog, setWorkDialog] = useState(false);
-  // const [startdialog, setStartDialog] = useState(false);
-  // const [enddialog, setEndDialog] = useState(false);
-
   const [records, setRecords] = useState<Array<Record>>([])
   const firestore = db
-
-  // const [doc_id, setDoc_id] = useState("")
-
-  // const [time, setTime] = useState("")
-
-  // const [site, setSite] = useState("")
-  // const[work, setWork] = useState("")
-  // const [start, setStart] = useState("")
-  // const [end, setEnd] = useState("")
+  const [id, setId] = useState("")
+  const date = format(new Date(), "dd-MM-yyyy");
+  const [company, setCompany] = useState("")
+  const [payment, setPayment] = useState("")
+  const [amount, setAmount] = useState(0)
 
   const [loading, setLoading] = useState(false)
-  // const [dialog, setDialog] = useState(false)
+  const [dialog, setDialog] = useState(false)
+  const [deleteDialog, setdeleteDialog] = useState(false)
+
+  const [uploading, setUploading] = useState(false)
 
   useEffect(()=>{
     
@@ -58,61 +53,32 @@ export default function IncomeSheet() {
     fetchData();
   },[])
 
-  // const [date, setDate] = useState("")
-
-  // const [posts, setPosts] = useState<any[]>([]);
-
-
-  // useEffect(() => {
-  //   fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setPosts(data)
-  //       data.map((data:any)=>{
-  //         setDate(data.date)
-  //       })
-  //     });
-  // }, [setPosts]);
 
   useEffect(()=>{
   
   },[])
 
-  // const handleSite = async (p:any) => {
-  //   setLoading(true)
-  //   await updateDoc(doc(db, "records", p),{site:site})
-  //   setLoading(false)
-  //   setSiteDialog(false)
-  //   window.location.reload()
-  // }
+  const addIncome = async () => {
+    const obj = {date, company, payment, amount}
+    setUploading(true)
+    await addDoc(collection(db, "income"), obj)
+    setUploading(false)
+    setDialog(false)
+    setTimeout(()=>{
+      window.location.reload()
+    },100)
+  }
 
-  // const handleWork = async (p:any) => {
-  //   setLoading(true)
-  //   await updateDoc(doc(db, "records", p),{work:work})
-  //   setLoading(false)
-  //   setWorkDialog(false)
-  //   window.location.reload()
-  // }
+  const deleteEntry = async () => {
+    setUploading(true)
+    await deleteDoc(doc(db, "income", id))
+    setUploading(false)
+    setdeleteDialog(false)
+    setTimeout(()=>{
+      window.location.reload()
+    },100)
+  }
 
-  // const handleStart = async (p:any) => {
-  //   setLoading(true)
-  //   await updateDoc(doc(db, "records", p),{start:start})
-  //   setLoading(false)
-  //   setStartDialog(false)
-  //   window.location.reload()
-  // }
-
-  // const handleEnd = async (p:any) => {
-  //   setLoading(true)
-  //   await updateDoc(doc(db, "records", p),{end:end})
-  //   setLoading(false)
-  //   setEndDialog(false)
-  //   window.location.reload()
-  // }
-
-  // const handleClick = () => {
-  //   setDialog(true);
-  // };
   return (
     <>
       <div className="page">
@@ -133,9 +99,9 @@ export default function IncomeSheet() {
             ))} */}
             <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}></h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="table">
                 <thead>
-                  <tr>
+                  <tr >
                     
                   
                     <th>Date</th>
@@ -150,12 +116,12 @@ export default function IncomeSheet() {
                   {
                     records.map((record)=>(
               
-                      <tr key={record.id}>
+                      <tr onClick={()=>{setdeleteDialog(true);setId(record.id)}} key={record.id} >
                        
-                        <td>{record.ename}</td>
-                        <td>{record.site}</td>
-                        <td>{record.work}</td>
-                        <td>{record.start}</td>
+                        <td >{record.date}</td>
+                        <td>{record.company}</td>
+                        <td>{record.payment}</td>
+                        <td>{record.amount}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -184,9 +150,12 @@ export default function IncomeSheet() {
         </div>
       </div>
       <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary"/>
+        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
       </ConfigProvider>
 
+      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(e.target.value)} onConfirm={addIncome} loading={uploading}/>
+
+      <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       
 
       {/* <DefaultDialog

@@ -70,6 +70,18 @@ input:focus {
   outline: none;
 }
 
+.table tr:hover {
+  background: var(--clr-opacity);
+}
+
+.table td:hover {
+  background: none;
+}
+
+.table th:hover {
+  background: none;
+}
+
 table {
   font-size: 0.75rem;
 }
@@ -86,7 +98,7 @@ td:hover {
 
 th {
   font-weight: 600;
-  padding-bottom: 1rem;
+
   /* background: rgba(100 100 100/ 10%); */
   /* border: 1px solid rgba(100 100 100/ 25%); */
 }

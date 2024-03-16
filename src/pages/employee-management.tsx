@@ -3,7 +3,7 @@ import Back from "@/components/back";
 import DBItem from "@/components/db-item";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton, message } from "antd";
-import { File } from "lucide-react";
+import { UserCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function EmployeeManagement(){
@@ -75,7 +75,7 @@ export default function EmployeeManagement(){
         
         {
           posts.map((post:any)=>(
-            <DBItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name}/>
+            <DBItem id={post.id} to="" icon={<UserCircle color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name}/>
           ))
         }
         {pageload?<LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="var(--clr-accent)"/>:null}
