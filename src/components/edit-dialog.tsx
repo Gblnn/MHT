@@ -1,7 +1,7 @@
 import { ConfigProvider } from "antd";
 import { useEffect } from "react";
 import AMPMCombo from "./ampmcombo";
-import SiteComboBox from "./site-combobox";
+import SiteCombo from "./site-combo";
 import TimeComboBox from "./time-combobox";
 import {
   Dialog,
@@ -10,7 +10,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import WorkComboBox from "./workcombo";
+import WorkCombo from "./work-combo";
+
 
 
 interface Props {
@@ -49,8 +50,8 @@ export default function EditDialog(props: Props) {
             
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             
-            <SiteComboBox placeholder="Select site" items onChange={props.onChange} />
-            <WorkComboBox placeholder="Work Type" items onChange={props.work} />
+            <SiteCombo onChange={props.onChange} />
+            <WorkCombo onChange={props.work} />
             <div style={{display:"flex", gap:"0.5rem"}}>
             {/* <Input style={{background:"#1a1a1a", fontSize:"1rem", outline:"none"}} placeholder="Start Time"/> */}
             <TimeComboBox placeholder="Start Time" items onChange={props.time}/>
