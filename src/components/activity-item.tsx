@@ -233,7 +233,7 @@ export default function ActivityItem(props: Props){
             <p style={{fontSize:"1.1rem"}}>{props.title}</p>
             
             
-            <p style={{fontSize:"0.8rem", background:"salmon", color:"white", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
+            <p style={{fontSize:"0.8rem", background:"var(--clr-accent)", color:"white", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
             <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>

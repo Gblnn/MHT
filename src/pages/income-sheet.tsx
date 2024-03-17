@@ -5,7 +5,7 @@ import { db } from "@/firebase";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton } from "antd";
 import { format } from "date-fns";
-import { addDoc, collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
 import { motion } from 'framer-motion';
 import { Package } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -34,29 +34,40 @@ export default function IncomeSheet() {
 
   const [uploading, setUploading] = useState(false)
 
+  const RecordCollection = collection(firestore, "income")
+  const [total, setTotal] = useState(0)
+  const [table, setTable] = useState(false)
+
   useEffect(()=>{
+    fetchData()
+    calculation()
+  },[])
+
+  async function fetchData(){
+    setLoading(true)
     
-    async function fetchData(){
-      setLoading(true)
-      const RecordCollection = collection(firestore, "income")
-      const recordQuery = query(RecordCollection)
-      const querySnapshot = await getDocs(recordQuery)
-      const fetchedData: Array<Record> = [];
+    const recordQuery = query(RecordCollection)
+    const querySnapshot = await getDocs(recordQuery)
+    const fetchedData:any = [];
 
-      querySnapshot.forEach((doc)=>{
-        fetchedData.push({id: doc.id, ...doc.data()} as Record)
-      })
-      setLoading(false)
-      setRecords(fetchedData)
-      
-    }
-    fetchData();
-  },[])
+    querySnapshot.forEach((doc)=>{
+      fetchedData.push({id: doc.id, ...doc.data()})
+    })
+    setLoading(false)
+    setRecords(fetchedData)
+    
+  }
 
+  const calculation = async () => {
+    const snapshot = await getAggregateFromServer(RecordCollection, {
+      total: sum('amount')
+    });
+    
+    console.log('total => ', snapshot.data().total);
+    setTotal(snapshot.data().total)
+    setTable(true)
 
-  useEffect(()=>{
-  
-  },[])
+  }
 
   const addIncome = async () => {
     const obj = {date, company, payment, amount}
@@ -86,7 +97,7 @@ export default function IncomeSheet() {
           <Back/>
           <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"1.3rem", padding:"0.85rem", paddingTop:"3.5rem",}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"", padding:"0.85rem", paddingTop:"3.5rem",}}>
           {/* {posts.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -97,7 +108,7 @@ export default function IncomeSheet() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}></h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Income Sheet</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="table">
                 <thead>
@@ -133,6 +144,19 @@ export default function IncomeSheet() {
                     ))
                   }
                 </tbody>
+                {
+                table?
+                <tfoot>
+                  <tr style={{background:"rgba(100 100 100/ 20%)"}}>
+                    <td style={{fontWeight:"bold"}}>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td style={{fontWeight:"bold"}}>{total}</td>
+                  </tr>
+                </tfoot>
+                :null
+              }
+                
               </table>
               {records.length<1?
               <div style={{ width:"100%",height:"90%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", position:"absolute"}}>
@@ -153,7 +177,7 @@ export default function IncomeSheet() {
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
       </ConfigProvider>
 
-      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(e.target.value)} onConfirm={addIncome} loading={uploading}/>
+      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
 
       <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       

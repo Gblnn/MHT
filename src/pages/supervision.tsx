@@ -82,7 +82,7 @@ export default function Supervision() {
                 title={posts.name}
                 status={posts.status}
                 selectable={selectable}
-                
+                tag={posts.clearance=="supervisor"?"Supervisor":""}
               />
               
             ))
