@@ -152,7 +152,7 @@ export default function IncomeSheet() {
               {
                 tableData?
                 <tfoot>
-                  <tr style={{background:"black",color:"white", border:"1px solid black"}}>
+                  <tr style={{border:"1px solid black"}}>
                     <td style={{fontWeight:"bold", border:'none'}}>Total</td>
                     <td style={{border:"none"}}></td>
                     <td style={{border:"none"}}></td>

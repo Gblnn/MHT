@@ -41,20 +41,20 @@ export default function InventoryIndex() {
 
           {window.name=="admin"||window.name=="super"?
           <DirItem
-          to=""
+          to="/product-list"
           icon={<Package width="1.1rem" color="var(--clr-accent)" />}
           title="Product List"
         />
           :null}
           
-          {window.name=="admin"?
+          {/* {window.name=="admin"?
           <DirItem
             to=""
             icon={<Package width="1.1rem" color="var(--clr-accent)" />}
             title="Product Overview"
             
           />
-          :null}
+          :null} */}
 
           {/* {window.name=="admin"?
           <DirItem

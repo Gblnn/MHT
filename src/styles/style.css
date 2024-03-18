@@ -163,6 +163,43 @@ tr {
   justify-content: center;
 }
 
+.page-canvas {
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  flex-flow: column;
+  overflow-y: auto;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.85rem;
+  padding-top: 3.5rem;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 0.05rem;
+  background: var(--clr-opacity);
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1.5rem;
+}
+
+.inventory-item {
+  box-shadow: 1px 1px 10px rgba(0 0 0/ 50%);
+  transition: 0.3s;
+}
+
+.inventory-item:hover {
+  box-shadow: 1px 1px 20px rgba(0 0 0/ 70%);
+  cursor: pointer;
+}
+
 @media (width>576px) {
   .fixed-length {
     width: 20rem;

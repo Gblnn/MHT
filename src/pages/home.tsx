@@ -18,6 +18,7 @@ import IncomeSheet from "./income-sheet";
 import MDAccount from "./md-account";
 import PettyCash from "./petty-cash";
 import Expenses from "./expenses";
+import ProductList from "./product-list";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -48,6 +49,7 @@ export default function Home() {
         <Route path="/md-account" element={<MDAccount/>}/>
         <Route path="/petty-cash" element={<PettyCash/>}/>
         <Route path="/expenses" element={<Expenses/>}/>
+        <Route path="/product-list" element={<ProductList/>}/>
       </Routes>
     </>
   );
