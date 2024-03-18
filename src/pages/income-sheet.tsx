@@ -37,6 +37,7 @@ export default function IncomeSheet() {
   const RecordCollection = collection(firestore, "income")
   const [total, setTotal] = useState(0)
   const [table, setTable] = useState(false)
+  const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
@@ -55,6 +56,7 @@ export default function IncomeSheet() {
     })
     setLoading(false)
     setRecords(fetchedData)
+    setTableData(true)
     
   }
 
@@ -144,18 +146,27 @@ export default function IncomeSheet() {
                     ))
                   }
                 </tbody>
-                {
-                table?
+                
+              {
+                tableData?
                 <tfoot>
                   <tr style={{background:"rgba(100 100 100/ 20%)"}}>
                     <td style={{fontWeight:"bold"}}>Total</td>
                     <td></td>
                     <td></td>
-                    <td style={{fontWeight:"bold"}}>{total}</td>
+                    {
+                      table?
+                      <td style={{fontWeight:"bold"}}>{total}</td>
+                      :<td><LoadingOutlined/></td>
+                    }
+                    
                   </tr>
                 </tfoot>
                 :null
               }
+                
+                
+              
                 
               </table>
               {records.length<1?
