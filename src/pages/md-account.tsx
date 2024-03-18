@@ -128,10 +128,10 @@ export default function MDAccount() {
                     {/* <th>Hours</th> */}
                   </tr>
                   <tr>
-                    <th style={{border:"1px solid"}}>MHT</th>
-                    <th style={{border:"1px solid"}}>MHW</th>
-                    <th style={{border:"1px solid"}}>Petty</th>
-                    <th style={{border:"1px solid"}}>Balance</th>
+                    <th style={{border:"1px solid"}}>Cash</th>
+                    <th style={{border:"1px solid"}}>Bank</th>
+                    <th style={{border:"1px solid"}}>Petty Cash</th>
+                    <th style={{border:"1px solid"}}>Direct Expenses</th>
                   </tr>
                 </thead>
                 <tbody>

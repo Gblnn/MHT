@@ -18,7 +18,7 @@ type Record = {
   amount:number
 }
 
-export default function PettyCash() {
+export default function Expenses() {
 
   const [records, setRecords] = useState<Array<Record>>([])
   const firestore = db
@@ -34,7 +34,7 @@ export default function PettyCash() {
 
   const [uploading, setUploading] = useState(false)
 
-  const RecordCollection = collection(firestore, "petty-cash")
+  const RecordCollection = collection(firestore, "md-account")
 
 //   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
@@ -75,7 +75,7 @@ export default function PettyCash() {
   const addIncome = async () => {
     const obj = {date, company, payment, amount}
     setUploading(true)
-    await addDoc(collection(db, "income"), obj)
+    await addDoc(collection(db, "expenses"), obj)
     setUploading(false)
     setDialog(false)
     setTimeout(()=>{
@@ -113,7 +113,7 @@ export default function PettyCash() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Petty Cash</h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Expenses</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
                 <thead>
@@ -121,9 +121,9 @@ export default function PettyCash() {
                     
                   
                     <th style={{border:"1px solid"}}>Date</th>
-                    <th style={{border:"1px solid"}}>Name</th>
-                    <th style={{border:"1px solid"}}>Added Amount</th>
-                    <th>Balance Amount</th>
+                    <th style={{border:"1px solid"}}>Description</th>
+                    <th style={{border:"1px solid"}}>Amount</th>
+                    <th>Paid by</th>
                     
             
                     {/* <th>Hours</th> */}

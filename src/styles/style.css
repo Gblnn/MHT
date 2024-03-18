@@ -78,6 +78,10 @@ input:focus {
   background: none;
 }
 
+.table td {
+  border: 1px solid;
+}
+
 .table th:hover {
   background: none;
 }

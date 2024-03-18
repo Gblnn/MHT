@@ -40,7 +40,7 @@ export default function AccountingIndex() {
           />
 
           <DirItem
-            to=""
+            to="/expenses"
             icon={<FileMinus width="1.1rem" color="var(--clr-accent)" />}
             title="Expenses"
           />
