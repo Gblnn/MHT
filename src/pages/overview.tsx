@@ -2,10 +2,10 @@ import Back from "@/components/back";
 import { db } from "@/firebase";
 import { LoadingOutlined } from '@ant-design/icons';
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { motion } from 'framer-motion';
+import { PackageX } from "lucide-react";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import {motion} from 'framer-motion'
-import { Package } from "lucide-react";
 
 type Record = {
   id:string,
@@ -170,7 +170,7 @@ export default function Supervision() {
               {records.length<1?
               <div style={{ width:"100%",height:"90%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", position:"absolute"}}>
                 {loading?<LoadingOutlined style={{fontSize:"2rem", color:"var(--clr-accent)"}}/>
-                :<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem",display:"flex", gap:"0.4rem", alignItems:"center", opacity:0.75, userSelect:"none" }}><Package width="1.1rem"/> Record Empty</p>}
+                :<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem",display:"flex", gap:"0.4rem", alignItems:"center", opacity:0.75, userSelect:"none" }}><PackageX width="1.1rem"/> Record Empty</p>}
               
               </div>
               :null

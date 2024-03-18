@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { DollarSign, File, Glasses } from "lucide-react";
+import { ClipboardList, DollarSign, FileMinus, FilePen, Glasses } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -23,20 +23,32 @@ export default function AccountingIndex() {
 
         <DirItem
             to="/income-sheet"
-            icon={<File width="1.1rem" color="var(--clr-accent)" />}
+            icon={<FilePen width="1.1rem" color="var(--clr-accent)" />}
             title="Income Sheet"
           />
 
         <DirItem
-            to=""
+            to="/md-account"
             icon={<Glasses width="1.1rem" color="var(--clr-accent)" />}
             title="MD Account"
           />
 
           <DirItem
-            to=""
+            to="/petty-cash"
             icon={<DollarSign width="1.1rem" color="var(--clr-accent)" />}
             title="Petty Cash"
+          />
+
+          <DirItem
+            to=""
+            icon={<FileMinus width="1.1rem" color="var(--clr-accent)" />}
+            title="Expenses"
+          />
+
+          <DirItem
+            to=""
+            icon={<ClipboardList width="1.1rem" color="var(--clr-accent)" />}
+            title="Reports"
           />  
 
           {/* <DirItem

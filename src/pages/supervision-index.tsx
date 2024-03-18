@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { File, User } from "lucide-react";
+import { Clock, User } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function SupervisionIndex() {
@@ -26,7 +26,7 @@ export default function SupervisionIndex() {
 
             <DirItem
             to="/overview"
-            icon={<File width="1.1rem" color="var(--clr-accent)" />}
+            icon={<Clock width="1.1rem" color="var(--clr-accent)" />}
             title="Time Sheet"
           />
 

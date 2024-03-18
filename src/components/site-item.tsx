@@ -1,10 +1,10 @@
+import { db } from '@/firebase'
 import { LoadingOutlined } from '@ant-design/icons'
+import { deleteDoc, doc } from 'firebase/firestore'
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import DefaultDialog from "./default-dialog"
-import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from '@/firebase'
 
 interface Props{
     title:string

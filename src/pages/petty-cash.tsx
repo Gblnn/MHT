@@ -18,7 +18,7 @@ type Record = {
   amount:number
 }
 
-export default function IncomeSheet() {
+export default function PettyCash() {
 
   const [records, setRecords] = useState<Array<Record>>([])
   const firestore = db
@@ -34,10 +34,11 @@ export default function IncomeSheet() {
 
   const [uploading, setUploading] = useState(false)
 
-  const RecordCollection = collection(firestore, "income")
-  const [total, setTotal] = useState(0)
-  const [table, setTable] = useState(false)
-  const [tableData, setTableData] = useState(false)
+  const RecordCollection = collection(firestore, "md-account")
+
+//   const [total, setTotal] = useState(0)
+//   const [table, setTable] = useState(false)
+//   const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
@@ -56,7 +57,7 @@ export default function IncomeSheet() {
     })
     setLoading(false)
     setRecords(fetchedData)
-    setTableData(true)
+    // setTableData(true)
     
   }
 
@@ -66,8 +67,8 @@ export default function IncomeSheet() {
     });
     
     console.log('total => ', snapshot.data().total);
-    setTotal(snapshot.data().total)
-    setTable(true)
+    // setTotal(snapshot.data().total)
+    // setTable(true)
 
   }
 
@@ -112,17 +113,17 @@ export default function IncomeSheet() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Income Sheet</h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Petty Cash</h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="table">
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
                 <thead>
                   <tr >
                     
                   
                     <th style={{border:"1px solid"}}>Date</th>
-                    <th style={{border:"1px solid"}}>Company</th>
-                    <th style={{border:"1px solid"}}>Payment</th>
-                    <th style={{border:"1px solid"}}>Amount</th>
+                    <th style={{border:"1px solid"}}>Added Amount</th>
+                    <th>Balance Amount</th>
+                    
             
                     {/* <th>Hours</th> */}
                   </tr>
@@ -149,7 +150,7 @@ export default function IncomeSheet() {
                   }
                 </tbody>
                 
-              {
+              {/* {
                 tableData?
                 <tfoot>
                   <tr style={{background:"rgba(100 100 100/ 20%)"}}>
@@ -165,7 +166,7 @@ export default function IncomeSheet() {
                   </tr>
                 </tfoot>
                 :null
-              }
+              } */}
                 
                 
               

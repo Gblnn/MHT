@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Briefcase, Factory, File, UserCheck, Users } from "lucide-react";
+import { Briefcase, Factory, FileClock, UserCheck, Users } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -29,7 +29,7 @@ export default function Admin() {
 
         <DirItem
             to="/admin-records"
-            icon={<File width="1.1rem" color="var(--clr-accent)" />}
+            icon={<FileClock width="1.1rem" color="var(--clr-accent)" />}
             title="Detailed Time Sheet"
           />
 
