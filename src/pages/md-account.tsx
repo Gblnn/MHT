@@ -4,7 +4,7 @@ import IncomeSheetDialog from "@/components/income-sheet-dialog";
 import { db } from "@/firebase";
 import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
-import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, orderBy, query, sum, where } from "firebase/firestore";
 import { motion } from 'framer-motion';
 import { Package } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ export default function MDAccount() {
   async function fetchData(){
     setLoading(true)
     
-    const recordQuery = query(RecordCollection)
+    const recordQuery = query(RecordCollection, orderBy("desc", "asc"))
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData:any = [];
 

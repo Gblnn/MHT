@@ -39,6 +39,11 @@ export default function IncomeSheet() {
   const [table, setTable] = useState(false)
   const [tableData, setTableData] = useState(false)
 
+  let cash = ""
+  let bank = ""
+  let petty = ""
+  let direct = ""
+
   useEffect(()=>{
     fetchData()
     calculation()
@@ -75,6 +80,12 @@ export default function IncomeSheet() {
     const obj = {date, company, payment, amount}
     setUploading(true)
     await addDoc(collection(db, "income"), obj)
+    if(payment=="Cash"){
+      addDoc(collection(db, "md-account"),{date, desc:company, cash:amount, bank, petty, direct})
+    }
+    if(payment=="Bank Account"){
+      addDoc(collection(db, "md-account"),{date, desc:company, cash, bank:amount, petty, direct})
+    }
     setUploading(false)
     setDialog(false)
     setTimeout(()=>{
