@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { DollarSign, FileMinus, FilePen, Glasses, Globe } from "lucide-react";
+import { DollarSign, FileMinus, FilePen, Glasses } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -52,12 +52,12 @@ export default function AccountingIndex() {
           />   */}
             
 
-          <DirItem
+          {/* <DirItem
             to=""
             classname="disabled"
             icon={<Globe width="1rem" color="#6a6a6a" />}
             title="Unavailable"
-          />
+          /> */}
         </div>
         </motion.div>
       </div>
