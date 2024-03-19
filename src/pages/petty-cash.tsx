@@ -1,9 +1,9 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import IncomeSheetDialog from "@/components/income-sheet-dialog";
 import { db } from "@/firebase";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
 import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
 import { motion } from 'framer-motion';
@@ -190,9 +190,7 @@ export default function PettyCash() {
           </motion.div>
         </div>
       </div>
-      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
-      </ConfigProvider>
+      <AddButton onClick={()=>setDialog(true)}/>
 
       <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
 

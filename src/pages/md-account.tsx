@@ -39,7 +39,7 @@ export default function MDAccount() {
 
 //   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
-//   const [tableData, setTableData] = useState(false)
+  const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
@@ -47,7 +47,8 @@ export default function MDAccount() {
   },[])
 
   async function fetchData(){
-    setLoading(true)
+    try {
+      setLoading(true)
     
     const recordQuery = query(RecordCollection, orderBy("desc", "asc"))
     const querySnapshot = await getDocs(recordQuery)
@@ -58,7 +59,12 @@ export default function MDAccount() {
     })
     setLoading(false)
     setRecords(fetchedData)
-    // setTableData(true)
+    setTableData(true)
+      
+    } catch (error) {
+      setTableData(false)
+    }
+    
     
   }
 
@@ -103,7 +109,8 @@ export default function MDAccount() {
           <Back/>
           <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"", padding:"0.85rem", paddingTop:"3.5rem",}}>
+            
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"", padding:"1rem", paddingTop:"3.5rem",}}>
           {/* {records.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -116,15 +123,18 @@ export default function MDAccount() {
             ))} */}
             <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>MD Account</h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
+
+            {
+              tableData?
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="">
                 <thead>
                   <tr >
                     
                   
                     <th rowSpan={2} style={{border:"1px solid"}}>Date</th>
                     <th rowSpan={2} style={{border:"1px solid"}}>Desc</th>
-                    <th colSpan={2}style={{border:"1px solid"}}>Income</th>
-                    <th colSpan={2}>Expenses</th>
+                    <th colSpan={2} style={{border:"1px solid"}}>Income</th>
+                    <th colSpan={2} style={{border:"1px solid"}}>Expenses</th>
                     
             
                     {/* <th>Hours</th> */}
@@ -183,6 +193,9 @@ export default function MDAccount() {
               
                 
               </table>
+              :null
+            }
+              
               {records.length<1?
               <div style={{ width:"100%",height:"90%", background:"", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"1rem", position:"absolute"}}>
                 {loading?<LoadingOutlined style={{fontSize:"2rem", color:"var(--clr-accent)"}}/>

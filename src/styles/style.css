@@ -3,8 +3,9 @@
   --clr-opacity: rgba(120 120 120/ 20%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
   --clr-accent: crimson;
-  --clr-bg: rgba(50 50 50/ 10%);
-  background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg"); */
+  --clr-bg: rgba(50 50 50/ 75%);
+  background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg");
+  --clr: black; */
 
   color-scheme: light;
   --clr-bg: rgb(240 240 240);
@@ -12,6 +13,7 @@
   --clr-accent: #3131ab;
   background: url(/bg.webp);
   background-position: 60% 0%;
+  --clr: rgb(230 230 230);
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -68,6 +70,26 @@ input {
 
 input:focus {
   outline: none;
+}
+
+table tr:nth-child(even) {
+  background: rgba(100 100 100/ 10%);
+}
+
+table tr:hover {
+  background: rgba(100 100 100/ 25%);
+}
+
+table th {
+  background-color: var(--clr-accent);
+  background: #6a6a6a;
+  /* background: linear-gradient(180deg, var(--clr-accent), midnightblue); */
+  padding: 0.25rem;
+  color: var(--clr);
+}
+
+table td {
+  font-weight: 500;
 }
 
 .table tr:hover {
@@ -168,7 +190,7 @@ tr {
   gap: 1rem;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.85rem;
+  padding: 1rem;
   padding-top: 3.5rem;
 }
 

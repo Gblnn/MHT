@@ -1,8 +1,9 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import InputDialog from "@/components/input-dialog";
 import UserItem from "@/components/user-item";
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton, message } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+import { message } from "antd";
 import { File, Package } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -63,7 +64,7 @@ export default function UserManagement(){
       <div className={count>8?"snap-top":"snap-center"} style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", marginTop:"4rem"}}>
         {
           posts.map((post:any)=>(
-            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""} password={post.password}/>
+            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""} password={post.password} clickable={post.username=="admin"?false:true}/>
           ))
         }
         {posts.length<1?
@@ -80,9 +81,7 @@ export default function UserManagement(){
     </div>
 
 
-    <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-    <FloatButton onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined/>} type="primary" shape="square"/>
-    </ConfigProvider>
+    <AddButton onClick={()=>setAddDialog(true)}/>
     
     <InputDialog title="Add User" inputPlaceholder="Enter Username" input2Placeholder="Create Password" inputOnChange={(e:any)=>setName(e.target.value)} input2OnChange={(e:any)=>setPassword(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={AddEmployee} loading={loading}/>
 

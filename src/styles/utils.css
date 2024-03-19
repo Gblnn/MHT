@@ -3,6 +3,7 @@
   height: 4rem;
   /* background: linear-gradient(90deg, var(--clr-accent), var(--clr-accent)); */
   background: var(--clr-bg);
+  backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   position: fixed;

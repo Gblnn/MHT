@@ -1,8 +1,9 @@
 import ThreeInputDialog from "@/components/3input-dialog";
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DBItem from "@/components/db-item";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton, message } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+import { message } from "antd";
 import { UserCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -83,9 +84,7 @@ export default function EmployeeManagement(){
       </div>
       
     </div>
-    <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-    <FloatButton type="primary" onClick={()=>setAddDialog(true)} className="float" icon={<PlusOutlined/>} shape="square"/>
-    </ConfigProvider>
+    <AddButton onClick={()=>setAddDialog(true)}/>
     
 
     <ThreeInputDialog title="Add Employee" inputPlaceholder="Enter Full Name" inputOnChange={(e:any)=>setName(e.target.value)} input2Placeholder="Enter Passport (Optional)" input2OnChange={(e:any)=>setPassport(e.target.value)} input3Placeholder="Enter Resident (Optional)" input3OnChange={(e:any)=>setResident(e.target.value)} open={addDialog} okText="Add" onCancel={()=>setAddDialog(false)} onConfirm={postable?AddEmployee:null} loading={loading} confirmClass={postable?"red":"disabled"}/>

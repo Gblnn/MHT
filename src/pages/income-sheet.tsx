@@ -1,9 +1,9 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import IncomeSheetDialog from "@/components/income-sheet-dialog";
 import { db } from "@/firebase";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
 import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
 import { motion } from 'framer-motion';
@@ -125,7 +125,7 @@ export default function IncomeSheet() {
             ))} */}
             <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Income Sheet</h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="table">
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="">
                 <thead>
                   <tr >
                     
@@ -163,7 +163,7 @@ export default function IncomeSheet() {
               {
                 tableData?
                 <tfoot>
-                  <tr style={{border:"1px solid black"}}>
+                  <tr style={{}}>
                     <td style={{fontWeight:"bold", border:'none'}}>Total</td>
                     <td style={{border:"none"}}></td>
                     <td style={{border:"none"}}></td>
@@ -197,9 +197,8 @@ export default function IncomeSheet() {
           </motion.div>
         </div>
       </div>
-      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
-      </ConfigProvider>
+      
+      <AddButton onClick={()=>setDialog(true)}/>
 
       <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
 

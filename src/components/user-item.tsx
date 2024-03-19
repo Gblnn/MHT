@@ -14,6 +14,7 @@ interface Props{
     id:number
     rid?:string
     password:string
+    clickable?:boolean
 }
 
 export default function UserItem(props: Props){
@@ -60,12 +61,13 @@ export default function UserItem(props: Props){
         window.location.reload()
     }
 
+    const Nothing = () => {}
       
 
 
     return(
         <>
-        <Link onClick={getData} to={props.to} className={props.classname}>
+        <Link onClick={props.clickable?getData:Nothing} to={props.to} className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                 {uploading?<LoadingOutlined width="1.5rem"/>:props.icon}

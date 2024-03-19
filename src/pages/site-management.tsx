@@ -1,9 +1,9 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import SingleInputDialog from "@/components/single-input-dialog";
 import SiteItem from "@/components/site-item";
 import { db } from "@/firebase";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { addDoc, collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Factory, Package } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -81,9 +81,7 @@ export default function SiteManagement(){
       </div>
       </div>
         </div>
-        <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}} onClick={()=>setDialog(true)}/>
-      </ConfigProvider>
+        <AddButton onClick={()=>setDialog(true)}/>
 
       <SingleInputDialog title="Add Site" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Enter Site" inputOnChange={(e:any)=>{setSitename(e.target.value)}} loading={dialogloading} onConfirm={addSite}/>
         </>

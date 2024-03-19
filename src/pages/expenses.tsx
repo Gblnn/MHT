@@ -1,9 +1,9 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import ExpensesDialog from "@/components/expenses-dialog";
 import { db } from "@/firebase";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
 import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
 import { motion } from 'framer-motion';
@@ -122,7 +122,7 @@ export default function Expenses() {
             ))} */}
             <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Expense Sheet</h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}} className="">
                 <thead>
                   <tr >
                     
@@ -195,9 +195,8 @@ export default function Expenses() {
           </motion.div>
         </div>
       </div>
-      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
-      </ConfigProvider>
+      
+      <AddButton onClick={()=>setDialog(true)}/>
 
       <ExpensesDialog postable={true} title="Add Expense" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} amount={(e:any)=>setAmount(Number(e.target.value))} paidby={setPaidBy} onConfirm={addExpense} loading={uploading} description={(e:any)=>setDescription(e.target.value)}/>
 
