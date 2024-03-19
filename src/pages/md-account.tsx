@@ -142,8 +142,8 @@ export default function MDAccount() {
                   <tr>
                     <th style={{border:"1px solid"}}>Cash</th>
                     <th style={{border:"1px solid"}}>Bank</th>
-                    <th style={{border:"1px solid"}}>Petty Cash</th>
-                    <th style={{border:"1px solid"}}>Direct Expense</th>
+                    <th style={{border:"1px solid"}}>Petty</th>
+                    <th style={{border:"1px solid"}}>Direct</th>
                   </tr>
                 </thead>
                 <tbody>
