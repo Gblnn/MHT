@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
-import IncomeSheetDialog from "@/components/income-sheet-dialog";
+import ExpensesDialog from "@/components/expenses-dialog";
 import { db } from "@/firebase";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton } from "antd";
@@ -24,7 +24,7 @@ export default function Expenses() {
   const firestore = db
   const [id, setId] = useState("")
   const date = format(new Date(), "dd-MM-yyyy");
-  const [company, setCompany] = useState("")
+  const [description, setDescription] = useState("")
   const [payment, setPayment] = useState("")
   const [amount, setAmount] = useState(0)
 
@@ -73,7 +73,7 @@ export default function Expenses() {
   }
 
   const addIncome = async () => {
-    const obj = {date, company, payment, amount}
+    const obj = {date, description, payment, amount}
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
     setUploading(false)
@@ -192,7 +192,7 @@ export default function Expenses() {
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
       </ConfigProvider>
 
-      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
+      <ExpensesDialog postable={true} title="Add Expense" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading} description={setDescription}/>
 
       <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       
