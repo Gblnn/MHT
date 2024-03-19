@@ -61,7 +61,7 @@ export default function Index() {
             to="/accounting"
             icon={<Book width="1.1rem" color="var(--clr-accent)" />}
             title="Accounting"
-            tag="Not Ready"
+            
           />
           :null}
           

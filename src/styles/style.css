@@ -74,7 +74,7 @@ input:focus {
   background: var(--clr-opacity);
 }
 
-.table td:hover {
+.table th:hover {
   background: none;
 }
 
@@ -82,22 +82,15 @@ input:focus {
   border: 1px solid;
 }
 
-.table th:hover {
-  background: none;
-}
-
 table {
   font-size: 0.75rem;
+  background: var(--clr-bg);
 }
 
 td {
   padding: 0.5;
   transition: 0.3s;
   /* border: 1px solid rgba(100 100 100/ 25%); */
-}
-
-td:hover {
-  background: rgba(100 100 100/ 15%);
 }
 
 th {
@@ -191,12 +184,12 @@ tr {
 }
 
 .inventory-item {
-  box-shadow: 1px 1px 10px rgba(0 0 0/ 50%);
+  border: 2px solid rgba(0 0 0/ 15%);
   transition: 0.3s;
 }
 
 .inventory-item:hover {
-  box-shadow: 1px 1px 20px rgba(0 0 0/ 70%);
+  box-shadow: 1px 1px 20px rgba(0 0 0/ 50%);
   cursor: pointer;
 }
 

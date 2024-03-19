@@ -7,14 +7,14 @@ interface Props {
 
 export default function InventoryItem(props:Props){
     return(
-        <div className="inventory-item" style={{background:"rgba(220 220 220)", width:"28ch", height:"32ch", margin:"1rem", borderRadius:"1rem"}}>
+        <div className="inventory-item" style={{background:"rgba(230 230 230)", width:"28ch", height:"32ch", margin:"1rem", borderRadius:"1rem"}}>
             <div style={{ width:"100%", height:"100%", padding:"0.75rem"}}>
                 <div id="picture-grid" style={{width:"100%", height:"75%", background:"rgba(100 100 100/ 25%)", borderRadius:"0.5rem", display:"flex"}}>
-                    {/* <h1 style={{background:"var(--clr-accent)", borderRadius:"0.5rem", width:"fit-content", color:"white", padding:"0.25rem", paddingRight:"0.5rem", paddingLeft:"0.5rem", margin:"0.5rem", position:"relative", zIndex:1}}>HDPE</h1> */}
+                    {/* <h1 style={{background:"var(--clr-accent)", borderRadius:"0.5rem", width:"fit-content",height:"fit-content", color:"white", padding:"0.25rem", paddingRight:"0.5rem", paddingLeft:"0.5rem", margin:"0.5rem", position:"relative", zIndex:1}}>HDPE</h1> */}
 
                     {/* <h1 style={{background:"var(--clr-accent)", borderRadius:"0.5rem", width:"fit-content", color:"white", padding:"0.25rem", paddingRight:"0.5rem", paddingLeft:"0.5rem", margin:"0.5rem", right:0}}>HDPE</h1> */}
                     
-                    <img src={props.image} style={{objectFit:"cover", width:"100%", height:"100%", borderRadius:"0.5rem"}}/>
+                    <img src={props.image} style={{objectFit:"cover", width:"100%", height:"100%", borderRadius:"0.5rem", border:"2px solid rgba(0 0 0/ 2%)"}}/>
                 </div>
 
                 <div style={{ marginTop:"1rem"}}>

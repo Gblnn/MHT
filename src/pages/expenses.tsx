@@ -13,9 +13,9 @@ import { useEffect, useState } from "react";
 type Record = {
   id:string,
   date:string,
-  company:string
-  payment:string
+  description:string
   amount:number
+  paidby:string
 }
 
 export default function Expenses() {
@@ -25,8 +25,8 @@ export default function Expenses() {
   const [id, setId] = useState("")
   const date = format(new Date(), "dd-MM-yyyy");
   const [description, setDescription] = useState("")
-  const [payment, setPayment] = useState("")
   const [amount, setAmount] = useState(0)
+  const [paidby, setPaidBy] = useState("")
 
   const [loading, setLoading] = useState(false)
   const [dialog, setDialog] = useState(false)
@@ -34,7 +34,11 @@ export default function Expenses() {
 
   const [uploading, setUploading] = useState(false)
 
-  const RecordCollection = collection(firestore, "md-account")
+  const RecordCollection = collection(firestore, "expenses")
+
+  let cash = ""
+  let bank = ""
+  let petty = ""
 
 //   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
@@ -72,10 +76,13 @@ export default function Expenses() {
 
   }
 
-  const addIncome = async () => {
-    const obj = {date, description, payment, amount}
+  const addExpense = async () => {
+    const obj = {date, description, amount, paidby}
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
+    if(paidby=="MD Account"){
+      addDoc(collection(db, "md-account"),{date, cash, bank, petty, direct:amount})
+    }
     setUploading(false)
     setDialog(false)
     setTimeout(()=>{
@@ -85,7 +92,7 @@ export default function Expenses() {
 
   const deleteEntry = async () => {
     setUploading(true)
-    await deleteDoc(doc(db, "income", id))
+    await deleteDoc(doc(db, "expenses", id))
     setUploading(false)
     setdeleteDialog(false)
     setTimeout(()=>{
@@ -123,7 +130,7 @@ export default function Expenses() {
                     <th style={{border:"1px solid"}}>Date</th>
                     <th style={{border:"1px solid"}}>Description</th>
                     <th style={{border:"1px solid"}}>Amount</th>
-                    <th>Paid by</th>
+                    <th style={{border:"1px solid"}}>Paid by</th>
                     
             
                     {/* <th>Hours</th> */}
@@ -136,9 +143,9 @@ export default function Expenses() {
                       <tr onClick={()=>{setdeleteDialog(true);setId(record.id)}} key={record.id} >
                        
                         <td >{record.date}</td>
-                        <td>{record.company}</td>
-                        <td>{record.payment}</td>
+                        <td>{record.description}</td>
                         <td>{record.amount}</td>
+                        <td>{record.paidby}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -192,7 +199,7 @@ export default function Expenses() {
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
       </ConfigProvider>
 
-      <ExpensesDialog postable={true} title="Add Expense" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading} description={setDescription}/>
+      <ExpensesDialog postable={true} title="Add Expense" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} amount={(e:any)=>setAmount(Number(e.target.value))} paidby={setPaidBy} onConfirm={addExpense} loading={uploading} description={(e:any)=>setDescription(e.target.value)}/>
 
       <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       

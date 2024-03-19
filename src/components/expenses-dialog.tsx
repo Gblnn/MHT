@@ -26,10 +26,10 @@ interface Props {
   ampm?:any
   work?:any
   postable?:boolean
-  payment:any
   amount:any
   loading?:boolean
   description:any
+  paidby:any
 }
 
 export default function ExpensesDialog(props: Props) {
@@ -53,9 +53,9 @@ export default function ExpensesDialog(props: Props) {
             
             
             <></>
-            <input type="text" placeholder="Description" onChange={props.description}/>
+            <input type="text" placeholder="Description" style={{fontSize:"1.1rem"}} onChange={props.description}/>
             <input type="number" placeholder="Enter Amount" style={{fontSize:"1.1rem"}} onChange={props.amount}/>
-            <PaidByCombo placeholder='Paid By'/>
+            <PaidByCombo placeholder='Paid By' onChange={props.paidby}/>
             
           </DialogHeader>
 

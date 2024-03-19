@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 type Record = {
   id:string,
   date:string,
-  company:string
-  payment:string
-  amount:number
+  cash:number,
+  bank:number,
+  petty:number,
+  direct:number
 }
 
 export default function MDAccount() {
@@ -141,9 +142,10 @@ export default function MDAccount() {
                       <tr onClick={()=>{setdeleteDialog(true);setId(record.id)}} key={record.id} >
                        
                         <td >{record.date}</td>
-                        <td>{record.company}</td>
-                        <td>{record.payment}</td>
-                        <td>{record.amount}</td>
+                        <td>{record.cash}</td>
+                        <td>{record.bank}</td>
+                        <td>{record.petty}</td>
+                        <td>{record.direct}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
