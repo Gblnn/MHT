@@ -52,6 +52,8 @@ import {
           <SelectItem style={{fontSize:"1.25rem"}} value="1:30">1:30</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="2:00">2:00</SelectItem>
           <SelectItem style={{fontSize:"1.25rem"}} value="2:30">2:30</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="3:00">3:00</SelectItem>
+          <SelectItem style={{fontSize:"1.25rem"}} value="3:30">3:30</SelectItem>
           
         </SelectContent>
       </Select>

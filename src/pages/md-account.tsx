@@ -2,8 +2,7 @@ import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import IncomeSheetDialog from "@/components/income-sheet-dialog";
 import { db } from "@/firebase";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
 import { addDoc, collection, deleteDoc, doc, getAggregateFromServer, getDocs, query, sum } from "firebase/firestore";
 import { motion } from 'framer-motion';
@@ -13,6 +12,7 @@ import { useEffect, useState } from "react";
 type Record = {
   id:string,
   date:string,
+  desc:string
   cash:number,
   bank:number,
   petty:number,
@@ -76,7 +76,7 @@ export default function MDAccount() {
   const addIncome = async () => {
     const obj = {date, company, payment, amount}
     setUploading(true)
-    await addDoc(collection(db, "income"), obj)
+    await addDoc(collection(db, "md-account"), obj)
     setUploading(false)
     setDialog(false)
     setTimeout(()=>{
@@ -86,7 +86,7 @@ export default function MDAccount() {
 
   const deleteEntry = async () => {
     setUploading(true)
-    await deleteDoc(doc(db, "income", id))
+    await deleteDoc(doc(db, "md-account", id))
     setUploading(false)
     setdeleteDialog(false)
     setTimeout(()=>{
@@ -122,6 +122,7 @@ export default function MDAccount() {
                     
                   
                     <th rowSpan={2} style={{border:"1px solid"}}>Date</th>
+                    <th rowSpan={2} style={{border:"1px solid"}}>Desc</th>
                     <th colSpan={2}style={{border:"1px solid"}}>Income</th>
                     <th colSpan={2}>Expenses</th>
                     
@@ -132,7 +133,7 @@ export default function MDAccount() {
                     <th style={{border:"1px solid"}}>Cash</th>
                     <th style={{border:"1px solid"}}>Bank</th>
                     <th style={{border:"1px solid"}}>Petty Cash</th>
-                    <th style={{border:"1px solid"}}>Direct Expenses</th>
+                    <th style={{border:"1px solid"}}>Direct Expense</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -142,10 +143,12 @@ export default function MDAccount() {
                       <tr onClick={()=>{setdeleteDialog(true);setId(record.id)}} key={record.id} >
                        
                         <td >{record.date}</td>
-                        <td>{record.cash}</td>
-                        <td>{record.bank}</td>
-                        <td>{record.petty}</td>
-                        <td>{record.direct}</td>
+                        <td>{record.desc==""?"--":record.desc}</td>
+                        <td>{record.cash==0?"--":record.cash}</td>
+                        <td>{record.bank==0?"--":record.bank}</td>
+                        <td>{record.petty==0?"--":record.petty}</td>
+                        
+                        <td>{record.direct==0?"--":record.direct}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -195,9 +198,9 @@ export default function MDAccount() {
           </motion.div>
         </div>
       </div>
-      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
+      {/* <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
-      </ConfigProvider>
+      </ConfigProvider> */}
 
       <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
 

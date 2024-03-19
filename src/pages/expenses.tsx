@@ -81,7 +81,7 @@ export default function Expenses() {
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
     if(paidby=="MD Account"){
-      addDoc(collection(db, "md-account"),{date, cash, bank, petty, direct:amount})
+      addDoc(collection(db, "md-account"),{date, desc:description, cash, bank, petty, direct:amount})
     }
     setUploading(false)
     setDialog(false)
@@ -120,7 +120,7 @@ export default function Expenses() {
                 
               />
             ))} */}
-            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Expenses</h1>
+            <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Expense Sheet</h1>
             
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
                 <thead>
