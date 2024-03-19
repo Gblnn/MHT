@@ -14,7 +14,6 @@ export default function ProductList(){
                     <h1 style={{marginTop:"2.5rem"}} className="page-title"><Package width="1.1rem"/>Product List</h1>
                     
                         <div style={{ width:"95%", display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
-                        <InventoryItem image="https://www.jogplast.com/wp-content/uploads/2023/04/Hdpe-Electrofusion-Coupler-500x500-1.jpg" title="COUPLER" subtitle="Electro Fusion"/>
 
                         <InventoryItem image="https://www.gwgvalvesandpoly.com.au/images/com_hikashop/upload/electrofusion_reducer.jpg" title="REDUCER CONCENTRIC" subtitle="Electro Fusion"/>
 
