@@ -116,7 +116,7 @@ export default function PettyCash() {
             ))} */}
             <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem", marginTop:"1.5rem"}}>Petty Cash</h1>
             
-              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:"1px solid"}} className="table">
+              <table style={{tableLayout:"fixed", width:"100%", textAlign:"center", border:""}} className="">
                 <thead>
                   <tr >
                     

@@ -3,9 +3,10 @@
   --clr-opacity: rgba(120 120 120/ 20%);
   --clr-opacity-hover: rgba(120 120 120/ 30%);
   --clr-accent: crimson;
-  --clr-bg: rgba(50 50 50/ 75%);
+  --clr-bg: rgba(25 25 25/ 95%);
   background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg");
-  --clr: black; */
+  --clr: black;
+  --clr-btn: crimson; */
 
   color-scheme: light;
   --clr-bg: rgb(240 240 240);
@@ -14,6 +15,7 @@
   background: url(/bg.webp);
   background-position: 60% 0%;
   --clr: rgb(230 230 230);
+  --clr-btn: navy;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -125,7 +127,7 @@ th {
   /* border: 1px solid rgba(100 100 100/ 25%); */
 }
 
-tr {
+table tr {
   /* background: rgba(100 100 100/ 5%); */
   /* backdrop-filter: blur(20px); */
   user-select: none;

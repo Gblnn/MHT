@@ -7,7 +7,7 @@ interface Props{
 
 export default function AddButton(props:Props) {
     return(
-        <ConfigProvider theme={{token:{colorPrimary:"navy"}}}>
+        <ConfigProvider theme={{token:{colorPrimary:"var(--clr-btn)"}}}>
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={props.onClick}/>
       </ConfigProvider>
     )

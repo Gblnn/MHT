@@ -148,7 +148,7 @@ export default function MDAccount() {
             
                     {/* <th>Hours</th> */}
                   </tr>
-                  <tr>
+                  <tr style={{}}>
                     <th style={{border:"1px solid"}}>Cash</th>
                     <th style={{border:"1px solid"}}>Bank</th>
                     <th style={{border:"1px solid"}}>Petty</th>
