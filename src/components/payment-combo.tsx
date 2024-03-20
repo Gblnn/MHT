@@ -8,7 +8,6 @@ import {
   
   interface Props {
     placeholder?: string;
-    items: any
     onChange?:any
   }
   

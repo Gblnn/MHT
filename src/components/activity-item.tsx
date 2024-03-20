@@ -41,7 +41,7 @@ export default function ActivityItem(props: Props){
     const [time, setTime] = useState("")
     const [working, setWorking] = useState(false)
     const [checked, setChecked] = useState(false)
-
+    
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
     // },[start])

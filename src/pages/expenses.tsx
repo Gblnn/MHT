@@ -38,7 +38,6 @@ export default function Expenses() {
 
   let cash = ""
   let bank = ""
-  let petty = ""
 
 //   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
@@ -81,8 +80,12 @@ export default function Expenses() {
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
     if(paidby=="MD Account"){
-      await addDoc(collection(db, "md-account"),{date, desc:description, cash, bank, petty, direct:amount})
+      await addDoc(collection(db, "md-account"),{date, desc:paidby, cash, bank, ecash:amount, ebank:0})
     }
+    if(paidby=="Bank Account"){
+      await addDoc(collection(db, "md-account"),{date, desc:paidby, cash, bank, ecash:0, ebank:amount})
+    }
+  
     if(paidby=="Nitheesh"){
       await addDoc(collection(db, "petty-cash"),{date, name:paidby, added:"", expense:amount, balance:""})
     }

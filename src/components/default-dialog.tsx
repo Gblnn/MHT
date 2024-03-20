@@ -28,6 +28,7 @@ export default function DefaultDialog(props: Props) {
           <DialogHeader style={{display:"flex", alignItems:"center"}}>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
+              
             </DialogTitle>
 
             <h3 style={{opacity:0.5}}>{props.desc}</h3>

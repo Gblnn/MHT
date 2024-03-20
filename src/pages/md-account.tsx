@@ -145,15 +145,29 @@ export default function MDAccount() {
                     <th colSpan={2} style={{border:"1px solid"}}>Income</th>
                     <th colSpan={2} style={{border:"1px solid"}}>Expenses</th>
                     
+                    
             
                     {/* <th>Hours</th> */}
                   </tr>
+
                   <tr style={{}}>
                     <th style={{border:"1px solid"}}>Cash</th>
                     <th style={{border:"1px solid"}}>Bank</th>
-                    <th style={{border:"1px solid"}}>Petty</th>
-                    <th style={{border:"1px solid"}}>Direct</th>
+                    <th style={{border:"1px solid"}}>Cash</th>
+                    <th style={{border:"1px solid"}}>Bank</th>
+                    
                   </tr>
+
+                  <tr >
+                    <th colSpan={2} style={{background:"white", color:"black"}}>Opening Balance</th>
+                    <th style={{background:"white", color:"black"}}>10</th>
+                    <th style={{background:"white", color:"black"}}>5</th>
+                    <th style={{background:"white"}}></th>
+                    <th style={{background:"white"}}></th>
+                    
+                  </tr>
+
+
                 </thead>
                 <tbody>
                   {
@@ -166,8 +180,8 @@ export default function MDAccount() {
                         <td>{record.cash==0?"--":record.cash}</td>
                         <td>{record.bank==0?"--":record.bank}</td>
                         <td>{record.petty==0?"--":record.petty}</td>
-                        
                         <td>{record.direct==0?"--":record.direct}</td>
+                        
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -179,6 +193,23 @@ export default function MDAccount() {
                     ))
                   }
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th style={{background:"rgba(100 100 100/ 25%)", color:"black"}} colSpan={2}>Total</th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
+                  </tr>
+                <tr >
+                    <th colSpan={2} style={{}}>Closing Balance</th>
+                    <th style={{}}>0</th>
+                    <th style={{}}>0</th>
+                    <th style={{background:""}}></th>
+                    <th style={{background:""}}></th>
+                    
+                  </tr>
+                </tfoot>
                 
               {/* {
                 tableData?

@@ -28,6 +28,7 @@ interface Props {
   ampm?:any
   work?:any
   postable?:boolean
+  tag?:string
 }
 
 export default function DialogBox(props: Props) {
@@ -41,8 +42,14 @@ export default function DialogBox(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader>
-            <DialogTitle style={{ fontSize: "1.5rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem", display:"flex", gap:"0.5rem" }}>
               {props.title}
+              {
+                props.tag?
+                <p style={{background:"var(--clr-accent)", padding:"0.25rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", borderRadius:"1rem"}}>{props.tag}</p>
+                :null
+              }
+              
             </DialogTitle>
 
             <h3 style={{fontSize:"1.25rem"}}>{props.desc}</h3>

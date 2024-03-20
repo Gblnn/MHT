@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import PaymentCombo from './payment-combo';
 
 
 interface Props {
@@ -53,8 +54,9 @@ export default function MDPettyDialog(props: Props) {
             
             <></>
             <PaidByCombo placeholder="Paid To" onChange={props.paidbycombo}/>
-            
+            <PaymentCombo/>
             <input type="number" placeholder="Enter Amount" style={{fontSize:"1.1rem"}} onChange={props.amount}/>
+            
             
           </DialogHeader>
 
