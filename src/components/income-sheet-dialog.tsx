@@ -55,7 +55,7 @@ export default function IncomeSheetDialog(props: Props) {
             
             <></>
             <CompanyCombo items onChange={props.company}/>
-            <PaymentCombo items onChange={props.payment}/>
+            <PaymentCombo onChange={props.payment}/>
             <input type="number" placeholder="Enter Amount" style={{fontSize:"1.1rem"}} onChange={props.amount}/>
             
           </DialogHeader>
