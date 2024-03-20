@@ -81,8 +81,20 @@ export default function Expenses() {
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
     if(paidby=="MD Account"){
-      addDoc(collection(db, "md-account"),{date, desc:description, cash, bank, petty, direct:amount})
+      await addDoc(collection(db, "md-account"),{date, desc:description, cash, bank, petty, direct:amount})
     }
+    if(paidby=="Nitheesh"){
+      await addDoc(collection(db, "petty-cash"),{date, name:paidby, added:"", expense:amount, balance:""})
+    }
+
+    if(paidby=="Girishlal"){
+      await addDoc(collection(db, "petty-cash"),{date, name:paidby, added:"", expense:amount, balance:""})
+    }
+
+    if(paidby=="Kumar"){
+      await addDoc(collection(db, "petty-cash"),{date, name:paidby, added:"", expense:amount, balance:""})
+    }
+    
     setUploading(false)
     setDialog(false)
     setTimeout(()=>{

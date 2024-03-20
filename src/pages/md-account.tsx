@@ -1,6 +1,7 @@
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
-import IncomeSheetDialog from "@/components/income-sheet-dialog";
+import MDPettyDialog from "@/components/md-petty-dialog";
 import { db } from "@/firebase";
 import { LoadingOutlined } from '@ant-design/icons';
 import { format } from "date-fns";
@@ -25,12 +26,10 @@ export default function MDAccount() {
   const firestore = db
   const [id, setId] = useState("")
   const date = format(new Date(), "dd-MM-yyyy");
-  const [company, setCompany] = useState("")
-  const [payment, setPayment] = useState("")
   const [amount, setAmount] = useState(0)
 
   const [loading, setLoading] = useState(false)
-  const [dialog, setDialog] = useState(false)
+  const [mdpettydialog, setMdPettyDialog] = useState(false)
   const [deleteDialog, setdeleteDialog] = useState(false)
 
   const [uploading, setUploading] = useState(false)
@@ -40,6 +39,7 @@ export default function MDAccount() {
 //   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
   const [tableData, setTableData] = useState(false)
+  const [paidbycombo, setPaidbyCombo] = useState("")
 
   useEffect(()=>{
     fetchData()
@@ -79,12 +79,21 @@ export default function MDAccount() {
 
   }
 
-  const addIncome = async () => {
-    const obj = {date, company, payment, amount}
+  const addPetty = async () => {
+    const obj = {date,desc:paidbycombo,cash:0,bank:0,petty:amount, direct:0}
     setUploading(true)
     await addDoc(collection(db, "md-account"), obj)
+    if(paidbycombo=="Nitheesh"){
+      await addDoc(collection(db, "petty-cash"), {date, name:paidbycombo, added:amount, expense:"", balance:""})
+    }
+    if(paidbycombo=="Girishlal"){
+      await addDoc(collection(db, "petty-cash"), {date, name:paidbycombo, added:amount, expense:"", balance:""})
+    }
+    if(paidbycombo=="Kumar"){
+      await addDoc(collection(db, "petty-cash"), {date, name:paidbycombo, added:amount, expense:"", balance:""})
+    }
     setUploading(false)
-    setDialog(false)
+    setMdPettyDialog(false)
     setTimeout(()=>{
       window.location.reload()
     },100)
@@ -110,7 +119,7 @@ export default function MDAccount() {
           <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content">
             
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"", padding:"1rem", paddingTop:"3.5rem",}}>
+          <div className="page-canvas">
           {/* {records.map((posts) => (
               <DirItem
                 onclick={handleClick}
@@ -215,10 +224,14 @@ export default function MDAccount() {
         <FloatButton className="float" icon={<PlusOutlined/>} shape="square" type="primary" onClick={()=>setDialog(true)}/>
       </ConfigProvider> */}
 
-      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
+      {/* <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/> */}
 
       <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       
+
+      <AddButton onClick={()=>setMdPettyDialog(true)}/>
+
+      <MDPettyDialog title="Add Petty Cash" open={mdpettydialog} okText="Add" onCancel={()=>setMdPettyDialog(false)} amount={(e:any)=>setAmount(Number(e.target.value))} paidbycombo={setPaidbyCombo} onConfirm={addPetty}/>
 
       {/* <DefaultDialog
         open={dialog}

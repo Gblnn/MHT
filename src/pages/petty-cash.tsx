@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 type Record = {
   id:string,
   date:string,
-  company:string
-  payment:string
-  amount:number
+  name:string,
+  added:number,
+  expense:number,
+  balance:number
 }
 
 export default function PettyCash() {
@@ -85,7 +86,7 @@ export default function PettyCash() {
 
   const deleteEntry = async () => {
     setUploading(true)
-    await deleteDoc(doc(db, "income", id))
+    await deleteDoc(doc(db, "petty-cash", id))
     setUploading(false)
     setdeleteDialog(false)
     setTimeout(()=>{
@@ -124,7 +125,7 @@ export default function PettyCash() {
                     <th style={{border:"1px solid"}}>Name</th>
                     <th style={{border:"1px solid"}}>Added Amount</th>
                     <th style={{border:"1px solid"}}>Expenses</th>
-                    <th>Balance Amount</th>
+                    <th style={{border:"1px solid"}}>Balance Amount</th>
                     
                     
             
@@ -138,9 +139,10 @@ export default function PettyCash() {
                       <tr onClick={()=>{setdeleteDialog(true);setId(record.id)}} key={record.id} >
                        
                         <td >{record.date}</td>
-                        <td>{record.company}</td>
-                        <td>{record.payment}</td>
-                        <td>{record.amount}</td>
+                        <td>{record.name==""?"--":record.name}</td>
+                        <td>{record.added==0?"--":record.added}</td>
+                        <td>{record.expense==0?"--":record.expense}</td>
+                        <td>{record.balance==0?"--":record.balance}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
