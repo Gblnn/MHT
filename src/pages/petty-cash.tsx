@@ -1,4 +1,3 @@
-import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import IncomeSheetDialog from "@/components/income-sheet-dialog";
@@ -37,8 +36,9 @@ export default function PettyCash() {
 
   const RecordCollection = collection(firestore, "petty-cash")
 
-//   const [total, setTotal] = useState(0)
-//   const [table, setTable] = useState(false)
+  const [added, setAdded] = useState(0)
+  const [expense, setExpense] = useState(0)
+  const [table, setTable] = useState(false)
 //   const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
@@ -64,12 +64,14 @@ export default function PettyCash() {
 
   const calculation = async () => {
     const snapshot = await getAggregateFromServer(RecordCollection, {
-      total: sum('amount')
+      added: sum('added'),
+      expense: sum('expense')
     });
     
-    console.log('total => ', snapshot.data().total);
-    // setTotal(snapshot.data().total)
-    // setTable(true)
+    console.log('total => ', snapshot.data().added);
+    setAdded(snapshot.data().added)
+    setExpense(snapshot.data().expense)
+    setTable(true)
 
   }
 
@@ -125,7 +127,7 @@ export default function PettyCash() {
                     <th style={{border:"1px solid"}}>Name</th>
                     <th style={{border:"1px solid"}}>Added Amount</th>
                     <th style={{border:"1px solid"}}>Expenses</th>
-                    <th style={{border:"1px solid"}}>Balance Amount</th>
+                
                     
                     
             
@@ -142,7 +144,7 @@ export default function PettyCash() {
                         <td>{record.name==""?"--":record.name}</td>
                         <td>{record.added==0?"--":record.added}</td>
                         <td>{record.expense==0?"--":record.expense}</td>
-                        <td>{record.balance==0?"--":record.balance}</td>
+                      
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -154,6 +156,23 @@ export default function PettyCash() {
                     ))
                   }
                 </tbody>
+                
+                <tfoot>
+                  <tr style={{background:"rgba(100 100 100/ 25%)"}}>
+                    <td colSpan={2} style={{fontWeight:800}}>Total</td>
+                    <td style={{fontWeight:800}}>{table?added:<LoadingOutlined/>}</td>
+                    <td style={{fontWeight:800}}>{table?expense:<LoadingOutlined/>}</td>
+                  </tr>
+                  <tr>
+                    <th colSpan={2}>Balance Amount</th>
+                    <th colSpan={2}>{added-expense}</th>
+                  
+                  </tr>
+                  
+                </tfoot>
+
+                
+                
                 
               {/* {
                 tableData?
@@ -192,9 +211,9 @@ export default function PettyCash() {
           </motion.div>
         </div>
       </div>
-      <AddButton onClick={()=>setDialog(true)}/>
+    
 
-      <IncomeSheetDialog postable={true} title="Add Income" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
+      <IncomeSheetDialog postable={true} title="Add Petty Expense" open={dialog} okText="Confirm" onCancel={()=>setDialog(false)} company={setCompany} payment={setPayment} amount={(e:any)=>setAmount(Number(e.target.value))} onConfirm={addIncome} loading={uploading}/>
 
       <DefaultDialog title="Delete Entry?" open={deleteDialog} okText="Delete" onCancel={()=>setdeleteDialog(false)} onConfirm={deleteEntry} desc={id} loading={uploading}/>
       

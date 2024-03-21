@@ -40,7 +40,7 @@ export default function AccountingIndex() {
           />
 
           <DirItem
-            to="/petty-cash"
+            to="/petty-cash-index"
             icon={<DollarSign width="1.1rem" color="var(--clr-accent)" />}
             title="Petty Cash"
           />

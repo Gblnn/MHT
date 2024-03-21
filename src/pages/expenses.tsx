@@ -79,6 +79,7 @@ export default function Expenses() {
     const obj = {date, description, amount, paidby}
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
+    
     if(paidby=="MD Account"){
       await addDoc(collection(db, "md-account"),{date, desc:paidby, cash, bank, ecash:amount, ebank:0})
     }
