@@ -10,6 +10,7 @@ import {
 import CompanyCombo from "./company-combo";
 import PaymentCombo from "./payment-combo";
 import {LoadingOutlined} from '@ant-design/icons'
+import { DatePicker } from "./date-picker";
 
 
 interface Props {
@@ -54,6 +55,7 @@ export default function IncomeSheetDialog(props: Props) {
             
             
             <></>
+            <DatePicker />
             <CompanyCombo items onChange={props.company}/>
             <PaymentCombo onChange={props.payment}/>
             <input type="number" placeholder="Enter Amount" style={{fontSize:"1.1rem"}} onChange={props.amount}/>

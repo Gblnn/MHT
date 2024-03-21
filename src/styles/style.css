@@ -6,7 +6,8 @@
   --clr-bg: rgba(25 25 25/ 95%);
   background: url("https://static.vecteezy.com/system/resources/previews/021/015/287/original/dark-neon-hexagon-gaming-background-vector.jpg");
   --clr: black;
-  --clr-btn: crimson; */
+  --clr-btn: crimson;
+  --text: white; */
 
   color-scheme: light;
   --clr-bg: rgb(240 240 240);
@@ -16,6 +17,7 @@
   background-position: 60% 0%;
   --clr: rgb(230 230 230);
   --clr-btn: navy;
+  --text: black;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -218,6 +220,11 @@ table tr {
 .inventory-item:hover {
   box-shadow: 1px 1px 20px rgba(0 0 0/ 50%);
   cursor: pointer;
+}
+
+.calendar th {
+  background: none;
+  color: var(--text);
 }
 
 @media (width>576px) {
