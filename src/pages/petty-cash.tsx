@@ -125,7 +125,7 @@ export default function PettyCash() {
                   
                     <th style={{border:"1px solid"}}>Date</th>
                     <th style={{border:"1px solid"}}>Name</th>
-                    <th style={{border:"1px solid"}}>Added Amount</th>
+                    <th style={{border:"1px solid"}}>Added</th>
                     <th style={{border:"1px solid"}}>Expenses</th>
                 
                     
