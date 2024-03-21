@@ -28,6 +28,12 @@ export default function AccountingIndex() {
           />
 
         <DirItem
+            to="/expenses"
+            icon={<FileMinus width="1.1rem" color="var(--clr-accent)" />}
+            title="Expense Sheet"
+          />
+
+        <DirItem
             to="/md-account"
             icon={<Glasses width="1.1rem" color="var(--clr-accent)" />}
             title="MD Account"
@@ -39,11 +45,7 @@ export default function AccountingIndex() {
             title="Petty Cash"
           />
 
-          <DirItem
-            to="/expenses"
-            icon={<FileMinus width="1.1rem" color="var(--clr-accent)" />}
-            title="Expense Sheet"
-          />
+          
 
           {/* <DirItem
             to=""

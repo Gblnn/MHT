@@ -30,6 +30,8 @@ interface Props {
   amount:any
   loading?:boolean
   paidbycombo:any
+  payment?:any
+  confirmdisabled:boolean
 }
 
 export default function MDPettyDialog(props: Props) {
@@ -54,7 +56,7 @@ export default function MDPettyDialog(props: Props) {
             
             <></>
             <PaidByCombo placeholder="Paid To" onChange={props.paidbycombo}/>
-            <PaymentCombo/>
+            <PaymentCombo onChange={props.payment}/>
             <input type="number" placeholder="Enter Amount" style={{fontSize:"1.1rem"}} onChange={props.amount}/>
             
             
@@ -83,6 +85,7 @@ export default function MDPettyDialog(props: Props) {
                   style={{display:"flex", alignItems:"center", gap:"0.5rem"}}
                   onClick={props.onConfirm}
                   className={props.postable ? "red" : "disabled-btn"}
+                  disabled={props.confirmdisabled}
                 >
                     {
                         props.loading?

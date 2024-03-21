@@ -41,8 +41,6 @@ export default function IncomeSheet() {
 
   let cash = ""
   let bank = ""
-  let petty = ""
-  let direct = ""
 
   useEffect(()=>{
     fetchData()
@@ -81,10 +79,10 @@ export default function IncomeSheet() {
     setUploading(true)
     await addDoc(collection(db, "income"), obj)
     if(payment=="Cash"){
-      addDoc(collection(db, "md-account"),{date, desc:company, cash:amount, bank, petty, direct})
+      addDoc(collection(db, "md-account"),{date, desc:company, cash:amount, bank, ecash:"", ebank:""})
     }
     if(payment=="Bank Account"){
-      addDoc(collection(db, "md-account"),{date, desc:company, cash, bank:amount, petty, direct})
+      addDoc(collection(db, "md-account"),{date, desc:company, cash, bank:amount, ecash:"", ebank:""})
     }
     setUploading(false)
     setDialog(false)

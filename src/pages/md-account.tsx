@@ -16,8 +16,8 @@ type Record = {
   desc:string
   cash:number,
   bank:number,
-  petty:number,
-  direct:number
+  ebank:number,
+  ecash:number
 }
 
 export default function MDAccount() {
@@ -31,13 +31,16 @@ export default function MDAccount() {
   const [loading, setLoading] = useState(false)
   const [mdpettydialog, setMdPettyDialog] = useState(false)
   const [deleteDialog, setdeleteDialog] = useState(false)
-
+  const [payment, setPayment] = useState("")
   const [uploading, setUploading] = useState(false)
 
   const RecordCollection = collection(firestore, "md-account")
 
-//   const [total, setTotal] = useState(0)
-//   const [table, setTable] = useState(false)
+  const [cash, setCash] = useState(0)
+  const [bank, setBank] = useState(0)
+  const [ecash, setECash] = useState(0)
+  const [ebank, setEBank] = useState(0)
+  const [table, setTable] = useState(false)
   const [tableData, setTableData] = useState(false)
   const [paidbycombo, setPaidbyCombo] = useState("")
 
@@ -50,7 +53,7 @@ export default function MDAccount() {
     try {
       setLoading(true)
     
-    const recordQuery = query(RecordCollection, orderBy("desc", "asc"))
+    const recordQuery = query(RecordCollection, orderBy("date", "asc"))
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData:any = [];
 
@@ -70,20 +73,31 @@ export default function MDAccount() {
 
   const calculation = async () => {
     const snapshot = await getAggregateFromServer(RecordCollection, {
-      total: sum('amount')
+      cash: sum('cash'),
+      bank: sum('bank'),
+      ecash:sum('ecash'),
+      ebank:sum('ebank'),
     });
     
-    console.log('total => ', snapshot.data().total);
-    // setTotal(snapshot.data().total)
-    // setTable(true)
+    // console.log('total => ', snapshot.data().cash);
+    setCash(snapshot.data().cash)
+    setBank(snapshot.data().bank)
+    setECash(snapshot.data().ecash)
+    setEBank(snapshot.data().ebank)
+    setTable(true)
 
   }
 
   const addPetty = async () => {
-    const obj = {date,desc:paidbycombo,cash:0,bank:0,petty:amount, direct:0}
     setUploading(true)
-    await addDoc(collection(db, "md-account"), obj)
+    
     if(paidbycombo=="Nitheesh"){
+      if(payment=="Cash"){
+        await addDoc(collection(db,"md-account"), {date, desc:paidbycombo, cash:"", bank:"", ecash:amount, ebank:""})
+      }
+      if(payment=="Bank Account"){
+        await addDoc(collection(db,"md-account"), {date, desc:paidbycombo, cash:"", bank:"", ecash:"", ebank:amount})
+      }
       await addDoc(collection(db, "petty-cash"), {date, name:paidbycombo, added:amount, expense:"", balance:""})
     }
     if(paidbycombo=="Girishlal"){
@@ -107,6 +121,10 @@ export default function MDAccount() {
     setTimeout(()=>{
       window.location.reload()
     },100)
+  }
+
+  const Nothing = () => {
+
   }
 
   
@@ -160,8 +178,8 @@ export default function MDAccount() {
 
                   <tr >
                     <th colSpan={2} style={{background:"white", color:"black"}}>Opening Balance</th>
-                    <th style={{background:"white", color:"black"}}>10</th>
-                    <th style={{background:"white", color:"black"}}>5</th>
+                    <th style={{background:"white", color:"black"}}>0</th>
+                    <th style={{background:"white", color:"black"}}>0</th>
                     <th style={{background:"white"}}></th>
                     <th style={{background:"white"}}></th>
                     
@@ -179,8 +197,8 @@ export default function MDAccount() {
                         <td>{record.desc==""?"--":record.desc}</td>
                         <td>{record.cash==0?"--":record.cash}</td>
                         <td>{record.bank==0?"--":record.bank}</td>
-                        <td>{record.petty==0?"--":record.petty}</td>
-                        <td>{record.direct==0?"--":record.direct}</td>
+                        <td>{record.ecash==0?"--":record.ecash}</td>
+                        <td>{record.ebank==0?"--":record.ebank}</td>
                         
                         
                         {/* <td>{record.end==""?"-":String(
@@ -196,15 +214,15 @@ export default function MDAccount() {
                 <tfoot>
                   <tr>
                     <th style={{background:"rgba(100 100 100/ 25%)", color:"black"}} colSpan={2}>Total</th>
-                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
-                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
-                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
-                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}></th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}>{table?cash:<LoadingOutlined/>}</th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}>{table?bank:<LoadingOutlined/>}</th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}>{table?ecash:<LoadingOutlined/>}</th>
+                    <th style={{background:"rgba(100 100 100/ 10%)", color:"black"}}>{table?ebank:<LoadingOutlined/>}</th>
                   </tr>
                 <tr >
                     <th colSpan={2} style={{}}>Closing Balance</th>
-                    <th style={{}}>0</th>
-                    <th style={{}}>0</th>
+                    <th style={{}}>{table?cash-ecash:<LoadingOutlined/>}</th>
+                    <th style={{}}>{table?bank-ebank:<LoadingOutlined/>}</th>
                     <th style={{background:""}}></th>
                     <th style={{background:""}}></th>
                     
@@ -262,7 +280,7 @@ export default function MDAccount() {
 
       <AddButton onClick={()=>setMdPettyDialog(true)}/>
 
-      <MDPettyDialog title="Add Petty Cash" open={mdpettydialog} okText="Add" onCancel={()=>setMdPettyDialog(false)} amount={(e:any)=>setAmount(Number(e.target.value))} paidbycombo={setPaidbyCombo} onConfirm={addPetty}/>
+      <MDPettyDialog title="Add Petty Cash" postable={true} loading={uploading} open={mdpettydialog} okText="Add" onCancel={()=>setMdPettyDialog(false)} amount={(e:any)=>setAmount(Number(e.target.value))} paidbycombo={setPaidbyCombo} payment={setPayment} onConfirm={!uploading?addPetty:Nothing} confirmdisabled={uploading}/>
 
       {/* <DefaultDialog
         open={dialog}
