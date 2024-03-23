@@ -18,7 +18,7 @@ export function DatePicker() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-        style={{background:"none", border:"1px solid rgba(100 100 100/ 50%)", fontSize:"1.1rem"}}
+        style={{background:"none", border:"1px solid rgba(100 100 100/ 50%)", fontSize:"1.1rem", fontWeight:"500"}}
           variant={"outline"}
           className={cn(
             "justify-start text-left font-normal",

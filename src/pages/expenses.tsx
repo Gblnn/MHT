@@ -39,7 +39,7 @@ export default function Expenses() {
   let cash = ""
   let bank = ""
 
-//   const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
 //   const [tableData, setTableData] = useState(false)
 
@@ -70,7 +70,7 @@ export default function Expenses() {
     });
     
     console.log('total => ', snapshot.data().total);
-    // setTotal(snapshot.data().total)
+    setTotal(snapshot.data().total)
     // setTable(true)
 
   }
@@ -79,7 +79,7 @@ export default function Expenses() {
     const obj = {date, description, amount, paidby}
     setUploading(true)
     await addDoc(collection(db, "expenses"), obj)
-    
+
     if(paidby=="MD Account"){
       await addDoc(collection(db, "md-account"),{date, desc:paidby, cash, bank, ecash:amount, ebank:0})
     }
@@ -145,9 +145,9 @@ export default function Expenses() {
                   
                     <th style={{border:"1px solid"}}>Date</th>
                     <th style={{border:"1px solid"}}>Description</th>
-                    <th style={{border:"1px solid"}}>Amount</th>
-                    <th style={{border:"1px solid"}}>Paid by</th>
                     
+                    <th style={{border:"1px solid"}}>Paid by</th>
+                    <th style={{border:"1px solid"}}>Amount</th>
             
                     {/* <th>Hours</th> */}
                   </tr>
@@ -160,8 +160,9 @@ export default function Expenses() {
                        
                         <td >{record.date}</td>
                         <td>{record.description}</td>
-                        <td>{record.amount}</td>
+                        
                         <td>{record.paidby}</td>
+                        <td>{record.amount}</td>
                         
                         {/* <td>{record.end==""?"-":String(
                           
@@ -173,6 +174,13 @@ export default function Expenses() {
                     ))
                   }
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th colSpan={2}>Total</th>
+                    <th></th>
+                    <th>{total}</th>
+                  </tr>
+                </tfoot>
                 
               {/* {
                 tableData?
