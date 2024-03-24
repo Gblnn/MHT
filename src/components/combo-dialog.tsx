@@ -56,10 +56,12 @@ export default function ComboDialog(props: Props) {
                 >
                   Cancel
                 </button>
+
                 <button
                 className="red"
                   style={{ fontSize: "1rem", width:"7.5rem" }}
                   onClick={props.onConfirm}
+                  disabled={props.loading}
                 >
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}

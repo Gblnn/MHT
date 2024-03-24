@@ -93,11 +93,12 @@ export default function EndWorkDialog(props: Props) {
                 style={{}}
                 onClick={props.onConfirm}
                 className={props.postable ? "red" : "disabled-btn"}
+                disabled={!props.postable}
               >
                 {props.okText}
               </button>
               :
-              <button className="red" onClick={props.cancelWork}>End</button>
+              <button  className="red" onClick={props.cancelWork}>End</button>
                 }
                 
 

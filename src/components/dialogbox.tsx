@@ -95,6 +95,7 @@ export default function DialogBox(props: Props) {
                   style={{}}
                   onClick={props.onConfirm}
                   className={props.postable ? "red" : "disabled-btn"}
+                  disabled={!props.postable}
                 >
                   {props.okText}
                 </button>

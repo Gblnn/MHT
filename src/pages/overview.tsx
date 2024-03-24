@@ -24,6 +24,7 @@ type Record = {
   start:string,
   end:string
   rid:string
+  status:boolean
 }
 
 export default function Supervision() {
@@ -50,6 +51,7 @@ export default function Supervision() {
   const [loading, setLoading] = useState(false)
   const [editable, setEditable] = useState(false)
   const [update, setUpdate] = useState(false)
+  const [status, setStatus] = useState(false)
 
   async function fetchData(){
     setLoading(true)
@@ -74,22 +76,6 @@ export default function Supervision() {
     fetchData();
   },[update])
 
-  // const [date, setDate] = useState("")
-
-  // const [posts, setPosts] = useState<any[]>([]);
-
-
-  // useEffect(() => {
-  //   fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setPosts(data)
-  //       data.map((data:any)=>{
-  //         setDate(data.date)
-  //       })
-  //     });
-  // }, [setPosts]);
-
   useEffect(()=>{
   
   },[])
@@ -98,11 +84,14 @@ export default function Supervision() {
     setLoading(true)
     try {
       await deleteDoc(doc(db, "records", doc_id))
-      await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
+      if(status==true){
+        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:false})
             })
+      }
+      
       setUpdate(!update)
       setDialog(false)
       
@@ -139,20 +128,20 @@ export default function Supervision() {
 
   const handleEnd = async () => {
     setLoading(true)
-    await updateDoc(doc(db, "records", doc_id),{end:end})
-    await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
+    await updateDoc(doc(db, "records", doc_id),{end:end, status:false})
+    if(status==true){
+      await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
             method: 'PUT',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({status:false})
             })
+    }
+    
     setLoading(false)
     setEndDialog(false)
     setUpdate(!update)
   }
 
-  // const handleClick = () => {
-  //   setDialog(true);
-  // };
   return (
     <>
       <div className="page">
@@ -168,13 +157,14 @@ export default function Supervision() {
               <table style={{tableLayout:"fixed", width:"100%", textAlign:"center"}}>
                 <thead>
                   <tr>
-                    
                   
                     <th>Name</th>
                     <th>Site</th>
                     <th>Work</th>
                     <th>Start</th>
                     <th>End</th>
+
+                    {/* <th>Status</th> */}
                     {/* <th>Hours</th> */}
                   </tr>
                 </thead>
@@ -182,19 +172,21 @@ export default function Supervision() {
                   {
                     records.map((record)=>(
               
-                      <tr key={record.id} onClick={()=>{!editable?setDialog(true):null;setDoc_id(record.id);setSite(record.site);setRid(record.rid)}}>
+                      <tr key={record.id} onClick={()=>{!editable?setDialog(true):null;setDoc_id(record.id);setSite(record.site);setRid(record.rid);setStatus(record.status)}}>
                        
                         <td>{record.ename}</td>
                         <td onClick={()=>{editable?setSiteDialog(true):null;setDoc_id(record.id)}}>{record.site}</td>
                         <td onClick={()=>{editable?setWorkDialog(true):null;setDoc_id(record.id)}}>{record.work}</td>
                         <td onClick={()=>{editable?setStartDialog(true):null;setDoc_id(record.id)}}>{record.start}</td>
                         <td onClick={()=>{editable?setEndDialog(true):null;setDoc_id(record.id)}}>{record.end}</td>
+
+                        {/* <td>{String(record.status)}</td> */}
                         {/* <td>{record.end==""?"-":String(
-                          
-                          moment.duration(moment(record.end, "h:mm A").diff(moment(record.start, "h:mm A"))).get("hours")
-                          
-                      )}
-                      </td> */}
+                          moment.duration(moment(record.end, "h:mm A").diff(moment(record.start, "h:mm A"))).get("hours")    
+                        )}
+                        </td> 
+                        */}
+
                       </tr>
                     ))
                   }
