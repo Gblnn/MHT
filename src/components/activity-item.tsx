@@ -144,7 +144,7 @@ export default function ActivityItem(props: Props){
             })
 
         props.onDialogConfirm()
-        message.success("Updated Successfully")
+    
         setUploading(false)
         
         // window.location.reload()
@@ -173,7 +173,7 @@ export default function ActivityItem(props: Props){
             
             })
             props.onDialogConfirm()
-            message.success("Updated Successfully")
+            
             
 
         } catch (error) {

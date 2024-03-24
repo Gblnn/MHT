@@ -1,9 +1,9 @@
 import ActivityItem from "@/components/activity-item";
+import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DefaultDialog from "@/components/default-dialog";
 import Select from "@/components/select";
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -114,9 +114,7 @@ export default function Supervision() {
       </div>
       {
       selectable?
-      <ConfigProvider theme={{token:{colorPrimary:"blue"}}}>
-        <FloatButton onClick={()=>setGroupaddDialog(true)} className="float" icon={<PlusOutlined/>} shape="square" type="primary" style={{}}/>
-      </ConfigProvider>
+      <AddButton onClick={()=>setGroupaddDialog(true)}/>
       
       :null
     }

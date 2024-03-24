@@ -2,6 +2,7 @@ import AMPMCombo from "@/components/ampmcombo";
 import Back from "@/components/back";
 import ComboDialog from "@/components/combo-dialog";
 import DefaultDialog from "@/components/default-dialog";
+import EditMode from "@/components/edit-mode";
 import SiteCombo from "@/components/site-combo";
 import TimeComboBox from "@/components/time-combobox";
 import WorkCombo from "@/components/work-combo";
@@ -48,8 +49,9 @@ export default function AdminRecords() {
   const [end, setEnd] = useState("")
   const [onUpdate, setOnUpdate] = useState(false)
   const[loading, setLoading] = useState(false)
-  let [search, setSearch] = useState('')
+  // let [search, setSearch] = useState('')
   const [updating, setUpdating] = useState(false)
+  const [editable, setEditable] = useState(false)
 
   async function fetchData(){
     setLoading(true)
@@ -113,7 +115,6 @@ export default function AdminRecords() {
       await deleteDoc(doc(db, "records", doc_id))
 
       setOnUpdate(!onUpdate)
-      message.info("Record Deleted")  
       setDeleteConfirm(false)
       setUpdating(false)
       
@@ -127,18 +128,23 @@ export default function AdminRecords() {
   // const handleClick = () => {
   //   setDialog(true);
   // };
+
+
+ 
+
   return (
     <>
       <div className="page">
         <div>
         <Back/>
+        <EditMode onClick={()=>setEditable(!editable)} editable={editable}/>
         </div>
           
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"3.5rem"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"2.5rem"}}>
             <div style={{width:"100%"}}>
 
-            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%"}}/>
+            {/* <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%"}}/> */}
 
             </div>
             
@@ -176,13 +182,13 @@ export default function AdminRecords() {
                   //     item.name.toLowerCase().includes(search)
                   // })
                   .map((record)=>(
-                      <tr key={record.id}>
-                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>{updating?<LoadingOutlined/>:record.date}</td>
+                      <tr key={record.id} onClick={()=>{!editable?setDeleteDialog(true):null;setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>
+                        <td onClick={()=>{}}>{updating?<LoadingOutlined/>:record.date}</td>
                         <td>{record.ename}</td>
-                        <td onClick={()=>{setSiteDialog(true);setDoc_id(record.id)}}>{record.site}</td>
-                        <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
-                        <td onClick={()=>{setStartDialog(true);setDoc_id(record.id)}}>{record.start}</td>
-                        <td onClick={()=>{setEndDialog(true);setDoc_id(record.id);console.log(typeof(doc_id))}}>{record.end}</td>
+                        <td onClick={()=>{editable?setSiteDialog(true):null;setDoc_id(record.id)}}>{record.site}</td>
+                        <td onClick={()=>{editable?setWorkDialog(true):null;setDoc_id(record.id)}}>{record.work}</td>
+                        <td onClick={()=>{editable?setStartDialog(true):null;setDoc_id(record.id)}}>{record.start}</td>
+                        <td onClick={()=>{editable?setEndDialog(true):null;setDoc_id(record.id);console.log(typeof(doc_id))}}>{record.end}</td>
                         <td>{record.end==""?"-":String(
                           
                           moment.duration(moment(record.end, "h:mm A").diff(moment(record.start, "h:mm A"))).get("hours")
@@ -198,7 +204,7 @@ export default function AdminRecords() {
               </table>
               {records.length<1?
               <div style={{ width:"100%",height:"75%", display:"flex", justifyContent:"center",alignItems:"center",fontSize:"0.85rem"}}>
-              {loading?<LoadingOutlined style={{fontSize:"2rem", color:"crimson"}}/>
+              {loading?<LoadingOutlined style={{fontSize:"2rem", color:"var(--clr-accent)"}}/>
                 :<p style={{background:"var(--clr-opacity)", padding:"0.5rem", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem",display:"flex", gap:"0.4rem", alignItems:"center", opacity:0.75, fontSize:'1rem' }}><Package width="1.1rem"/> Record Empty</p>}
               </div>
               :null
@@ -234,7 +240,7 @@ export default function AdminRecords() {
 
       <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={sitepreview} desc2={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
 
-      <DefaultDialog title="Confirm Deletion?" open={deleteconfirm} okText="Delete" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc={ename} desc2={date}/>
+      <DefaultDialog title="Confirm Delete?" open={deleteconfirm} okText="Confirm" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading}/>
     </>
   );
 }

@@ -22,16 +22,18 @@ export default function Admin() {
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
         <DirItem
+            to="/admin-records"
+            icon={<FileClock width="1.1rem" color="var(--clr-accent)" />}
+            title="Detailed Time Sheet"
+          />
+
+        <DirItem
             to="/user-management"
             icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Users"
           />
 
-        <DirItem
-            to="/admin-records"
-            icon={<FileClock width="1.1rem" color="var(--clr-accent)" />}
-            title="Detailed Time Sheet"
-          />
+        
 
           <DirItem
             to="/employee-management"
