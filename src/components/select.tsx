@@ -29,7 +29,7 @@ export default function Select(props:Props) {
               borderRadius:"0.5rem",
               userSelect:"none",
               zIndex:5,
-              background:"var(--clr-opacity)"
+          
             }}
             className={props.classname}
             

@@ -35,7 +35,6 @@ export default function ActivityItem(props: Props){
     const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
-    let docref = ""
     let doc_id = ""
     const [postable, setPostable] = useState(false)
     const [endable, setEndable] = useState(false)
@@ -78,7 +77,6 @@ export default function ActivityItem(props: Props){
         
         setSiteinfo(doc.data().site)
         setStartinfo(doc.data().start)
-        docref = doc.id
         
         if(doc.data()){
             setWorking(true)
@@ -221,7 +219,7 @@ export default function ActivityItem(props: Props){
 
     return(
         <>
-        <Link onClick={props.selectable?handleDisabled:handleClick} to={props.to} className={props.classname}>
+        <Link style={{transition:"0.5s"}} onClick={props.selectable?handleDisabled:handleClick} to={props.to} className={props.classname}>
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                     {

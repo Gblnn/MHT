@@ -147,6 +147,7 @@ table tr {
 }
 
 .red {
+  transition: 0.25s;
   background: var(--clr-accent);
   color: white;
 }
@@ -172,8 +173,12 @@ table tr {
 
 .opacity {
   transition: 0.25s;
-  background: rgba(100 100 100/ 20%);
+  background: var(--clr-opacity);
   color: var(--clr-accent);
+}
+
+.opacity:active {
+  opacity: 0.75;
 }
 
 .snap-top {
