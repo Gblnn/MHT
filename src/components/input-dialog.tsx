@@ -65,6 +65,7 @@ export default function InputDialog(props: Props) {
                 <button
                   style={{ background: "var(--clr-accent)", width:"5rem", color:"white" }}
                   onClick={props.onConfirm}
+                  disabled={props.loading}
                 >
                   {props.loading?<LoadingOutlined/>:null}
                   {props.okText}

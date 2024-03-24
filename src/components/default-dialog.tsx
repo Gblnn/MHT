@@ -58,6 +58,7 @@ export default function DefaultDialog(props: Props) {
                 <button
                   style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
                   onClick={props.onConfirm}
+                  disabled={props.loading}
                 >
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}

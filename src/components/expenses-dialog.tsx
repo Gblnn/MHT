@@ -82,6 +82,7 @@ export default function ExpensesDialog(props: Props) {
                   style={{display:"flex", alignItems:"center", gap:"0.5rem"}}
                   onClick={props.onConfirm}
                   className={props.postable ? "red" : "disabled-btn"}
+                  disabled={props.loading}
                 >
                     {
                         props.loading?
