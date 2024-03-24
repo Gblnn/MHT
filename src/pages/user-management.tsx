@@ -3,7 +3,6 @@ import Back from "@/components/back";
 import InputDialog from "@/components/input-dialog";
 import UserItem from "@/components/user-item";
 import { LoadingOutlined } from '@ant-design/icons';
-import { message } from "antd";
 import { File, Package } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -49,7 +48,6 @@ export default function UserManagement(){
           )
     setLoading(false)
     setAddDialog(false)
-    message.success("Added to Database")
     setTimeout(()=>{
       window.location.reload()
     },1000)

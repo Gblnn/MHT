@@ -53,7 +53,7 @@ export default function SiteCombo(props:Props){
             </SelectTrigger>
             <SelectContent style={{ background: "#1a1a1a", color: "white", border:"2px solid rgba(100 100 100/ 50%)" }}>
                 {sites.map((site)=>(
-                    <SelectItem style={{fontSize:"1rem"}} key={site.id} value={site.sitename}>{site.sitename}</SelectItem>
+                    <SelectItem style={{fontSize:"1.1rem"}} key={site.id} value={site.sitename}>{site.sitename}</SelectItem>
                 ))}
               
               

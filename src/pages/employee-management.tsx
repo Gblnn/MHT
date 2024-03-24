@@ -3,7 +3,6 @@ import AddButton from "@/components/add-button";
 import Back from "@/components/back";
 import DBItem from "@/components/db-item";
 import { LoadingOutlined } from '@ant-design/icons';
-import { message } from "antd";
 import { UserCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -62,10 +61,8 @@ export default function EmployeeManagement(){
           )
     setLoading(false)
     setAddDialog(false)
-    message.success("Added to Database")
-    setTimeout(()=>{
-      setUpdate(!update)
-    },1000)
+    setUpdate(!update)
+
     
   }
 
