@@ -18,6 +18,8 @@ interface Props{
     id:number
     rid:string
     selectable?:boolean
+    onDialogConfirm?:any
+    dialogPrefetch:boolean
 }
 
 export default function ActivityItem(props: Props){
@@ -49,9 +51,11 @@ export default function ActivityItem(props: Props){
     useEffect(()=>{
         if(site==""||work==""||start==""){
             setPostable(false)
+        
         }
         else{
             setPostable(true)
+        
         }
         
     },[site, work, start])
@@ -71,12 +75,11 @@ export default function ActivityItem(props: Props){
         const q = query(RecordRef, where("rid", "==", rid), where("status", "==", true))
         const records = await getDocs(q)
         records.forEach((doc)=>{
-        console.log(doc.data().site)
-        console.log(doc.data().start)
+        
         setSiteinfo(doc.data().site)
         setStartinfo(doc.data().start)
         docref = doc.id
-        console.log(docref)
+        
         if(doc.data()){
             setWorking(true)
         }
@@ -102,6 +105,7 @@ export default function ActivityItem(props: Props){
 
     const handleClick = async () => {
             setUploading(true)
+
             await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
             .then(res => res.json())
             .then(data => {
@@ -134,14 +138,6 @@ export default function ActivityItem(props: Props){
         const obj = {rid, date, ename, site, work, start, end, status:true}
 
         await addDoc(collection(db, "records"), obj)
-           
-        // fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records",
-        //     {
-        //         method:"POST",
-        //         headers:{'content-type':'application/json'},
-        //         body:JSON.stringify(obj)
-        //     }
-        // )
 
         await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
@@ -149,9 +145,11 @@ export default function ActivityItem(props: Props){
             body: JSON.stringify({status:true})
             })
 
-        message.success("Added Successfully")
+        props.onDialogConfirm()
+        message.success("Updated Successfully")
         setUploading(false)
-        window.location.reload()
+        
+        // window.location.reload()
       }
 
       const endWork = async () => {
@@ -176,8 +174,9 @@ export default function ActivityItem(props: Props){
             body: JSON.stringify({status:false})
             
             })
-            message.success("Records Updated")
-            window.location.reload()
+            props.onDialogConfirm()
+            message.success("Updated Successfully")
+            
 
         } catch (error) {
             message.error("Updation failed")
@@ -236,12 +235,12 @@ export default function ActivityItem(props: Props){
             <p style={{fontSize:"0.8rem", background:"var(--clr-accent)", color:"white", borderRadius:"1rem", paddingLeft:"0.5rem", paddingRight:"0.5rem", fontWeight:"500"}}>{props.tag}</p>
                 </div>
             
-            <div style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
+            <div style={{display:"flex", alignItems:"center", gap:"0.5rem", transition:"0.3s"}}>
             {
 
                 props.status?
 
-                <p style={{color:"lime", fontSize:"1rem", fontWeight:"900", marginRight:"0.5rem", textShadow:"1px 1px 10px lime"}}>•</p>
+                <p style={{color:"lime", fontSize:"1.1rem", fontWeight:"900", marginRight:"0.5rem", textShadow:"1px 1px 5px lime"}}>•</p>
                 :null
             }
             {/* <ChevronRight width="1rem"/> */}
@@ -249,7 +248,7 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign}/>
+        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value);console.log(time+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign} prefetch={props.dialogPrefetch}/>
 
         <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
         </>

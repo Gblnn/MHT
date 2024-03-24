@@ -17,6 +17,7 @@ interface Props{
     rid?:string
     password:string
     dialogtitle:string
+    onDelete:any
 }
 
 export default function SiteItem(props: Props){
@@ -51,7 +52,7 @@ export default function SiteItem(props: Props){
         await deleteDoc(doc(db, "sites", props.id))
         setLoading(false)
         setOverviewDialog(false)
-        window.location.reload()
+        props.onDelete()
     }
 
       

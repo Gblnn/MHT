@@ -20,10 +20,15 @@ export default function SiteManagement(){
     const [sitename, setSitename] = useState("")
     const [pageload, setPageLoad] = useState(false)
     const [dialogloading, setDialogLoading] = useState(false)
+    const [update, setUpdate] = useState(false)
 
     useEffect(()=>{
         fetchData()
     },[])
+
+    useEffect(()=>{
+      fetchData()
+  },[update])
 
     const fetchData = async () => {
         setPageLoad(true)
@@ -46,9 +51,7 @@ export default function SiteManagement(){
       await addDoc(collection(db, "sites"), {sitename:sitename})
       setDialogLoading(false)
       setDialog(false)
-      setTimeout(()=>{
-        window.location.reload()
-      },100)
+      setUpdate(!update)
       
 
     }
@@ -67,7 +70,7 @@ export default function SiteManagement(){
       
         {
           sites.map((post:any)=>(
-            <SiteItem dialogtitle="Delete Site?" id={post.id} to="" icon={<Factory   color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.sitename} password={post.password}/>
+            <SiteItem dialogtitle="Delete Site?" id={post.id} to="" icon={<Factory   color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.sitename} password={post.password} onDelete={()=>setUpdate(!update)}/>
           ))
         }
         {sites.length<1?

@@ -38,16 +38,21 @@ export default function IncomeSheet() {
   const [total, setTotal] = useState(0)
   const [table, setTable] = useState(false)
   const [tableData, setTableData] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   let cash = ""
   let bank = ""
 
   useEffect(()=>{
     fetchData()
-    calculation()
   },[])
 
+  useEffect(()=>{
+    fetchData()
+  },[update])
+
   async function fetchData(){
+    calculation()
     setLoading(true)
     
     const recordQuery = query(RecordCollection)
@@ -68,7 +73,7 @@ export default function IncomeSheet() {
       total: sum('amount')
     });
     
-    console.log('total => ', snapshot.data().total);
+    
     setTotal(snapshot.data().total)
     setTable(true)
 
@@ -86,9 +91,7 @@ export default function IncomeSheet() {
     }
     setUploading(false)
     setDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   const deleteEntry = async () => {
@@ -96,9 +99,7 @@ export default function IncomeSheet() {
     await deleteDoc(doc(db, "income", id))
     setUploading(false)
     setdeleteDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   

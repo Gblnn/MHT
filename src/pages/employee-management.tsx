@@ -21,10 +21,15 @@ export default function EmployeeManagement(){
   const [loading,  setLoading] = useState(false)
   const [pageload,  setPageLoad] = useState(false)
   const [postable, setPostable] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
       getData()
   },[])
+
+  useEffect(() => {
+    getData()
+},[update])
 
   useEffect(() => {
     if(name==""){
@@ -59,7 +64,7 @@ export default function EmployeeManagement(){
     setAddDialog(false)
     message.success("Added to Database")
     setTimeout(()=>{
-      window.location.reload()
+      setUpdate(!update)
     },1000)
     
   }
@@ -76,7 +81,7 @@ export default function EmployeeManagement(){
         
         {
           posts.map((post:any)=>(
-            <DBItem id={post.id} to="" icon={<UserCircle color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name}/>
+            <DBItem id={post.id} to="" icon={<UserCircle color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name} onUpdate={()=>setUpdate(!update)}/>
           ))
         }
         {pageload?<LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="var(--clr-accent)"/>:null}

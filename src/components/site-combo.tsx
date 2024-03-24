@@ -6,16 +6,19 @@ import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props{
   onChange:any
+
 }
 
 type Record = {
   id:string,
   sitename:string
+  
 }
 
 export default function SiteCombo(props:Props){
     const [sites, setSites] = useState<any[]>([])
     const [loading, setLoading] = useState(false)
+  
 
     useEffect(()=>{
       getSites()

@@ -7,7 +7,7 @@ interface Props {
 
 export default function InventoryItem(props:Props){
     return(
-        <div className="inventory-item" style={{background:"var(--clr-bg)",backdropFilter:"blur(16px)", width:"28ch", height:"32ch", margin:"1rem", borderRadius:"1rem"}}>
+        <div className="inventory-item" style={{background:"var(--clr-bg)",backdropFilter:"blur(16px)", width:"32ch", height:"32ch", margin:"1rem", borderRadius:"1rem"}}>
             <div style={{ width:"100%", height:"100%", padding:"0.75rem"}}>
                 <div id="picture-grid" style={{width:"100%", height:"75%", background:"rgba(100 100 100/ 25%)", borderRadius:"0.5rem", display:"flex"}}>
                     

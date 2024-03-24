@@ -29,6 +29,7 @@ interface Props {
   work?:any
   postable?:boolean
   tag?:string
+  prefetch:boolean
 }
 
 export default function DialogBox(props: Props) {

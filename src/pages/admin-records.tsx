@@ -46,37 +46,39 @@ export default function AdminRecords() {
   const[work, setWork] = useState("")
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
-
+  const [onUpdate, setOnUpdate] = useState(false)
   const[loading, setLoading] = useState(false)
   let [search, setSearch] = useState('')
+  const [updating, setUpdating] = useState(false)
+
+  async function fetchData(){
+    setLoading(true)
+    const RecordCollection = collection(firestore, "records")
+    const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
+    const querySnapshot = await getDocs(recordQuery)
+    const fetchedData: Array<Record> = [];
+
+    querySnapshot.forEach((doc)=>{
+      fetchedData.push({id: doc.id, ...doc.data()} as Record)
+    })
+    setLoading(false)
+    setRecords(fetchedData)
+  }
 
   useEffect(()=>{
-    async function fetchData(){
-      setLoading(true)
-      const RecordCollection = collection(firestore, "records")
-      const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
-      const querySnapshot = await getDocs(recordQuery)
-      const fetchedData: Array<Record> = [];
-
-      querySnapshot.forEach((doc)=>{
-        fetchedData.push({id: doc.id, ...doc.data()} as Record)
-      })
-      setLoading(false)
-      setRecords(fetchedData)
-    }
     fetchData();
   },[])
 
   useEffect(()=>{
-  
-  },[])
+    fetchData()
+  },[onUpdate])
 
   const handleSite = async (p:any) => {
     setLoading(true)
     await updateDoc(doc(db, "records", p),{site:site})
     setLoading(false)
     setSiteDialog(false)
-    window.location.reload()
+    setOnUpdate(!onUpdate)
   }
 
   const handleWork = async (p:any) => {
@@ -84,7 +86,7 @@ export default function AdminRecords() {
     await updateDoc(doc(db, "records", p),{work:work})
     setLoading(false)
     setWorkDialog(false)
-    window.location.reload()
+    setOnUpdate(!onUpdate)
   }
 
   const handleStart = async (p:any) => {
@@ -92,7 +94,7 @@ export default function AdminRecords() {
     await updateDoc(doc(db, "records", p),{start:start})
     setLoading(false)
     setStartDialog(false)
-    window.location.reload()
+    setOnUpdate(!onUpdate)
   }
 
   const handleEnd = async (p:any) => {
@@ -100,20 +102,25 @@ export default function AdminRecords() {
     await updateDoc(doc(db, "records", p),{end:end})
     setLoading(false)
     setEndDialog(false)
-    window.location.reload()
+    setOnUpdate(!onUpdate)
   }
 
   const handleDeleteDoc = async () => {
+    setUpdating(true)
     setLoading(true)
     console.log(doc_id)
     try {
       await deleteDoc(doc(db, "records", doc_id))
+
+      setOnUpdate(!onUpdate)
       message.info("Record Deleted")  
       setDeleteConfirm(false)
+      setUpdating(false)
+      
     } catch (error) {
       message.error(String(error))
     }
-    window.location.reload()
+    
     
   }
 
@@ -170,7 +177,7 @@ export default function AdminRecords() {
                   // })
                   .map((record)=>(
                       <tr key={record.id}>
-                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>{record.date}</td>
+                        <td onClick={()=>{setDeleteDialog(true);setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>{updating?<LoadingOutlined/>:record.date}</td>
                         <td>{record.ename}</td>
                         <td onClick={()=>{setSiteDialog(true);setDoc_id(record.id)}}>{record.site}</td>
                         <td onClick={()=>{setWorkDialog(true);setDoc_id(record.id)}}>{record.work}</td>
@@ -227,7 +234,7 @@ export default function AdminRecords() {
 
       <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={sitepreview} desc2={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
 
-      <DefaultDialog title="Delete Entry?" open={deleteconfirm} okText="Delete" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc={ename} desc2={date}/>
+      <DefaultDialog title="Confirm Deletion?" open={deleteconfirm} okText="Delete" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc={ename} desc2={date}/>
     </>
   );
 }

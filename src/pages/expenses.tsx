@@ -33,6 +33,7 @@ export default function Expenses() {
   const [deleteDialog, setdeleteDialog] = useState(false)
 
   const [uploading, setUploading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   const RecordCollection = collection(firestore, "expenses")
 
@@ -45,12 +46,15 @@ export default function Expenses() {
 
   useEffect(()=>{
     fetchData()
-    calculation()
   },[])
 
+  useEffect(()=>{
+    fetchData()
+  },[update])
+
   async function fetchData(){
+    calculation()
     setLoading(true)
-    
     const recordQuery = query(RecordCollection)
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData:any = [];
@@ -87,8 +91,9 @@ export default function Expenses() {
       await addDoc(collection(db, "md-account"),{date, desc:paidby, cash, bank, ecash:0, ebank:amount})
     }
   
-    if(paidby=="Nitheesh"){
+    if(paidby=="Nitheesh"||"Girishlal"||"Kumar"){
       await addDoc(collection(db, "petty-cash"),{date, name:paidby, added:"", expense:amount, balance:""})
+  
     }
 
     if(paidby=="Girishlal"){
@@ -101,9 +106,7 @@ export default function Expenses() {
     
     setUploading(false)
     setDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   const deleteEntry = async () => {
@@ -111,9 +114,7 @@ export default function Expenses() {
     await deleteDoc(doc(db, "expenses", id))
     setUploading(false)
     setdeleteDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   

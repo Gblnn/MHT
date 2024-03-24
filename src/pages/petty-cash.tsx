@@ -39,16 +39,20 @@ export default function PettyCash() {
   const [added, setAdded] = useState(0)
   const [expense, setExpense] = useState(0)
   const [table, setTable] = useState(false)
+  const [update, setUpdate] = useState(false)
 //   const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
-    calculation()
   },[])
 
+  useEffect(()=>{
+    fetchData()
+  },[update])
+
   async function fetchData(){
+    calculation()
     setLoading(true)
-    
     const recordQuery = query(RecordCollection)
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData:any = [];
@@ -91,9 +95,7 @@ export default function PettyCash() {
     await deleteDoc(doc(db, "petty-cash", id))
     setUploading(false)
     setdeleteDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   

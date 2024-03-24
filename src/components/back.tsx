@@ -14,7 +14,7 @@ export default function Back() {
               display: "flex",
               alignItems: "center",
               color: "var(--clr-accent)",
-              backdropFilter:"blur(15px)",
+              backdropFilter:"blur(16px)",
               fontWeight: 500,
               paddingLeft: "0.5rem",
               paddingRight:"0.5rem",
@@ -24,7 +24,7 @@ export default function Back() {
               marginTop: "5rem",
               userSelect:"none",
               borderRadius:"0.5rem",
-              
+              background:"var(--clr-opacity)",
               zIndex:5
             }}
             className="opacity"
@@ -34,6 +34,10 @@ export default function Back() {
             <ChevronLeft width="1rem" /> Back
 
           </Link>
+
+          
+        
+        
         </>
     )
 }

@@ -1,13 +1,12 @@
 import ActivityItem from "@/components/activity-item";
 import Back from "@/components/back";
+import DefaultDialog from "@/components/default-dialog";
 import Select from "@/components/select";
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton } from "antd";
 import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import {PlusOutlined} from '@ant-design/icons'
-import DefaultDialog from "@/components/default-dialog";
 
 export default function Supervision() {
   
@@ -16,22 +15,31 @@ export default function Supervision() {
   const [selectable, setSelectable] = useState(false)
 
   const [groupaddDialog, setGroupaddDialog] = useState(false)
+  const [onUpdate, setOnUpdate] = useState(false)
+  let initialLoad = false
+  const [dialogPrefetch, setDialogPrefetch] = useState(false)
 
   const eref:any = []
 
   useEffect(() => {
+    initialLoad = true
     getData()
   }, []);
 
+  useEffect(() => {
+    initialLoad = false
+    getData()
+  }, [onUpdate]);
+
   const getData = async () => {
+    setDialogPrefetch(true)
+    if(initialLoad==true){
     setLoading(true)
+    }
     await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-        posts.map((post)=>{
-          console.log(post)
-        })
       });
       setLoading(false)
 
@@ -83,13 +91,15 @@ export default function Supervision() {
                 status={posts.status}
                 selectable={selectable}
                 tag={posts.clearance=="supervisor"?"Supervisor":""}
+                onDialogConfirm={()=>setOnUpdate(!onUpdate)}
+                dialogPrefetch={dialogPrefetch}
               />
               
             ))
             
           }
           
-          {loading?<LoadingOutlined style={{scale:"2", color:"var(--clr-accent)"}} width="2rem" color="var(--clr-accent)"/>:null}
+          {loading?<LoadingOutlined style={{scale:"2", color:"var(--clr-accent)", marginTop:"1rem"}} width="2rem" color="var(--clr-accent)"/>:null}
           
             
             </div>

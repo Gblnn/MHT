@@ -13,6 +13,7 @@ interface Props{
     status?:boolean
     id:number
     rid?:string
+    onUpdate:any
 }
 
 export default function DBItem(props: Props){
@@ -55,7 +56,7 @@ export default function DBItem(props: Props){
         })
         setDeleting(false)
         setOverviewDialog(false)
-        window.location.reload()
+        props.onUpdate()
     }
 
       

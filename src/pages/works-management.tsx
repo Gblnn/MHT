@@ -20,10 +20,15 @@ export default function WorkManagement(){
     const [work, setWork] = useState("")
     const [pageload, setPageLoad] = useState(false)
     const [dialogloading, setDialogLoading] = useState(false)
+    const [update, setUpdate] = useState(false)
 
     useEffect(()=>{
         fetchData()
     },[])
+
+    useEffect(()=>{
+      fetchData()
+  },[update])
 
     const fetchData = async () => {
         setPageLoad(true)
@@ -46,9 +51,7 @@ export default function WorkManagement(){
       await addDoc(collection(db, "work"), {work:work})
       setDialogLoading(false)
       setDialog(false)
-      setTimeout(()=>{
-        window.location.reload()
-      },100)
+      setUpdate(!update)
       
 
     }
@@ -67,7 +70,7 @@ export default function WorkManagement(){
       
         {
           sites.map((post:any)=>(
-            <WorkItem dialogtitle="Delete Site?" id={post.id} to="" icon={<Briefcase color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.work} password={post.password} />
+            <WorkItem dialogtitle="Delete Site?" id={post.id} to="" icon={<Briefcase color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.work} password={post.password} onDelete={()=>setUpdate(!update)} />
           ))
         }
         {sites.length<1?

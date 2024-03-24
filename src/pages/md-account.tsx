@@ -43,13 +43,18 @@ export default function MDAccount() {
   const [table, setTable] = useState(false)
   const [tableData, setTableData] = useState(false)
   const [paidbycombo, setPaidbyCombo] = useState("")
+  const [update, setUpdate] = useState(false)
 
   useEffect(()=>{
     fetchData()
-    calculation()
   },[])
 
+  useEffect(()=>{
+    fetchData()
+  },[update])
+
   async function fetchData(){
+    calculation()
     try {
       setLoading(true)
     
@@ -108,9 +113,7 @@ export default function MDAccount() {
     }
     setUploading(false)
     setMdPettyDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   const deleteEntry = async () => {
@@ -118,9 +121,7 @@ export default function MDAccount() {
     await deleteDoc(doc(db, "md-account", id))
     setUploading(false)
     setdeleteDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },100)
+    setUpdate(!update)
   }
 
   const Nothing = () => {
