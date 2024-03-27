@@ -94,6 +94,7 @@ table th {
 
 table td {
   font-weight: 500;
+  padding: 0.5rem;
 }
 
 .table tr:hover {
