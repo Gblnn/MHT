@@ -4,7 +4,7 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import DefaultDialog from "./default-dialog"
+import DeleteUpdateDialog from './delete-update-dialog'
 
 interface Props{
     title:string
@@ -81,7 +81,7 @@ export default function SiteItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={props.dialogtitle} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.title}/>
+        <DeleteUpdateDialog title={props.dialogtitle} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.title}/>
         
         </>
         

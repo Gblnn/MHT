@@ -46,7 +46,7 @@ export default function UserButton() {
   return (
     <>
       {/* <Dropdown placement="bottom" menu={{ items }} trigger={["click"]}> */}
-        <button style={{ padding: 0, background: "none", marginRight:"1.5rem" }} onClick={()=>setDialog(true)}>
+        <button style={{ padding: 0, background: "none", marginRight:"1.5rem" }} name="Logout" onClick={()=>setDialog(true)}>
           <div
           
             style={{
@@ -67,6 +67,7 @@ export default function UserButton() {
             <LogOut color="var(--clr-accent)" width="1rem" />
           </div>
         </button>
+        
       {/* </Dropdown> */}
 
       <DefaultDialog

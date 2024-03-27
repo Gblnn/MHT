@@ -42,6 +42,7 @@ export default function ActivityItem(props: Props){
     const [time, setTime] = useState("")
     const [working, setWorking] = useState(false)
     const [checked, setChecked] = useState(false)
+    let array:any = []
     
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
@@ -94,7 +95,11 @@ export default function ActivityItem(props: Props){
     const handleDisabled = () => {
         if(!checked){
             setChecked(true)
+            array.push(props.id, props.title)
+            
         
+            console.log(array)
+            
         }else{
             setChecked(false)
         }
@@ -103,7 +108,6 @@ export default function ActivityItem(props: Props){
 
     const handleClick = async () => {
             setUploading(true)
-
             await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
             .then(res => res.json())
             .then(data => {
@@ -144,7 +148,6 @@ export default function ActivityItem(props: Props){
             })
 
         props.onDialogConfirm()
-    
         setUploading(false)
         
         // window.location.reload()
@@ -222,7 +225,7 @@ export default function ActivityItem(props: Props){
             <div className="dir-item fixed-length">
                 <div style={{display:"flex", alignItems:'center', gap:"0.75rem"}}>
                     {
-                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"var(--clr-accent)"}}}><Checkbox style={{background:"rgba(0 0 0/0%)"}} checked={checked}/></ConfigProvider>:
+                        props.selectable?<ConfigProvider theme={{token:{colorPrimary:"blue"}}}><Checkbox style={{background:"rgba(0 0 0/0%)"}} checked={checked}/></ConfigProvider>:
                         uploading?<LoadingOutlined width="1.5rem"/>:props.icon
                     }
                 

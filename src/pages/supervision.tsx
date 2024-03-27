@@ -1,8 +1,8 @@
 import ActivityItem from "@/components/activity-item";
 import AddButton from "@/components/add-button";
 import Back from "@/components/back";
-import DefaultDialog from "@/components/default-dialog";
-import Select from "@/components/select";
+import DialogBox from "@/components/dialogbox";
+import Select from "@/components/select-button";
 import { LoadingOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
@@ -18,6 +18,7 @@ export default function Supervision() {
   const [onUpdate, setOnUpdate] = useState(false)
   let initialLoad = false
   const [dialogPrefetch, setDialogPrefetch] = useState(false)
+  
 
   const eref:any = []
 
@@ -57,6 +58,8 @@ export default function Supervision() {
   //         )
   // }
 
+ 
+
   const handleToggle = () => {
     if(!selectable){
       setSelectable(true)
@@ -64,6 +67,10 @@ export default function Supervision() {
     else{
       setSelectable(false)
     }
+  }
+
+  const groupAssign = () => {
+    
   }
 
   
@@ -119,7 +126,7 @@ export default function Supervision() {
       :null
     }
       
-      <DefaultDialog title="Group Assign" open={groupaddDialog} okText="Assign" onCancel={()=>setGroupaddDialog(false)} desc={String(eref)}/>
+      <DialogBox title="Group Assign" open={groupaddDialog} okText="Assign" onCancel={()=>setGroupaddDialog(false)} desc={String(eref)} onConfirm={groupAssign} postable={true}/>
       
     </>
   );

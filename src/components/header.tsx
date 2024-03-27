@@ -8,8 +8,8 @@ export default function Header(){
         <div className="header" style={{zIndex:10}}>
             <div className="header-title" style={{paddingRight:"1.5rem", paddingLeft:"1.5rem", display:"flex", alignItems:"center", gap:"0.25rem",color:"var(--clr-accent)"}}>
                 {/* <Globe2/> */}
-                <img src="/logo.png" style={{width:"2.25rem"}}/>
-                <h1 style={{fontSize:"2rem", fontWeight:800}}>MHT</h1>
+                <img src="/logo.png" width={2.25} style={{width:"2.25rem"}} alt="Logo"/>
+                <h1 style={{fontSize:"2.25rem", fontWeight:800}}>MHT</h1>
                 
             </div>
 

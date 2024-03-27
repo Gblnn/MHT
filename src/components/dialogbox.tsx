@@ -23,13 +23,13 @@ interface Props {
   onConfirm?: any;
   okText:string;
   action?: string;
-  onChange:any
+  onChange?:any
   time?:any
   ampm?:any
   work?:any
   postable?:boolean
   tag?:string
-  prefetch:boolean
+  prefetch?:boolean
 }
 
 export default function DialogBox(props: Props) {

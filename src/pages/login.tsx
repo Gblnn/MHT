@@ -73,7 +73,7 @@ export default function Login() {
         }}
       >
         {/* <Globe2 color="var(--clr-accent)" /> */}
-        <img src="/logo.png" style={{width:"2.25rem"}}/>
+        <img src="/logo.png" width={2.25} height={2.25} alt='Logo' style={{width:"2.25rem"}}/>
         <h1 style={{ fontSize: "2rem", fontWeight: "800", color: "var(--clr-accent)" }}>
           MHT
         </h1>

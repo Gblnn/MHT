@@ -1,3 +1,4 @@
+import { LoadingOutlined } from "@ant-design/icons";
 import { ConfigProvider } from "antd";
 import {
   Dialog,
@@ -6,7 +7,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import {LoadingOutlined} from "@ant-design/icons"
 
 interface Props {
   open: boolean;
@@ -39,6 +39,7 @@ export default function InputDialog(props: Props) {
           
             <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange}/>
             <input placeholder={props.input2Placeholder} onChange={props.input2OnChange}/>
+            
             
             
           </DialogHeader>
