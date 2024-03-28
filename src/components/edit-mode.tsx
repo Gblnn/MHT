@@ -25,7 +25,7 @@ export default function EditMode(props:Props) {
               margin: "1rem",
               position: "fixed",
               marginTop: "5rem",
-              marginRight:"1.75rem",
+              marginRight:"1rem",
               gap:"0.25rem",
               borderRadius:"0.5rem",
               userSelect:"none",

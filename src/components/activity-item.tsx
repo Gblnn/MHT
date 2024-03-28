@@ -42,7 +42,7 @@ export default function ActivityItem(props: Props){
     const [time, setTime] = useState("")
     const [working, setWorking] = useState(false)
     const [checked, setChecked] = useState(false)
-    let array:any = []
+    const [items, setItems] = useState<any>([])
     
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
@@ -95,11 +95,13 @@ export default function ActivityItem(props: Props){
     const handleDisabled = () => {
         if(!checked){
             setChecked(true)
-            array.push(props.id, props.title)
+            let new_item = {id:props.id,name:props.title}
             
+            items.push(new_item)
+            setItems(new_item)
         
-            console.log(array)
-            
+            console.log(items)
+        
         }else{
             setChecked(false)
         }
@@ -248,7 +250,7 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work" desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign} prefetch={props.dialogPrefetch}/>
+        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work to : " desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign} prefetch={props.dialogPrefetch}/>
 
         <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
         </>
