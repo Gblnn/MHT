@@ -51,7 +51,7 @@ export default function ComboDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem" }}
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", flex:1 }}
                   onClick={props.onCancel}
                 >
                   Cancel
@@ -59,7 +59,7 @@ export default function ComboDialog(props: Props) {
 
                 <button
                 className="red"
-                  style={{ fontSize: "1rem", width:"7.5rem" }}
+                  style={{ fontSize: "1rem", width:"7.5rem", flex:1 }}
                   onClick={props.onConfirm}
                   disabled={props.loading}
                 >
