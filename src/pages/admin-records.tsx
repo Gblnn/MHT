@@ -142,12 +142,16 @@ export default function AdminRecords() {
         </div>
           
           <div className="page-content">
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"4rem", padding:"1.5rem", paddingTop:"2.5rem"}}>
-            <div style={{width:"100%"}}>
 
-            {/* <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%"}}/> */}
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"auto", gap:"1rem", alignItems:"center", justifyContent:"flex-start", marginTop:"2.5rem", padding:"1.5rem", paddingTop:"2.5rem"}}>
 
-            </div>
+          <h1 style={{fontWeight:600, fontSize:"1.25rem", padding:"0.05rem", background:"var(--clr-opacity)", borderRadius:"1rem", paddingLeft:"1rem", paddingRight:"1rem"}}>Time Sheet</h1>
+          
+            {/* <div style={{width:"100%"}}>
+
+            <input onChange={(e)=>{setSearch(e.target.value);console.log(search)}} placeholder="Search Records" style={{width:"100%"}}/>
+
+            </div> */}
             
           {/* {posts.map((posts) => (
               <DirItem

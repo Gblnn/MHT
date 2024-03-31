@@ -40,7 +40,7 @@ export default function PettyCash() {
   const [expense, setExpense] = useState(0)
   const [table, setTable] = useState(false)
   const [update, setUpdate] = useState(false)
-//   const [tableData, setTableData] = useState(false)
+  const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
@@ -62,7 +62,7 @@ export default function PettyCash() {
     })
     setLoading(false)
     setRecords(fetchedData)
-    // setTableData(true)
+    setTableData(true)
     
   }
 
@@ -159,19 +159,23 @@ export default function PettyCash() {
                   }
                 </tbody>
                 
+                {tableData?
                 <tfoot>
-                  <tr style={{background:"rgba(100 100 100/ 25%)"}}>
-                    <td colSpan={2} style={{fontWeight:800}}>Total</td>
-                    <td style={{fontWeight:800}}>{table?added:<LoadingOutlined/>}</td>
-                    <td style={{fontWeight:800}}>{table?expense:<LoadingOutlined/>}</td>
-                  </tr>
-                  <tr>
-                    <th colSpan={2}>Balance Amount</th>
-                    <th colSpan={2}>{added-expense}</th>
-                  
-                  </tr>
-                  
-                </tfoot>
+                <tr style={{background:"rgba(100 100 100/ 25%)"}}>
+                  <td colSpan={2} style={{fontWeight:800}}>Total</td>
+                  <td style={{fontWeight:800}}>{table?added:<LoadingOutlined/>}</td>
+                  <td style={{fontWeight:800}}>{table?expense:<LoadingOutlined/>}</td>
+                </tr>
+                <tr>
+                  <th colSpan={2}>Balance Amount</th>
+                  <th colSpan={2}>{added-expense}</th>
+                
+                </tr>
+                
+              </tfoot>
+              :null
+                }
+                
 
                 
                 

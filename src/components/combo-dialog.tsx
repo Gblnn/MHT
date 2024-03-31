@@ -21,6 +21,7 @@ interface Props {
   inputOnChange?:any
   combo?:any
   loading?:any
+  postable?:boolean
 }
 
 export default function ComboDialog(props: Props) {
@@ -58,11 +59,13 @@ export default function ComboDialog(props: Props) {
                 </button>
 
                 <button
-                className="red"
+                  className={props.postable?"red":"disabled"}
                   style={{ fontSize: "1rem", width:"7.5rem", flex:1 }}
                   onClick={props.onConfirm}
-                  disabled={props.loading}
+                  disabled={props.postable}
+                
                 >
+                  
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}
                 </button>

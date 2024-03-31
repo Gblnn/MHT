@@ -53,6 +53,7 @@ export default function Supervision() {
   const [editable, setEditable] = useState(false)
   const [update, setUpdate] = useState(false)
   const [status, setStatus] = useState(false)
+  const [postable, setPostable] = useState(false)
 
   const [confirmAction, setConfirmAction] = useState(false)
 
@@ -74,6 +75,15 @@ export default function Supervision() {
   useEffect(()=>{
     fetchData();
   },[])
+
+  useEffect(()=>{
+    if(site==""){
+      setPostable(false)
+    }
+    else{
+      setPostable(true)
+    }
+  },[site])
 
   useEffect(()=>{
     fetchData();
@@ -218,7 +228,7 @@ export default function Supervision() {
 
       <ConfirmDialog title="Confirm Delete?" open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc} loading={loading}/>
 
-      <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading}/>
+      <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading} postable={postable}/>
 
       <ComboDialog title="Update Work" combo={<WorkCombo onChange={setWork}/>} open={workdialog} okText="Update" onCancel={()=>setWorkDialog(false)} onConfirm={handleWork} loading={loading}/>
 

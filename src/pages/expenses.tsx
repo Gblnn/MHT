@@ -42,7 +42,7 @@ export default function Expenses() {
 
   const [total, setTotal] = useState(0)
 //   const [table, setTable] = useState(false)
-//   const [tableData, setTableData] = useState(false)
+  const [tableData, setTableData] = useState(false)
 
   useEffect(()=>{
     fetchData()
@@ -64,7 +64,7 @@ export default function Expenses() {
     })
     setLoading(false)
     setRecords(fetchedData)
-    // setTableData(true)
+    setTableData(true)
     
   }
 
@@ -175,13 +175,18 @@ export default function Expenses() {
                     ))
                   }
                 </tbody>
+
+                {tableData?
                 <tfoot>
-                  <tr>
-                    <th colSpan={2}>Total</th>
-                    <th></th>
-                    <th>{total}</th>
-                  </tr>
-                </tfoot>
+                <tr>
+                  <td style={{background:"var(--clr-opacity)"}} colSpan={2}>Total</td>
+                  <td style={{background:"var(--clr-opacity)"}}></td>
+                  <td style={{background:"var(--clr-opacity)", fontWeight:"800"}}>{total}</td>
+                </tr>
+              </tfoot>
+              :null
+                }
+                
                 
               {/* {
                 tableData?
