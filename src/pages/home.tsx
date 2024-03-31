@@ -20,6 +20,7 @@ import PettyCash from "./petty-cash";
 import Expenses from "./expenses";
 import ProductList from "./product-list";
 import PettyCashIndex from "./petty-cash-index";
+import AccessControl from "./access-control";
 
 export default function Home() {
   const usenavigate = useNavigate();
@@ -52,6 +53,7 @@ export default function Home() {
         <Route path="/expenses" element={<Expenses/>}/>
         <Route path="/product-list" element={<ProductList/>}/>
         <Route path="/petty-cash-index" element={<PettyCashIndex/>}/>
+        <Route path="/access-control" element={<AccessControl/>}/>
       </Routes>
     </>
   );

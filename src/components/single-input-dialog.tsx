@@ -64,9 +64,9 @@ export default function SingleInputDialog(props: Props) {
                   Cancel
                 </button>
                 <button
-                  style={{flex:1 }}
+                  style={{flex:1, display:"flex", gap:"0.5rem" }}
                   onClick={props.onConfirm}
-                  disabled={props.loading}
+                  disabled={props.loading||!props.postable}
                   className={props.postable?"red":"disabled"}
                 >
                   {props.loading?<LoadingOutlined/>:null}

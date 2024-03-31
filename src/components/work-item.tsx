@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import DefaultDialog from "./default-dialog"
 import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from '@/firebase'
+import ConfirmDialog from './confirm-dialog'
 
 interface Props{
     title:string
@@ -28,6 +29,7 @@ export default function WorkItem(props: Props){
 
     const [uploading, setUploading] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
+    const [confirmdialog, setConfirmDialog] = useState(false)
 
     const [loading, setLoading] = useState(false)
 
@@ -52,6 +54,7 @@ export default function WorkItem(props: Props){
         await deleteDoc(doc(db, "work", props.id))
         setLoading(false)
         setOverviewDialog(false)
+        setConfirmDialog(false)
         props.onDelete()
     }
 
@@ -81,7 +84,9 @@ export default function WorkItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title="Delete Work?" open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.title}/>
+        <DefaultDialog title="Delete Work?" open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true); setOverviewDialog(false)}} loading={loading} desc={props.title}/>
+
+        <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} onConfirm={deleteData} loading={loading}/>
         
         </>
         

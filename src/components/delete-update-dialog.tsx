@@ -26,7 +26,7 @@ export default function DeleteUpdateDialog(props: Props) {
     <>
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
-          <DialogHeader style={{display:"flex", alignItems:"center", gap:"1rem"}}>
+          <DialogHeader style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
               
@@ -88,7 +88,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   
                   disabled={props.loading}
                 >
-                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
+                  
                   
                   {props.updateBtnText}
                 </button>

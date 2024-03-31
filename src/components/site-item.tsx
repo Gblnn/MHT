@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import DeleteUpdateDialog from './delete-update-dialog'
+import ConfirmDialog from './confirm-dialog'
 
 interface Props{
     title:string
@@ -28,6 +29,7 @@ export default function SiteItem(props: Props){
 
     const [uploading, setUploading] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
+    const [confirmdialog, setConfirmDialog] = useState(false)
 
     const [loading, setLoading] = useState(false)
 
@@ -53,6 +55,7 @@ export default function SiteItem(props: Props){
         setLoading(false)
         setOverviewDialog(false)
         props.onDelete()
+        setConfirmDialog(false)
     }
 
       
@@ -81,7 +84,9 @@ export default function SiteItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} updateBtnText='Rename Site'/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} updateBtnText='Rename Site'/>
+
+        <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} loading={loading} onConfirm={deleteData}/>
         
         </>
         

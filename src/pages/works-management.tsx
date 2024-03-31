@@ -21,6 +21,7 @@ export default function WorkManagement(){
     const [pageload, setPageLoad] = useState(false)
     const [dialogloading, setDialogLoading] = useState(false)
     const [update, setUpdate] = useState(false)
+    const [postable, setPostable] = useState(false)
 
     useEffect(()=>{
         fetchData()
@@ -29,6 +30,15 @@ export default function WorkManagement(){
     useEffect(()=>{
       fetchData()
   },[update])
+
+  useEffect(()=>{
+    if(work==""){
+      setPostable(false)
+    }
+    else{
+      setPostable(true)
+    }
+},[work])
 
     const fetchData = async () => {
         setPageLoad(true)
@@ -52,7 +62,7 @@ export default function WorkManagement(){
       setDialogLoading(false)
       setDialog(false)
       setUpdate(!update)
-      
+      setPostable(false)
 
     }
 
@@ -86,7 +96,7 @@ export default function WorkManagement(){
         </div>
         <AddButton onClick={()=>setDialog(true)}/>
 
-      <SingleInputDialog title="Add Work" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Enter Work" inputOnChange={(e:any)=>{setWork(e.target.value)}} loading={dialogloading} onConfirm={addSite}/>
+      <SingleInputDialog title="Add Work" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Enter Work" inputOnChange={(e:any)=>{setWork(e.target.value)}} loading={dialogloading} onConfirm={addSite} postable={postable}/>
         </>
     )
 }
