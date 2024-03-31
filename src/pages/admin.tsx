@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Briefcase, Factory, FileClock, UserCheck, Users } from "lucide-react";
+import { Briefcase, Factory, FileClock, KeyRound, UserCheck, Users } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -31,6 +31,12 @@ export default function Admin() {
             to="/user-management"
             icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Users"
+          />
+
+<DirItem
+            to="/access-control"
+            icon={<KeyRound width="1.1rem" color="var(--clr-accent)" />}
+            title="Access Control"
           />
 
         

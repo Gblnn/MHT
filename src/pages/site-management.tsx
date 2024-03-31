@@ -70,7 +70,7 @@ export default function SiteManagement(){
       
         {
           sites.map((post:any)=>(
-            <SiteItem dialogtitle="Delete Site?" id={post.id} to="" icon={<Factory   color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.sitename} password={post.password} onDelete={()=>setUpdate(!update)}/>
+            <SiteItem dialogtitle="Update Site" id={post.id} to="" icon={<Factory   color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.sitename} password={post.password} onDelete={()=>setUpdate(!update)}/>
           ))
         }
         {sites.length<1?

@@ -2,7 +2,8 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import DefaultDialog from "./default-dialog"
+import ConfirmDialog from './confirm-dialog'
+import DeleteUpdateDialog from './delete-update-dialog'
 
 interface Props{
     title:string
@@ -19,12 +20,14 @@ interface Props{
 export default function DBItem(props: Props){
 
     const [ename, setEname] = useState("")
-    // const [passport, setPassport] = useState("")
-    // const [resident, setResident] = useState("")
+    const [passport, setPassport] = useState("")
+    const [resident, setResident] = useState("")
 
     const [uploading, setUploading] = useState(false)
     const [deleting, setDeleting] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
+
+    const [confirmDialog, setConfirmDialog] = useState(false)
 
 
     // useEffect(()=>{
@@ -41,8 +44,8 @@ export default function DBItem(props: Props){
         .then((res) => res.json())
         .then((data) => {
             setEname(data.name)
-            // setPassport(data.passport_id)
-            // setResident(data.resident_id)
+            setPassport(data.passport)
+            setResident(data.resident)
       })
         setOverviewDialog(true)
         setUploading(false)
@@ -85,7 +88,9 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={deleting}/>
+        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Update Details'/>
+
+        <ConfirmDialog title='Confirm Delete?' desc='This record will be permanently deleted from the servers' open={confirmDialog} okText='Confirm' onConfirm={deleteData} onCancel={()=>setConfirmDialog(false)}/>
         
         </>
         

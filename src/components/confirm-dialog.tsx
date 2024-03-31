@@ -1,6 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { ConfigProvider } from "antd";
-import { PenLine, Trash } from "lucide-react";
 import {
     Dialog,
     DialogContent,
@@ -19,10 +18,9 @@ interface Props {
   okText:string
   action?: string;
   loading?:boolean
-  updateBtnText?:string
 }
 
-export default function DeleteUpdateDialog(props: Props) {
+export default function ConfirmDialog(props: Props) {
   return (
     <>
       <Dialog open={props.open}>
@@ -45,37 +43,26 @@ export default function DeleteUpdateDialog(props: Props) {
                 display: "flex",
                 gap: "0.5rem",
                 justifyContent: "center",
-                flexFlow:"column-reverse"
+                flexFlow:""
               }}
             >
               <ConfigProvider
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem" }}
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", flex:1 }}
                   onClick={props.onCancel}
                 >
                   Cancel
                 </button>
-                
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
+                  style={{ background: "crimson", fontSize: "1rem", color:"white", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem", flex:1, boxShadow:"" }}
                   onClick={props.onConfirm}
                   disabled={props.loading}
                 >
-                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:<Trash width="0.75rem"/>}
-
-                  {props.okText}
-                </button>
-
-                <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
-                  
-                  disabled={props.loading}
-                >
+                    
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
-                  <PenLine width="0.75rem"/>
-                  {props.updateBtnText}
+                  {props.okText}
                 </button>
               </ConfigProvider>
             </div>

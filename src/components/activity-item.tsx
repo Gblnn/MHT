@@ -49,6 +49,10 @@ export default function ActivityItem(props: Props){
     // },[start])
 
     useEffect(()=>{
+        
+    },[])
+
+    useEffect(()=>{
         if(site==""||work==""||start==""){
             setPostable(false)
         
@@ -95,11 +99,9 @@ export default function ActivityItem(props: Props){
     const handleDisabled = () => {
         if(!checked){
             setChecked(true)
-            let new_item = {id:props.id,name:props.title}
             
-            items.push(new_item)
-            setItems(new_item)
-        
+            setItems(items.push({id:props.id,name:props.title}))
+            
             console.log(items)
         
         }else{
@@ -168,7 +170,6 @@ export default function ActivityItem(props: Props){
         
         try {
             await updateDoc(doc(db, "records", doc_id),{end:end,status:false})
-            
 
             await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+props.id, {
             method: 'PUT',
@@ -185,12 +186,6 @@ export default function ActivityItem(props: Props){
             console.log(error)
         }
 
-
-        
-        
-        
-        
-
         //     fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/records/'+refid, {
         //         method: 'PUT',
         //         headers: {'content-type':'application/json'},
@@ -198,9 +193,7 @@ export default function ActivityItem(props: Props){
                 
         //         })
         //         console.log(end)
-
-            
-            
+        
             // setTimeout(()=>{
             // window.location.reload()
             // },500)

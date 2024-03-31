@@ -1,6 +1,7 @@
 import AMPMCombo from "@/components/ampmcombo";
 import Back from "@/components/back";
 import ComboDialog from "@/components/combo-dialog";
+import ConfirmDialog from "@/components/confirm-dialog";
 import DefaultDialog from "@/components/default-dialog";
 import EditMode from "@/components/edit-mode";
 import SiteCombo from "@/components/site-combo";
@@ -52,6 +53,8 @@ export default function Supervision() {
   const [editable, setEditable] = useState(false)
   const [update, setUpdate] = useState(false)
   const [status, setStatus] = useState(false)
+
+  const [confirmAction, setConfirmAction] = useState(false)
 
   async function fetchData(){
     setLoading(true)
@@ -210,7 +213,9 @@ export default function Supervision() {
         </div>
       </div>
 
-      <DefaultDialog title="Delete Entry?" okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={handleDeleteDoc} loading={loading} desc={site}/>
+      <DefaultDialog title="Delete Entry?" okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>setConfirmAction(true)} loading={loading} desc={site}/>
+
+      <ConfirmDialog open={confirmAction} okText="Confirm" onCancel={setConfirmAction(false)} onConfirm={handleDeleteDoc}/>
 
       <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading}/>
 
