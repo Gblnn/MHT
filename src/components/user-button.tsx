@@ -72,8 +72,8 @@ export default function UserButton() {
 
       <DefaultDialog
         open={dialog}
-        title="Logout?"
-        desc="Confirm logging out of current session"
+        title="Confirm Logout?"
+        desc="You are logging out of current session"
         onCancel={() => setDialog(false)}
         onConfirm={handleLogout}
         okText="Logout"
