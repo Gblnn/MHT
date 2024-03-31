@@ -62,6 +62,7 @@ export default function UserItem(props: Props){
         setLoading(false)
         setOverviewDialog(false)
         props.onConfirm()
+        setConfirmDialog(false)
     }
 
     const Nothing = () => {}
