@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Book, Package2, Sparkles, Users } from "lucide-react";
+import { Book, Sparkles, Users } from "lucide-react";
 import DirItem from "../components/dir-item";
 
 export default function Index() {
@@ -45,14 +45,14 @@ export default function Index() {
         />
           :null}
           
-          {window.name=="admin"?
+          {/* {window.name=="admin"?
           <DirItem
             to="/inventory-index"
             icon={<Package2 width="1.1rem" color="var(--clr-accent)" />}
             title="Inventory"
             
           />
-          :null}
+          :null} */}
 
           
 
