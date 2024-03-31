@@ -77,13 +77,13 @@ export default function Supervision() {
   },[])
 
   useEffect(()=>{
-    if(site==""){
+    if(site==""||work==""||start==""||end==""){
       setPostable(false)
     }
     else{
       setPostable(true)
     }
-  },[site])
+  },[site, work, start, end])
 
   useEffect(()=>{
     fetchData();
@@ -228,19 +228,19 @@ export default function Supervision() {
 
       <ConfirmDialog title="Confirm Delete?" open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc} loading={loading}/>
 
-      <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading} postable={postable}/>
+      <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading} postable={false}/>
 
-      <ComboDialog title="Update Work" combo={<WorkCombo onChange={setWork}/>} open={workdialog} okText="Update" onCancel={()=>setWorkDialog(false)} onConfirm={handleWork} loading={loading}/>
+      <ComboDialog title="Update Work" combo={<WorkCombo onChange={setWork}/>} open={workdialog} okText="Update" onCancel={()=>setWorkDialog(false)} onConfirm={handleWork} loading={loading} postable={postable}/>
 
       <ComboDialog title="Update Start" open={startdialog} okText="Update" onCancel={()=>setStartDialog(false)} combo={<div style={{display:"flex", gap:"0.5rem"}}>
         <TimeComboBox placeholder="Select Time" items onChange={setTime}/>
         <AMPMCombo items placeholder="AM/PM" onChange={(value:any)=>{setStart(time+" "+value)}}/>
-      </div>} onConfirm={handleStart} loading={loading}/>
+      </div>} onConfirm={handleStart} loading={loading} postable={postable}/>
 
       <ComboDialog title="Update End" open={enddialog} okText="Update" onCancel={()=>setEndDialog(false)} combo={<div style={{display:"flex", gap:"0.5rem"}}>
         <TimeComboBox placeholder="Select Time" items onChange={setTime}/>
         <AMPMCombo items placeholder="AM/PM" onChange={(value:any)=>{setEnd(time+" "+value)}}/>
-      </div>} onConfirm={handleEnd} loading={loading}/>
+      </div>} onConfirm={handleEnd} loading={loading} postable={postable}/>
       
     </>
   );

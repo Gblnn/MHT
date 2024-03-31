@@ -59,7 +59,7 @@ export default function ComboDialog(props: Props) {
                 </button>
 
                 <button
-                  className={props.postable?"red":"disabled"}
+                  className={!props.postable?"red":"disabled"}
                   style={{ fontSize: "1rem", width:"7.5rem", flex:1 }}
                   onClick={props.onConfirm}
                   disabled={props.postable}
