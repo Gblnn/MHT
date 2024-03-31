@@ -1,7 +1,7 @@
 import { db } from '@/firebase'
 import { LoadingOutlined } from '@ant-design/icons'
 import { deleteDoc, doc } from 'firebase/firestore'
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Factory } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import DeleteUpdateDialog from './delete-update-dialog'
@@ -84,7 +84,7 @@ export default function SiteItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} updateBtnText='Rename Site'/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} updateBtnText='Rename Site' titleicon={<Factory height="1.5rem" style={{marginBottom:"0.5rem"}}/>}/>
 
         <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} loading={loading} onConfirm={deleteData}/>
         

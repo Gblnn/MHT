@@ -19,6 +19,7 @@ interface Props {
   action?: string;
   loading?:boolean
   updateBtnText?:string
+  titleicon?:any
 }
 
 export default function DeleteUpdateDialog(props: Props) {
@@ -27,7 +28,8 @@ export default function DeleteUpdateDialog(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
-            <DialogTitle style={{ fontSize: "1.5rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem", display:"flex", alignItems:"center", gap:"0.75rem" }}>
+              {props.titleicon}
               {props.title}
               
             </DialogTitle>

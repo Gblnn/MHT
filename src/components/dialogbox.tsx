@@ -43,7 +43,7 @@ export default function DialogBox(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader>
-            <DialogTitle style={{ fontSize: "1.5rem", display:"flex", gap:"0.5rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem"}}>
               {props.title}
               {
                 props.tag?

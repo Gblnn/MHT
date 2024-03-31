@@ -1,11 +1,11 @@
+import { db } from '@/firebase'
 import { LoadingOutlined } from '@ant-design/icons'
-import { ChevronRight } from "lucide-react"
+import { deleteDoc, doc } from 'firebase/firestore'
+import { Briefcase, ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import DefaultDialog from "./default-dialog"
-import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from '@/firebase'
 import ConfirmDialog from './confirm-dialog'
+import DeleteUpdateDialog from './delete-update-dialog'
 
 interface Props{
     title:string
@@ -84,7 +84,7 @@ export default function WorkItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title="Delete Work?" open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true); setOverviewDialog(false)}} loading={loading} desc={props.title}/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true); setOverviewDialog(false)}} loading={loading} titleicon={<Briefcase/>}/>
 
         <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} onConfirm={deleteData} loading={loading}/>
         

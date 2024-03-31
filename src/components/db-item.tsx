@@ -1,5 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons'
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, CircleUser } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import ConfirmDialog from './confirm-dialog'
@@ -88,7 +88,7 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Update Details'/>
+        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Update Details' titleicon={<CircleUser/>}/>
 
         <ConfirmDialog title='Confirm Delete?' desc='This record will be permanently deleted from the servers' open={confirmDialog} okText='Confirm' onConfirm={deleteData} onCancel={()=>setConfirmDialog(false)} loading={deleting}/>
         
