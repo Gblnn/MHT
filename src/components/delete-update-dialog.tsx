@@ -83,7 +83,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   {props.okText}
                 </button>
 
-                <button
+                {/* <button
                   style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
                   
                   disabled={props.loading}
@@ -91,7 +91,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   
                   
                   {props.updateBtnText}
-                </button>
+                </button> */}
               </ConfigProvider>
             </div>
           </DialogFooter>
