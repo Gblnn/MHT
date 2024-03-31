@@ -215,7 +215,7 @@ export default function Supervision() {
 
       <DefaultDialog title="Delete Entry?" okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>setConfirmAction(true)} loading={loading} desc={site}/>
 
-      <ConfirmDialog open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc}/>
+      <ConfirmDialog open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc} loading={loading}/>
 
       <ComboDialog title="Update Site" combo={<SiteCombo onChange={setSite}/>} open={sitedialog} okText="Update" onCancel={()=>setSiteDialog(false)} onConfirm={handleSite} loading={loading}/>
 

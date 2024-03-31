@@ -21,6 +21,7 @@ export default function SiteManagement(){
     const [pageload, setPageLoad] = useState(false)
     const [dialogloading, setDialogLoading] = useState(false)
     const [update, setUpdate] = useState(false)
+    const [postable, setPostable] = useState(false)
 
     useEffect(()=>{
         fetchData()
@@ -29,6 +30,15 @@ export default function SiteManagement(){
     useEffect(()=>{
       fetchData()
   },[update])
+
+  useEffect(()=>{
+    if(sitename==""){
+      setPostable(false)
+    }
+    else{
+      setPostable(true)
+    }
+  },[sitename])
 
     const fetchData = async () => {
         setPageLoad(true)
@@ -86,7 +96,7 @@ export default function SiteManagement(){
         </div>
         <AddButton onClick={()=>setDialog(true)}/>
 
-      <SingleInputDialog title="Add Site" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Enter Site" inputOnChange={(e:any)=>{setSitename(e.target.value)}} loading={dialogloading} onConfirm={addSite}/>
+      <SingleInputDialog title="Add Site" open={dialog} okText="Add" onCancel={()=>setDialog(false)} inputPlaceholder="Enter Site" inputOnChange={(e:any)=>{setSitename(e.target.value)}} loading={dialogloading} onConfirm={addSite} postable={postable} />
         </>
     )
 }

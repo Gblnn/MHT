@@ -20,9 +20,15 @@ export default function UserManagement(){
   const [loading,  setLoading] = useState(false)
   const [pageload, setPageLoad] = useState(false)
 
+  const [onUpdate, setOnUpdate] = useState(false)
+
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [onUpdate])
 
   const fetchData = async () => {
     setPageLoad(true)
@@ -48,9 +54,7 @@ export default function UserManagement(){
           )
     setLoading(false)
     setAddDialog(false)
-    setTimeout(()=>{
-      window.location.reload()
-    },1000)
+    setOnUpdate(!onUpdate)
     
   }
 
@@ -62,7 +66,7 @@ export default function UserManagement(){
       <div className={count>8?"snap-top":"snap-center"} style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", marginTop:"4rem"}}>
         {
           posts.map((post:any)=>(
-            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""} password={post.password} clickable={post.username=="admin"?false:true}/>
+            <UserItem id={post.id} to="" icon={<File color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.username} tag={post.access=="admin"?"admin":""||post.access=="supervisor"?"supervisor":""} password={post.password} clickable={post.username=="admin"?false:true} onConfirm={()=>setOnUpdate(!onUpdate)}/>
           ))
         }
         {posts.length<1?

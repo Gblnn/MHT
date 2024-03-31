@@ -58,13 +58,13 @@ export default function InputDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)" }}
+                  style={{ background: "var(--clr-opacity)", flex:1 }}
                   onClick={props.onCancel}
                 >
                   Cancel
                 </button>
                 <button
-                  style={{ background: "var(--clr-accent)", width:"5rem", color:"white" }}
+                  style={{ background: "var(--clr-accent)", width:"5rem", color:"white", flex:1 }}
                   onClick={props.onConfirm}
                   disabled={props.loading}
                 >

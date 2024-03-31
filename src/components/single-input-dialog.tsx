@@ -20,9 +20,12 @@ interface Props {
   inputPlaceholder?:string
   inputOnChange?:any
   loading?:boolean
+  confirmClass?:string
+  postable?:boolean
 }
 
 export default function SingleInputDialog(props: Props) {
+
   return (
     <>
       <Dialog open={props.open}>
@@ -35,7 +38,7 @@ export default function SingleInputDialog(props: Props) {
             <h3>{props.desc}</h3>
 
           
-            <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange}/>
+            <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange} />
             
             
             
@@ -55,15 +58,16 @@ export default function SingleInputDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button 
-                  style={{ background: "var(--clr-opacity)" }}
+                  style={{ background: "var(--clr-opacity)", flex:1 }}
                   onClick={props.onCancel}
                 >
                   Cancel
                 </button>
                 <button
-                  style={{ background: "var(--clr-accent)", width:"6rem", color:"white" }}
+                  style={{flex:1 }}
                   onClick={props.onConfirm}
                   disabled={props.loading}
+                  className={props.postable?"red":"disabled"}
                 >
                   {props.loading?<LoadingOutlined/>:null}
                   {props.okText}

@@ -1,12 +1,11 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { ConfigProvider } from "antd";
-import { PenLine, Trash } from "lucide-react";
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "./ui/dialog";
 
 interface Props {
@@ -27,14 +26,30 @@ export default function DeleteUpdateDialog(props: Props) {
     <>
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
-          <DialogHeader style={{display:"flex", alignItems:"center"}}>
+          <DialogHeader style={{display:"flex", alignItems:"center", gap:"1rem"}}>
             <DialogTitle style={{ fontSize: "1.5rem" }}>
               {props.title}
               
             </DialogTitle>
 
-            <h3 style={{opacity:0.5}}>{props.desc}</h3>
-            <h3 style={{opacity:0.5}}>{props.desc2}</h3>
+            {props.desc?
+            <div style={{display:"flex", gap:"0.75rem"}}>
+            {props.desc?
+            <h3 style={{opacity:0.5, border:"1px solid", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc}</h3>
+            :null
+            }
+            {props.desc2?
+            <h3 style={{opacity:0.5, border:"1px solid", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc2}</h3>
+            :null
+            }
+            
+            
+            </div>
+            :null
+            }
+            
+            <div></div>
+            
           </DialogHeader>
 
           <DialogFooter>
@@ -63,7 +78,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   onClick={props.onConfirm}
                   disabled={props.loading}
                 >
-                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:<Trash width="0.75rem"/>}
+                  {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
 
                   {props.okText}
                 </button>
@@ -74,7 +89,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   disabled={props.loading}
                 >
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
-                  <PenLine width="0.75rem"/>
+                  
                   {props.updateBtnText}
                 </button>
               </ConfigProvider>

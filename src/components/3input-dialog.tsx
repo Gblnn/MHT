@@ -42,7 +42,7 @@ export default function ThreeInputDialog(props: Props) {
           
             <input placeholder={props.inputPlaceholder} onChange={props.inputOnChange}/>
             <input placeholder={props.input2Placeholder} onChange={props.input2OnChange}/>
-            <input placeholder={props.input3Placeholder} onChange={props.input2OnChange}/>
+            <input placeholder={props.input3Placeholder} onChange={props.input3OnChange}/>
             
             
           </DialogHeader>
@@ -61,12 +61,13 @@ export default function ThreeInputDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)" }}
+                  style={{ background: "var(--clr-opacity)", flex:1 }}
                   onClick={props.onCancel}
                 >
                   Cancel
                 </button>
                 <button
+                style={{flex:1}}
                   className={props.confirmClass}
                   onClick={props.onConfirm}
                 >

@@ -81,7 +81,7 @@ export default function EndWorkDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem" }}
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", flex:1 }}
                   onClick={props.onCancel}
                   
                 >
@@ -90,7 +90,7 @@ export default function EndWorkDialog(props: Props) {
 
                 {props.working?
                 <button
-                style={{}}
+                style={{flex:1}}
                 onClick={props.onConfirm}
                 className={props.postable ? "red" : "disabled-btn"}
                 disabled={!props.postable}

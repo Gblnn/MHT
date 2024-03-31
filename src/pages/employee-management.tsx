@@ -21,12 +21,15 @@ export default function EmployeeManagement(){
   const [pageload,  setPageLoad] = useState(false)
   const [postable, setPostable] = useState(false)
   const [update, setUpdate] = useState(false)
+  let initialLoad = false
 
   useEffect(() => {
+    initialLoad = true
       getData()
   },[])
 
   useEffect(() => {
+    initialLoad = false
     getData()
 },[update])
 
@@ -40,7 +43,10 @@ export default function EmployeeManagement(){
 },[name])
 
   const getData = async () => {
-    setPageLoad(true)
+    if(initialLoad){
+      setPageLoad(true)
+    }
+    
     await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees")
       .then((res) => res.json())
       .then((data) => {

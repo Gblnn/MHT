@@ -81,7 +81,7 @@ export default function SiteItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={props.dialogtitle} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.title}/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} updateBtnText='Rename Site'/>
         
         </>
         

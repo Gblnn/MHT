@@ -2,6 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import ConfirmDialog from './confirm-dialog'
 import DefaultDialog from "./default-dialog"
 
 interface Props{
@@ -15,6 +16,7 @@ interface Props{
     rid?:string
     password:string
     clickable?:boolean
+    onConfirm?:any
 }
 
 export default function UserItem(props: Props){
@@ -27,6 +29,7 @@ export default function UserItem(props: Props){
     const [overviewdialog, setOverviewDialog] = useState(false)
 
     const [loading, setLoading] = useState(false)
+    const [confirmdialog, setConfirmDialog] = useState(false)
 
 
     // useEffect(()=>{
@@ -58,7 +61,7 @@ export default function UserItem(props: Props){
         })
         setLoading(false)
         setOverviewDialog(false)
-        window.location.reload()
+        props.onConfirm()
     }
 
     const Nothing = () => {}
@@ -88,7 +91,9 @@ export default function UserItem(props: Props){
         </div>
         </Link>
 
-        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)} onConfirm={deleteData} loading={loading} desc={props.password}/>
+        <DefaultDialog title={ename} open={overviewdialog} okText="Delete User" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} desc={props.password}/>
+
+        <ConfirmDialog title='Confirm Delete?' desc="This record will be permanently removed from the servers" open={confirmdialog} okText='Confirm' onCancel={()=>setConfirmDialog(false)} onConfirm={deleteData} loading={loading}/>
         
         </>
         

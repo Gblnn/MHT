@@ -1,6 +1,7 @@
 import AMPMCombo from "@/components/ampmcombo";
 import Back from "@/components/back";
 import ComboDialog from "@/components/combo-dialog";
+import ConfirmDialog from "@/components/confirm-dialog";
 import DefaultDialog from "@/components/default-dialog";
 import EditMode from "@/components/edit-mode";
 import SiteCombo from "@/components/site-combo";
@@ -240,7 +241,7 @@ export default function AdminRecords() {
 
       <DefaultDialog title={ename} open={deletedialog} okText="Delete Entry" desc={sitepreview} desc2={date} onCancel={()=>setDeleteDialog(false)} onConfirm={()=>{setDeleteDialog(false);setDeleteConfirm(true)}}/>
 
-      <DefaultDialog title="Confirm Delete?" open={deleteconfirm} okText="Confirm" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading}/>
+      <ConfirmDialog title="Confirm Delete?" open={deleteconfirm} okText="Confirm" onCancel={()=>setDeleteConfirm(false)} onConfirm={handleDeleteDoc} loading={loading} desc="This record will be permanently deleted from the servers."/>
     </>
   );
 }
