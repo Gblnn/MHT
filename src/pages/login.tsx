@@ -2,6 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Result, message } from "antd";
 import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ export default function Login() {
   const [loggedin, setLoggedin] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // const usenavigate = useNavigate();
+  const usenavigate = useNavigate();
 
   useEffect(()=>{
     if(window.name!=""){
@@ -44,7 +45,8 @@ export default function Login() {
           data.map((data:any)=>{
             if(data.username== username && data.password == password){
 
-              window.open('/index', 'rel=noopener noreferrer')
+              // window.open('/index', 'rel=noopener noreferrer')
+              usenavigate("/index")
               setLoggedin(true)
               setLoading(false)
 
