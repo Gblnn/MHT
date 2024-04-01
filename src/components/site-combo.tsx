@@ -51,7 +51,7 @@ export default function SiteCombo(props:Props){
             >
               <SelectValue placeholder={loading?<LoadingOutlined/>:"Select Site"} />
             </SelectTrigger>
-            <SelectContent style={{ background: "#1a1a1a", color: "white", border:"2px solid rgba(100 100 100/ 50%)" }}>
+            <SelectContent style={{ background: "#1a1a1a", color: "white", border:"2px solid rgba(100 100 100/ 50%)", height:"25ch" }}>
                 {sites.map((site)=>(
                     <SelectItem style={{fontSize:"1.1rem"}} key={site.id} value={site.sitename}>{site.sitename}</SelectItem>
                 ))}
