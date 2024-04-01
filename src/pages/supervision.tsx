@@ -4,9 +4,9 @@ import Back from "@/components/back";
 import DialogBox from "@/components/dialogbox";
 import Select from "@/components/select-button";
 import { LoadingOutlined } from '@ant-design/icons';
-import { message } from "antd";
+import { ConfigProvider, FloatButton, message } from "antd";
 import { motion } from 'framer-motion';
-import { Eye, User } from "lucide-react";
+import { CloudRainWind, Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Supervision() {
@@ -127,6 +127,10 @@ export default function Supervision() {
       
       :null
     }
+
+<ConfigProvider theme={{token:{colorPrimary:"var(--clr-btn)"}}}>
+        <FloatButton className="float" icon={<CloudRainWind width="1.25rem"/>} shape="square" type="primary"/>
+      </ConfigProvider>
       
       <DialogBox title="Group Assign" open={groupaddDialog} okText="Assign" onCancel={()=>setGroupaddDialog(false)} desc={String(eref)} onConfirm={groupAssign} postable={true}/>
       

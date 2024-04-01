@@ -1,21 +1,19 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { message } from "antd";
+import { Result, message } from "antd";
 import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [postable, setPostable] = useState(false);
-
+  const [loggedin, setLoggedin] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const usenavigate = useNavigate();
+  // const usenavigate = useNavigate();
 
   useEffect(()=>{
     if(window.name!=""){
-      usenavigate("/index")
     }
   },[])
 
@@ -33,6 +31,7 @@ export default function Login() {
   }, [username, password]);
 
   window.name = username;
+  localStorage.setItem("username", username)
 
   const Validate = async () => {
     setUsername(username.toLowerCase());
@@ -44,7 +43,11 @@ export default function Login() {
         .then((data) => {
           data.map((data:any)=>{
             if(data.username== username && data.password == password){
-              usenavigate("/index")
+
+              window.open('/index', 'rel=noopener noreferrer')
+              setLoggedin(true)
+              setLoading(false)
+
             }
             else{
               setLoading(false)
@@ -78,6 +81,7 @@ export default function Login() {
           MHT
         </h1>
       </div>
+      
       <motion.div initial={{opacity:0}} whileInView={{opacity:1}} >
       <div
         style={{
@@ -87,6 +91,7 @@ export default function Login() {
           height: "100svh",
         }}
       >
+        {!loggedin?
         <div
           style={{
             display: "flex",
@@ -139,8 +144,20 @@ export default function Login() {
             
           </div>
         </div>
+        :<Result status={"success"} extra={[
+          <div style={{display:"flex", flexFlow:"column", gap:"4rem"}}>
+            <h1 style={{fontSize:"1.5rem", fontWeight:"600"}}>Logged In Successfully</h1>
+            <p style={{fontSize:"1rem"}}>You can safely close this window</p>
+            <button onClick={()=>{window.open("about:blank","_self");setTimeout(()=>{window.close()},100)}} style={{background:"black", color:"white"}}>Close Window</button>
+          </div>
+          
+          
+      ]}/>}
       </div>
       </motion.div>
+      
+      
+      
     </div>
   );
 }

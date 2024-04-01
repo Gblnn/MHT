@@ -8,9 +8,10 @@ import DirItem from "../components/dir-item";
 export default function Admin() {
 
     const usenavigate = useNavigate()
+    let user = localStorage.getItem("username")
 
     useEffect(()=>{
-        if(window.name!="admin"){
+        if(user!="admin"){
             usenavigate("/login")
         }
     },[])

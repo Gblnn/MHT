@@ -53,14 +53,26 @@ export default function ActivityItem(props: Props){
     },[])
 
     useEffect(()=>{
-        if(site==""||work==""||start==""){
-            setPostable(false)
-        
-        }
-        else{
+
+        if(work=="Site Work"&&start){
             setPostable(true)
-        
         }
+
+        else{
+
+            setPostable(false)
+
+            if(site==""||work==""||start==""){
+                setPostable(false)
+                
+            }
+            else{
+                setPostable(true)
+            }
+
+        }
+
+        
         
     },[site, work, start])
 
@@ -243,9 +255,9 @@ export default function ActivityItem(props: Props){
             
         </div>
         </Link>
-        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work : " desc={ename} open={dialog} okText="Assign" onCancel={()=>setDialog(false)} onConfirm={Assign} prefetch={props.dialogPrefetch}/>
+        <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work : " desc={ename} open={dialog} okText="Assign" onCancel={()=>{setDialog(false);setPostable(false)}} onConfirm={Assign} prefetch={props.dialogPrefetch} sitedetails={(e:any)=>{setSite(e.target.value);setWork("Site Visit")}} />
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);console.log(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
         </>
         
     )

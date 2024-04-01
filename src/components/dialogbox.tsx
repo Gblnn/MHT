@@ -1,5 +1,5 @@
-import { ConfigProvider } from "antd";
-import { useEffect } from "react";
+import { Checkbox, ConfigProvider } from "antd";
+import { useEffect, useState } from "react";
 import AMPMCombo from "./ampmcombo";
 import SiteCombo from "./site-combo";
 import TimeComboBox from "./time-combobox";
@@ -30,11 +30,17 @@ interface Props {
   postable?:boolean
   tag?:string
   prefetch?:boolean
+  sitevisit?:any
+  sitedetails?:any
+  oncheckboxchange?:any
 }
 
 export default function DialogBox(props: Props) {
 
+  const [checked, setChecked] = useState(false)
+
   useEffect(()=>{
+  
     
   },[])
 
@@ -57,10 +63,16 @@ export default function DialogBox(props: Props) {
             
             <h2 style={{ fontWeight: "600" }}>{props.desc2}</h2>
             
+            {checked?
+            null
+            :
+            <>
+            <SiteCombo onChange={props.onChange} disabled={checked}/>
+            <WorkCombo onChange={props.work} disabled={checked}/>
+            </>
             
-            <SiteCombo onChange={props.onChange}/>
-            {/* <WorkComboBox placeholder="Work Type" items onChange={props.work} /> */}
-            <WorkCombo onChange={props.work}/>
+            }
+            
             
             <div style={{display:"flex", gap:"0.5rem"}}>
       
@@ -68,6 +80,16 @@ export default function DialogBox(props: Props) {
               <AMPMCombo items placeholder="AM/PM" onChange={props.ampm}/>
       
             </div>
+
+            <div style={{display:"flex", border:"", marginTop:"0.5rem", justifyContent:"space-between", gap:"0.5rem"}}>
+              <div style={{display:"flex", gap:"0.5rem", alignItems:"center", width:"fit-content", paddingLeft:"1rem", paddingRight:"1rem", borderRadius:"0.5rem", background:"var(--clr-opacity)", cursor:"pointer"}} onClick={()=>setChecked(!checked)} >
+                <Checkbox checked={checked} onChange={(e)=>props.oncheckboxchange(String(e.target.value))}/>
+                <p style={{userSelect:"none"}}>Site Visit</p>
+              </div>
+              <input placeholder={checked?"Site Name":"N/A"} disabled={!checked} onChange={props.sitedetails} style={{flex:1}}/>
+            </div>
+            
+            
             
             
           </DialogHeader>

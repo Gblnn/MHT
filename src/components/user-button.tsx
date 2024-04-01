@@ -11,6 +11,7 @@ export default function UserButton() {
   const handleLogout = () => {
     usenavigate("/login");
     window.name = "";
+    localStorage.clear()
   };
 
   // const items: MenuProps["items"] = [

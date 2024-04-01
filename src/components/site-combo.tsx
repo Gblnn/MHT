@@ -6,7 +6,7 @@ import {LoadingOutlined} from '@ant-design/icons'
 
 interface Props{
   onChange:any
-
+  disabled?:boolean
 }
 
 type Record = {
@@ -41,7 +41,7 @@ export default function SiteCombo(props:Props){
         <>
     
             <Select required onValueChange={props.onChange}>
-            <SelectTrigger disabled={loading}
+            <SelectTrigger disabled={loading||props.disabled}
               style={{
                 background: "var(--clr-bg)",
                 border: "1px solid rgba(100 100 100/ 50%)",

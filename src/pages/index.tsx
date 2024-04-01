@@ -4,6 +4,8 @@ import DirItem from "../components/dir-item";
 
 export default function Index() {
 
+  const user = localStorage.getItem("username")
+
   return (
     <>
     {/* <Link
@@ -37,7 +39,7 @@ export default function Index() {
 
         
 
-          {window.name=="admin"||window.name=="super"?
+          {user=="admin"||user=="supervisor"?
           <DirItem
           to="/supervision-index"
           icon={<Users width="1.1rem" color="var(--clr-accent)" />}
@@ -56,7 +58,7 @@ export default function Index() {
 
           
 
-          {window.name=="admin"?
+          {user=="admin"?
           <DirItem
             to="/accounting"
             icon={<Book width="1.1rem" color="var(--clr-accent)" />}
@@ -65,7 +67,7 @@ export default function Index() {
           />
           :null}
           
-          {window.name=="admin"?
+          {user=="admin"?
           <DirItem
             to="/admin"
             icon={<Sparkles width="1.1rem" color="var(--clr-accent)" />}
