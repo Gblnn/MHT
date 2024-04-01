@@ -28,7 +28,7 @@ export default function DeleteUpdateDialog(props: Props) {
       <Dialog open={props.open}>
         <DialogContent style={{background:"var(--clr-bg)", border:"none"}}>
           <DialogHeader style={{display:"flex", alignItems:"center", gap:"0.5rem"}}>
-            <DialogTitle style={{ fontSize: "1.5rem", display:"flex", alignItems:"center", gap:"0.75rem" }}>
+            <DialogTitle style={{ fontSize: "1.5rem", display:"flex", alignItems:"center", gap:"0.5rem" }}>
               {props.titleicon}
               {props.title}
               
@@ -37,11 +37,11 @@ export default function DeleteUpdateDialog(props: Props) {
             {props.desc?
             <div style={{display:"flex", gap:"0.75rem"}}>
             {props.desc?
-            <h3 style={{opacity:0.5, border:"1px solid", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc}</h3>
+            <h3 style={{opacity:0.5, border:"1px solid rgba(100 100 100/75%)", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc}</h3>
             :null
             }
             {props.desc2?
-            <h3 style={{opacity:0.5, border:"1px solid", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc2}</h3>
+            <h3 style={{opacity:0.5, border:"1px solid rgba(100 100 100/75%)", borderRadius:"0.5rem", padding:"0.1rem", paddingRight:"0.5rem", paddingLeft:"0.5rem"}}>{props.desc2}</h3>
             :null
             }
             

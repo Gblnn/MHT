@@ -4,6 +4,7 @@ import Back from "@/components/back";
 import DialogBox from "@/components/dialogbox";
 import Select from "@/components/select-button";
 import { LoadingOutlined } from '@ant-design/icons';
+import { message } from "antd";
 import { motion } from 'framer-motion';
 import { Eye, User } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -70,7 +71,8 @@ export default function Supervision() {
   }
 
   const groupAssign = () => {
-    
+    setGroupaddDialog(false)
+    message.info("This feature is currently unavailable")
   }
 
   
