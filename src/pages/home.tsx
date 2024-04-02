@@ -24,10 +24,10 @@ import AccessControl from "./access-control";
 
 export default function Home() {
   const usenavigate = useNavigate();
-  let user = localStorage.getItem("username")
+
 
   useEffect(() => {
-    if (user == "") {
+    if (window.name == "") {
       usenavigate("/login");
     }
   }, []);

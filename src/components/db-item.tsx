@@ -59,6 +59,7 @@ export default function DBItem(props: Props){
         })
         setDeleting(false)
         setOverviewDialog(false)
+        setConfirmDialog(false)
         props.onUpdate()
     }
 
