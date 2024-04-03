@@ -30,8 +30,7 @@ export default function EditMode(props:Props) {
               borderRadius:"0.5rem",
               userSelect:"none",
               zIndex:5,
-              boxShadow:"1px 1px 10x rgba(0 0 0/ 75%)"
-          
+              
             }}
             className={props.editable?"red":"opacity"}
             
