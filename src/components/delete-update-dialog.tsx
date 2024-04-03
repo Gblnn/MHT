@@ -76,15 +76,19 @@ export default function DeleteUpdateDialog(props: Props) {
                   Cancel
                 </button>
 
+                {props.updateBtnText?
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
-                  onClick={props.updateBtnConfirm}
-                  disabled={props.loading}
-                >
-                  
-                  
-                  {props.updateBtnText}
-                </button>
+                style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
+                onClick={props.updateBtnConfirm}
+                disabled={props.loading}
+              >
+                
+                
+                {props.updateBtnText}
+              </button>
+              :null
+                }
+                
                 
                 <button
                   style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
