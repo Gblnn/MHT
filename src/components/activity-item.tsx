@@ -116,12 +116,8 @@ export default function ActivityItem(props: Props){
     const handleDisabled = () => {
         if(!checked){
             setChecked(true)
-
-        const new_item = { id: props.id, name: props.title };
-        setItems((prevItems:any) => [...prevItems, new_item]);
-
-            
-            
+            const new_item = { id: props.id, name: props.title };
+            setItems((prevItems:any) => [...prevItems, new_item]);
             console.log(items)
         
         }else{

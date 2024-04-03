@@ -57,7 +57,7 @@ export default function AdminRecords() {
   async function fetchData(){
     setLoading(true)
     const RecordCollection = collection(firestore, "records")
-    const recordQuery = query(RecordCollection, orderBy("rid", "asc"))
+    const recordQuery = query(RecordCollection, orderBy("date", "asc"))
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData: Array<Record> = [];
 
