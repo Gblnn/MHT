@@ -44,7 +44,7 @@ export default function EndWorkDialog(props: Props) {
             
             </div>
 
-            <div style={{display:"flex", gap:"0.5rem", border:'1px solid rgba(100 100 100/ 50%)', paddingLeft:"1.1rem", paddingRight:"1.1rem", padding:"0.25rem", borderRadius:"0.5rem"}}>
+            <div style={{display:"flex", gap:"0.5rem", border:'1px solid rgba(100 100 100/ 50%)', borderRadius:"0.5rem",padding:"0.25rem", paddingLeft:"1rem", paddingRight:"1rem" }}>
               <Briefcase width="1rem"/>
             <p style={{fontWeight:800}}>{props.work}</p>
             </div>
