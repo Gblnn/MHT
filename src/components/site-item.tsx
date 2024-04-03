@@ -1,11 +1,12 @@
 import { db } from '@/firebase'
 import { LoadingOutlined } from '@ant-design/icons'
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { ChevronRight, Factory } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DeleteUpdateDialog from './delete-update-dialog'
 import ConfirmDialog from './confirm-dialog'
+import SingleInputDialog from './single-input-dialog'
 
 interface Props{
     title:string
@@ -32,13 +33,27 @@ export default function SiteItem(props: Props){
     const [confirmdialog, setConfirmDialog] = useState(false)
 
     const [loading, setLoading] = useState(false)
+    const [renamedialog, setRenameDialog] = useState(false)
+    const [renamed, setRenamed] = useState("")
+    const [postable, setPostable] = useState(false)
 
 
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
     // },[start])
 
+    useEffect(()=>{
     
+    },[])
+
+    useEffect(()=>{
+        if(renamed==""){
+            setPostable(false)
+        }
+        else{
+            setPostable(true)
+        }
+    },[renamed])
 
 
 
@@ -56,6 +71,15 @@ export default function SiteItem(props: Props){
         setOverviewDialog(false)
         props.onDelete()
         setConfirmDialog(false)
+    }
+
+    const updateData = async () => {
+        setLoading(true)
+        await updateDoc(doc(db, "sites", props.id),{sitename:renamed})
+        setLoading(false)
+        setRenameDialog(false)
+        props.onDelete()
+        setPostable(false)
     }
 
       
@@ -84,7 +108,9 @@ export default function SiteItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} updateBtnText='Rename Site' titleicon={<Factory height="1.5rem" style={{marginBottom:"0.5rem"}}/>}/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete Site" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={loading} updateBtnText='Rename Site' titleicon={<Factory height="1.5rem" style={{marginBottom:"0.5rem"}}/>} updateBtnConfirm={()=>{setOverviewDialog(false);setRenameDialog(true)}}/>
+
+        <SingleInputDialog title='Rename Entry' open={renamedialog} okText='Update' onCancel={()=>{setRenameDialog(false); setOverviewDialog(true)}} postable={postable} inputOnChange={(e:any)=>setRenamed(e.target.value)} onConfirm={updateData} loading={loading} inputPlaceholder={props.title}/>
 
         <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} loading={loading} onConfirm={deleteData}/>
         

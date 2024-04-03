@@ -54,6 +54,7 @@ export default function Supervision() {
   const [update, setUpdate] = useState(false)
   const [status, setStatus] = useState(false)
   const [postable, setPostable] = useState(false)
+  const [ename, setEname] = useState("")
 
   const [confirmAction, setConfirmAction] = useState(false)
 
@@ -188,7 +189,7 @@ export default function Supervision() {
                   {
                     records.map((record)=>(
               
-                      <tr key={record.id} onClick={()=>{!editable?setDialog(true):null;setDoc_id(record.id);setSite(record.site);setRid(record.rid);setStatus(record.status)}}>
+                      <tr key={record.id} onClick={()=>{!editable?setDialog(true):null;setDoc_id(record.id);setSite(record.site);setRid(record.rid);setStatus(record.status);setEname(record.ename);setWork(record.work)}}>
 
                     
                        
@@ -228,7 +229,7 @@ export default function Supervision() {
         </div>
       </div>
 
-      <DefaultDialog title="Delete Entry?" okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>{setConfirmAction(true);setDialog(false)}} loading={loading} desc={site}/>
+      <DefaultDialog title={ename} okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>{setConfirmAction(true);setDialog(false)}} loading={loading} desc={site} desc2={work}/>
 
       <ConfirmDialog title="Confirm Delete?" open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc} loading={loading}/>
 
