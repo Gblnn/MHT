@@ -84,7 +84,7 @@ export default function WorkItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true); setOverviewDialog(false)}} loading={loading} titleicon={<Briefcase/>}/>
+        <DeleteUpdateDialog title={props.title} open={overviewdialog} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true); setOverviewDialog(false)}} loading={loading} titleicon={<Briefcase/>} updateBtnText='Rename'/>
 
         <ConfirmDialog title='Confirm Delete?' okText='Confirm' open={confirmdialog} onCancel={()=>setConfirmDialog(false)} onConfirm={deleteData} loading={loading}/>
         
