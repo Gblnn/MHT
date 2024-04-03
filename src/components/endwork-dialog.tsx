@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import { Briefcase } from "lucide-react";
 
 interface Props {
   open: boolean;
@@ -24,6 +25,7 @@ interface Props {
   postable?:boolean
   working?:boolean
   cancelWork?:any
+  work:string
 }
 
 export default function EndWorkDialog(props: Props) {
@@ -41,6 +43,12 @@ export default function EndWorkDialog(props: Props) {
             <p style={{color:props.working?"lime":"goldenrod", fontSize:"1.25rem", fontWeight:"bolder"}}>•</p>
             
             </div>
+
+            <div style={{display:"flex", gap:"0.5rem", border:'1px solid rgba(100 100 100/ 50%)', paddingLeft:"1.1rem", paddingRight:"1.1rem", padding:"0.25rem", borderRadius:"0.5rem"}}>
+              <Briefcase width="1rem"/>
+            <p style={{fontWeight:800}}>{props.work}</p>
+            </div>
+            
             
           {props.working?
           <>

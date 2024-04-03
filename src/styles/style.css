@@ -80,9 +80,9 @@ table tr:nth-child(even) {
   background: rgba(100 100 100/ 5%);
 }
 
-table tr:hover {
+/* table tr:hover {
   background: rgba(100 100 100/ 15%);
-}
+} */
 
 table th {
   background-color: var(--clr-accent);
@@ -95,6 +95,10 @@ table th {
 table td {
   font-weight: 500;
   padding: 0.5rem;
+}
+
+table td:active {
+  background: rgba(100 100 100/ 20%);
 }
 
 .table tr:hover {
@@ -116,6 +120,7 @@ table td {
 table {
   font-size: 0.75rem;
   background: var(--clr-bg);
+  overflow-y: scroll;
 }
 
 td {
@@ -174,8 +179,9 @@ table tr {
 
 .opacity {
   transition: 0.25s;
-  background: var(--clr-opacity);
+  background: rgb(200 200 200);
   color: var(--clr-accent);
+  box-shadow: 1px 1px 10px rgba(100 100 100/ 75%);
 }
 
 .opacity:active {

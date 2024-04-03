@@ -32,6 +32,7 @@ export default function ActivityItem(props: Props){
     const [end, setEnd] = useState("")
     const [siteinfo, setSiteinfo] = useState("")
     const [startinfo, setStartinfo] = useState("")
+    const [workinfo, setWorkinfo] = useState("")
     const [work, setWork] = useState("")
     const [dialog, setDialog] = useState(false)
     const [summarydialog, setSummaryDialog] = useState(false)
@@ -47,6 +48,7 @@ export default function ActivityItem(props: Props){
     // useEffect(()=>{
     //     console.log(moment(start, "hh:mm A").format("hh:mm A"))
     // },[start])
+
 
     useEffect(()=>{
         
@@ -94,6 +96,7 @@ export default function ActivityItem(props: Props){
         
         setSiteinfo(doc.data().site)
         setStartinfo(doc.data().start)
+        setWorkinfo(doc.data().work)
         
         if(doc.data()){
             setWorking(true)
@@ -111,8 +114,11 @@ export default function ActivityItem(props: Props){
     const handleDisabled = () => {
         if(!checked){
             setChecked(true)
+
+        const new_item = { id: props.id, name: props.title };
+        setItems((prevItems:any) => [...prevItems, new_item]);
+
             
-            setItems(items.push({id:props.id,name:props.title}))
             
             console.log(items)
         
@@ -257,7 +263,7 @@ export default function ActivityItem(props: Props){
         </Link>
         <DialogBox postable={postable} ampm={(value:any)=>{setStart(time+" "+value)}} time={setTime} onChange={setSite} work={setWork} title="Assign work : " desc={ename} open={dialog} okText="Assign" onCancel={()=>{setDialog(false);setPostable(false)}} onConfirm={Assign} prefetch={props.dialogPrefetch} sitedetails={(e:any)=>{setSite(e.target.value);setWork("Site Visit")}} />
 
-        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork}/>
+        <EndWorkDialog postable={endable} ampm={(value:any)=>{setEnd(time+" "+value);setEndable(true)}} time={setTime} title="End Work" open={summarydialog} okText="End Work" onCancel={()=>setSummaryDialog(false)} onConfirm={endWork} desc={ename} desc2={"on Site : "+siteinfo} desc3={"Started : "+startinfo} working={working} cancelWork={CancelWork} work={workinfo}/>
         </>
         
     )

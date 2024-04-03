@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import ConfirmDialog from './confirm-dialog'
 import DeleteUpdateDialog from './delete-update-dialog'
+import SingleInputDialog from './single-input-dialog'
 
 interface Props{
     title:string
@@ -26,6 +27,7 @@ export default function DBItem(props: Props){
     const [uploading, setUploading] = useState(false)
     const [deleting, setDeleting] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
+    const [renamedialog, setRenameDialog] = useState(false)
 
     const [confirmDialog, setConfirmDialog] = useState(false)
 
@@ -89,7 +91,9 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete Record" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Update Details' titleicon={<CircleUser/>}/>
+        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Rename' titleicon={<CircleUser/>} updateBtnConfirm={()=>{setOverviewDialog(false);setRenameDialog(true)}}/>
+
+        <SingleInputDialog title='Rename Entry' open={renamedialog} okText='Update' onCancel={()=>{setRenameDialog(false); setOverviewDialog(true)}} postable/>
 
         <ConfirmDialog title='Confirm Delete?' desc='This record will be permanently deleted from the servers' open={confirmDialog} okText='Confirm' onConfirm={deleteData} onCancel={()=>setConfirmDialog(false)} loading={deleting}/>
         

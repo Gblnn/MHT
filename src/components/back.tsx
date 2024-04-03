@@ -24,7 +24,7 @@ export default function Back() {
               marginTop: "5rem",
               userSelect:"none",
               borderRadius:"0.5rem",
-              background:"var(--clr-opacity)",
+              
               zIndex:5
             }}
             className="opacity"

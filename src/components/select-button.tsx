@@ -29,6 +29,7 @@ export default function Select(props:Props) {
               borderRadius:"0.5rem",
               userSelect:"none",
               zIndex:5,
+              boxShadow:"1px 1px 10px rgba(100 100 100/ 75%)"
           
             }}
             className={props.classname}

@@ -19,6 +19,7 @@ interface Props {
   action?: string;
   loading?:boolean
   updateBtnText?:string
+  updateBtnConfirm?:any
   titleicon?:any
 }
 
@@ -74,6 +75,16 @@ export default function DeleteUpdateDialog(props: Props) {
                 >
                   Cancel
                 </button>
+
+                <button
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
+                  onClick={props.updateBtnConfirm}
+                  disabled={props.loading}
+                >
+                  
+                  
+                  {props.updateBtnText}
+                </button>
                 
                 <button
                   style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"crimson", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
@@ -85,15 +96,7 @@ export default function DeleteUpdateDialog(props: Props) {
                   {props.okText}
                 </button>
 
-                {/* <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
-                  
-                  disabled={props.loading}
-                >
-                  
-                  
-                  {props.updateBtnText}
-                </button> */}
+                
               </ConfigProvider>
             </div>
           </DialogFooter>
