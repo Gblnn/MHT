@@ -156,6 +156,7 @@ table tr {
   transition: 0.25s;
   background: var(--clr-accent);
   color: white;
+  box-shadow: 1px 1px 10px rgba(100 100 100/ 75%);
 }
 
 .red:active {
@@ -179,9 +180,8 @@ table tr {
 
 .opacity {
   transition: 0.25s;
-  background: rgb(200 200 200);
+  background: rgb(220 220 220);
   color: var(--clr-accent);
-  box-shadow: 1px 1px 10px rgba(100 100 100/ 75%);
 }
 
 .opacity:active {

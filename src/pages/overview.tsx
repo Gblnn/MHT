@@ -57,10 +57,14 @@ export default function Supervision() {
 
   const [confirmAction, setConfirmAction] = useState(false)
 
+  useEffect(()=>{
+    fetchData();
+  },[])
+
   async function fetchData(){
     setLoading(true)
     const RecordCollection = collection(firestore, "records")
-    const recordQuery = query(RecordCollection, orderBy("rid", "asc"), where("date", "==", moment().format("DD-MM-YYYY")))
+    const recordQuery = query(RecordCollection, orderBy("rid"), where("date", "==", moment().format("DD-MM-YYYY")))
     const querySnapshot = await getDocs(recordQuery)
     const fetchedData: Array<Record> = [];
 
@@ -72,9 +76,7 @@ export default function Supervision() {
     
   }
 
-  useEffect(()=>{
-    fetchData();
-  },[])
+  
 
   useEffect(()=>{
     if(site==""||work==""||start==""||end==""){
@@ -187,6 +189,8 @@ export default function Supervision() {
                     records.map((record)=>(
               
                       <tr key={record.id} onClick={()=>{!editable?setDialog(true):null;setDoc_id(record.id);setSite(record.site);setRid(record.rid);setStatus(record.status)}}>
+
+                    
                        
                         <td>{record.ename}</td>
                         <td onClick={()=>{editable?setSiteDialog(true):null;setDoc_id(record.id)}}>{record.site}</td>

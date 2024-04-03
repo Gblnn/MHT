@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import DialogBox from "./dialogbox"
 import EndWorkDialog from "./endwork-dialog"
+import moment from "moment"
 
 interface Props{
     title:string
@@ -16,7 +17,7 @@ interface Props{
     to:string
     status?:boolean
     id:number
-    rid:string
+    rid:number
     selectable?:boolean
     onDialogConfirm?:any
     dialogPrefetch:boolean
@@ -25,6 +26,7 @@ interface Props{
 export default function ActivityItem(props: Props){
 
     const date = format(new Date(), "dd-MM-yyyy");
+    const timestamp = moment().toString()
     const rid = props.id
     const [ename, setEname] = useState("")
     const [site, setSite] = useState("")
@@ -159,7 +161,7 @@ export default function ActivityItem(props: Props){
       const Assign = async () => {
         setDialog(false)
         setUploading(true)
-        const obj = {rid, date, ename, site, work, start, end, status:true}
+        const obj = {rid, date, ename, site, work, start, end, status:true, timestamp}
 
         await addDoc(collection(db, "records"), obj)
 

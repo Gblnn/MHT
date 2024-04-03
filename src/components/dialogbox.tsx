@@ -82,7 +82,7 @@ export default function DialogBox(props: Props) {
             </div>
 
             <div style={{display:"flex", border:"", marginTop:"0.5rem", justifyContent:"space-between", gap:"0.5rem"}}>
-              <div style={{display:"flex", gap:"0.5rem", alignItems:"center", width:"fit-content", paddingLeft:"1rem", paddingRight:"1rem", borderRadius:"0.5rem", cursor:"pointer", fontWeight:"500", color:"var(--text)"}} onClick={()=>setChecked(!checked)} className="opacity" >
+              <div style={{display:"flex", gap:"0.5rem", alignItems:"center", width:"fit-content", paddingLeft:"1rem", paddingRight:"1rem", borderRadius:"0.5rem", cursor:"pointer", fontWeight:"500",fontSize:"1rem", color:"var(--text)"}} onClick={()=>setChecked(!checked)} className="opacity" >
                 <Checkbox checked={checked} />
                 <p style={{userSelect:"none"}}>Site Visit</p>
               </div>

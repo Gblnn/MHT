@@ -24,7 +24,7 @@ export default function Back() {
               marginTop: "5rem",
               userSelect:"none",
               borderRadius:"0.5rem",
-              
+              boxShadow:"1px 1px 10px rgba(100 100 100/ 75%)",
               zIndex:5
             }}
             className="opacity"

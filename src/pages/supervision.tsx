@@ -85,7 +85,7 @@ export default function Supervision() {
           <motion.div initial={{opacity:0, scale:0.99}} whileInView={{opacity:1,scale:1}}>
           <div className="page-content" style={{}}>
           
-          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"4rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
+          <div style={{display:"flex", width:"100%", height:"100svh", flexFlow:"column", overflowY:"scroll", gap:"1rem", alignItems:"center",paddingBottom:"7rem", justifyContent:"flex-start", marginTop:"4rem", paddingTop:"4rem"}}>
           
             {
               
@@ -123,19 +123,18 @@ export default function Supervision() {
       </div>
       
 
-      <ConfigProvider theme={{token:{colorPrimary:"var(--clr-btn)"}}}>
+      <ConfigProvider theme={{token:{colorPrimary:"" }}}>
 
-    <FloatButton.Group shape="square" className="float">
+      <FloatButton.Group shape="square" className="float" style={{transition:"0.3s"}}>
     
         <FloatButton icon={<CloudRainWind width="1.25rem"/>} shape="square" type="primary"/>
       
 
-      {
-      selectable?
-      <AddButton onClick={()=>setGroupaddDialog(true)}/>
-      
-      :null
-    }
+        {
+        selectable?
+        <AddButton onClick={()=>setGroupaddDialog(true)}/>
+        :null
+        }
 
     </FloatButton.Group>
     </ConfigProvider>
