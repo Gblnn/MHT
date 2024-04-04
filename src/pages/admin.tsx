@@ -1,6 +1,6 @@
 import Back from "@/components/back";
 import { motion } from "framer-motion";
-import { Briefcase, Factory, FileClock, KeyRound, UserCheck, Users } from "lucide-react";
+import { Briefcase, Factory, FileClock, UserCheck, Users } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DirItem from "../components/dir-item";
@@ -22,23 +22,23 @@ export default function Admin() {
           <motion.div initial={{opacity:0}} whileInView={{opacity:1}}>
         <div className="page-content" style={{ padding: "1.75rem" }}>
 
-        <DirItem
+          <DirItem
             to="/admin-records"
             icon={<FileClock width="1.1rem" color="var(--clr-accent)" />}
             title="Detailed Time Sheet"
           />
 
-        <DirItem
+          <DirItem
             to="/user-management"
             icon={<UserCheck width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Users"
           />
 
-<DirItem
+          {/* <DirItem
             to="/access-control"
             icon={<KeyRound width="1.1rem" color="var(--clr-accent)" />}
             title="Access Control"
-          />
+          /> */}
 
         
 
@@ -52,7 +52,7 @@ export default function Admin() {
 
             
 
-            <DirItem
+          <DirItem
             to="/site-management"
             icon={<Factory width="1.1rem" color="var(--clr-accent)" />}
             title="Manage Sites"
