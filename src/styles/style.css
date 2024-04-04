@@ -157,6 +157,10 @@ table tr {
   background: var(--clr-accent);
   color: white;
   box-shadow: 1px 1px 10px rgba(100 100 100/ 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .red:active {
