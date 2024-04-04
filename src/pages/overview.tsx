@@ -229,7 +229,7 @@ export default function Supervision() {
         </div>
       </div>
 
-      <DefaultDialog title={ename} okText="Delete" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>{setConfirmAction(true);setDialog(false)}} loading={loading} desc={site} desc2={work}/>
+      <DefaultDialog title={ename} okText="Delete Entry" open={dialog} onCancel={()=>setDialog(false)} onConfirm={()=>{setConfirmAction(true);setDialog(false)}} loading={loading} desc={site} desc2={work}/>
 
       <ConfirmDialog title="Confirm Delete?" open={confirmAction} okText="Confirm" onCancel={()=>setConfirmAction(false)} onConfirm={handleDeleteDoc} loading={loading}/>
 

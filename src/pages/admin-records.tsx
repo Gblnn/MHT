@@ -48,10 +48,12 @@ export default function AdminRecords() {
   const[work, setWork] = useState("")
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
+  const [rid, setRid] = useState("")
   const [onUpdate, setOnUpdate] = useState(false)
   const[loading, setLoading] = useState(false)
   // let [search, setSearch] = useState('')
   const [updating, setUpdating] = useState(false)
+  const [status, setStatus] = useState(false)
   const [editable, setEditable] = useState(false)
 
   async function fetchData(){
@@ -103,6 +105,13 @@ export default function AdminRecords() {
   const handleEnd = async (p:any) => {
     setLoading(true)
     await updateDoc(doc(db, "records", p),{end:end})
+    if(status==true){
+      await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
+            method: 'PUT',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({status:false})
+            })
+    }
     setLoading(false)
     setEndDialog(false)
     setOnUpdate(!onUpdate)
@@ -114,6 +123,13 @@ export default function AdminRecords() {
     console.log(doc_id)
     try {
       await deleteDoc(doc(db, "records", doc_id))
+      if(status==true){
+        await fetch('https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/'+rid, {
+            method: 'PUT',
+            headers: {'content-type':'application/json'},
+            body: JSON.stringify({status:false})
+            })
+      }
 
       setOnUpdate(!onUpdate)
       setDeleteConfirm(false)
@@ -187,7 +203,7 @@ export default function AdminRecords() {
                   //     item.name.toLowerCase().includes(search)
                   // })
                   .map((record)=>(
-                      <tr key={record.id} onClick={()=>{!editable?setDeleteDialog(true):null;setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site)}}>
+                      <tr key={record.id} onClick={()=>{!editable?setDeleteDialog(true):null;setEname(record.ename);setDate(record.date);setDoc_id(record.id); setSitePreview(record.site); setStatus(record.status); setRid(record.rid)}}>
                         <td onClick={()=>{}}>{updating?<LoadingOutlined/>:record.date}</td>
                         <td>{record.ename}</td>
                         <td onClick={()=>{editable?setSiteDialog(true):null;setDoc_id(record.id)}}>{record.site}</td>
