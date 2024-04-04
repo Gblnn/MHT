@@ -50,12 +50,6 @@ export default function ConfirmDialog(props: Props) {
                 theme={{ token: { colorPrimary: "var(--color)" } }}
               >
                 <button
-                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", flex:1 }}
-                  onClick={props.onCancel}
-                >
-                  Cancel
-                </button>
-                <button
                   style={{ background: "crimson", fontSize: "1rem", color:"white", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem", flex:1, boxShadow:"" }}
                   onClick={props.onConfirm}
                   disabled={props.loading}
@@ -64,6 +58,13 @@ export default function ConfirmDialog(props: Props) {
                   {props.loading?<LoadingOutlined width="1rem" style={{scale:1.75}}/>:null}
                   {props.okText}
                 </button>
+                <button
+                  style={{ background: "var(--clr-opacity)", fontSize: "1rem", flex:1 }}
+                  onClick={props.onCancel}
+                >
+                  Cancel
+                </button>
+                
               </ConfigProvider>
             </div>
           </DialogFooter>
