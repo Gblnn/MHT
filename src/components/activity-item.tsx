@@ -117,7 +117,13 @@ export default function ActivityItem(props: Props){
         if(!checked){
             setChecked(true)
             const new_item = { id: props.id, name: props.title };
-            setItems((prevItems:any) => [...prevItems, new_item]);
+            setItems((prev:any) => {
+                return[
+                    ...prev,
+                    new_item
+                ]
+            })
+            // setItems((prevItems:any) => [...prevItems, new_item]);
             console.log(items)
         
         }else{
