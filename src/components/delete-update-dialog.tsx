@@ -19,7 +19,9 @@ interface Props {
   action?: string;
   loading?:boolean
   updateBtnText?:string
+  updateIdText?:string
   updateBtnConfirm?:any
+  updateIdConfirm?:any
   titleicon?:any
 }
 
@@ -78,6 +80,19 @@ export default function DeleteUpdateDialog(props: Props) {
                   Cancel
                 </button>
 
+                {props.updateIdText?
+                <button
+                style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
+                onClick={props.updateIdConfirm}
+                disabled={props.loading}
+              >
+                
+                
+                {props.updateIdText}
+              </button>
+              :null
+                }
+
                 {props.updateBtnText?
                 <button
                 style={{ background: "var(--clr-opacity)", fontSize: "1rem", color:"#3131ab", fontWeight:600, display:"flex", alignItems:"center", gap:"0.5rem" }}
@@ -90,6 +105,10 @@ export default function DeleteUpdateDialog(props: Props) {
               </button>
               :null
                 }
+
+              
+
+
                 
                 
                 <button

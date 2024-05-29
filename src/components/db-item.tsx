@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import ConfirmDialog from './confirm-dialog'
 import DeleteUpdateDialog from './delete-update-dialog'
 import SingleInputDialog from './single-input-dialog'
+import InputDialog from './input-dialog'
 
 interface Props{
     title:string
@@ -13,7 +14,7 @@ interface Props{
     classname?:string
     to:string
     status?:boolean
-    id:number
+    id?:number
     rid?:string
     onUpdate:any
 }
@@ -29,7 +30,7 @@ export default function DBItem(props: Props){
     const [loading, setLoading] = useState(false)
     const [overviewdialog, setOverviewDialog] = useState(false)
     const [renamedialog, setRenameDialog] = useState(false)
-
+    const [updateIdDialog, setUpdateIdDialog] = useState(false)
     const [confirmDialog, setConfirmDialog] = useState(false)
     const [postable, setPostable] = useState(false)
     const [renamed, setRenamed] = useState("")
@@ -52,13 +53,13 @@ export default function DBItem(props: Props){
 
     const getData = async () => {
         setUploading(true)
-        await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
-        .then((res) => res.json())
-        .then((data) => {
-            setEname(data.name)
-            setPassport(data.passport)
-            setResident(data.resident)
-      })
+    //     await fetch("https://65d73a6d27d9a3bc1d7a7e03.mockapi.io/employees/"+props.id)
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         setEname(data.name)
+    //         setPassport(data.passport)
+    //         setResident(data.resident)
+    //   })
         setOverviewDialog(true)
         setUploading(false)
         
@@ -113,7 +114,9 @@ export default function DBItem(props: Props){
         </div>
         </Link>
 
-        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Rename' titleicon={<CircleUser/>} updateBtnConfirm={()=>{setOverviewDialog(false);setRenameDialog(true)}}/>
+        <DeleteUpdateDialog title={ename} open={overviewdialog} desc={passport} desc2={resident} okText="Delete" onCancel={()=>setOverviewDialog(false)} onConfirm={()=>{setConfirmDialog(true);setOverviewDialog(false)}} loading={deleting} updateBtnText='Rename' titleicon={<CircleUser/>} updateBtnConfirm={()=>{setOverviewDialog(false);setRenameDialog(true)}} updateIdText='Update IDs' updateIdConfirm={()=>{setUpdateIdDialog(true);setOverviewDialog(false)}} />
+
+        <InputDialog open={updateIdDialog} desc='Fields left empty will retain previous values' okText='Update' title='Update IDs' inputPlaceholder='Update Passport' input2Placeholder='Update Resident ID' onCancel={()=>{setUpdateIdDialog(false)}}/>
 
         <SingleInputDialog title='Rename Entry' open={renamedialog} okText='Update' onCancel={()=>{setRenameDialog(false); setOverviewDialog(true)}} postable={postable} inputOnChange={(e:any)=>setRenamed(e.target.value)} onConfirm={updateData} loading={loading} inputPlaceholder={ename}/>
 
