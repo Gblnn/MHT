@@ -26,11 +26,11 @@ export default function Home() {
   const usenavigate = useNavigate();
 
 
-  // useEffect(() => {
-  //   if (window.name == "") {
-  //     usenavigate("/login");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (window.name == "") {
+      usenavigate("/login");
+    }
+  }, []);
   return (
     <>
       <Header />

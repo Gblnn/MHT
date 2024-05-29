@@ -87,9 +87,6 @@ export default function EmployeeManagement(){
             <DBItem id={post.id} to="" icon={<UserCircle color="var(--clr-accent)" width="1rem"/>} key={post.id} title={post.name} onUpdate={()=>setUpdate(!update)}/>
           ))
         }
-
-        <DBItem to="" icon={<UserCircle color="var(--clr-accent)" width="1rem"/>} title="Test" onUpdate={()=>setUpdate(!update)}/>
-
         {pageload?<LoadingOutlined style={{scale:"1.75", color:"var(--clr-accent)", marginTop:"1.5rem"}} width="2rem" color="var(--clr-accent)"/>:null}
       </div>
       </div>
